@@ -41,8 +41,8 @@
 
 
 
-<link rel="preload" href="/scss/main.scss" as="style">
-<link href="/scss/main.scss" rel="stylesheet" integrity="">
+<link rel="preload" href="/scss/main.min.4e97b1a76f791ffe96a4c49b296c1a25ee66b475fd3869363799d5d8fa912a37.css" as="style">
+<link href="/scss/main.min.4e97b1a76f791ffe96a4c49b296c1a25ee66b475fd3869363799d5d8fa912a37.css" rel="stylesheet" integrity="">
 
 
 <script
