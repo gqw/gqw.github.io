@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>挑战不可能 – Blog</title>
-    <link>https://gqw.gitee.io/blog/</link>
+    <link>https://gqw.gitee.io/gqw/blog/</link>
     <description>Recent content in Blog on 挑战不可能</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	  <atom:link href="https://gqw.gitee.io/blog/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://gqw.gitee.io/gqw/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -15,10 +15,10 @@
     
     <item>
       <title>Blog: 从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS</title>
-      <link>https://gqw.gitee.io/blog/2020/08/10/%E4%BB%8Ehellowold%E5%BC%80%E5%A7%8B%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAc-20-coroutine-ts/</link>
+      <link>https://gqw.gitee.io/gqw/blog/2020/08/10/%E4%BB%8Ehellowold%E5%BC%80%E5%A7%8B%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAc-20-coroutine-ts/</link>
       <pubDate>Mon, 10 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/blog/2020/08/10/%E4%BB%8Ehellowold%E5%BC%80%E5%A7%8B%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAc-20-coroutine-ts/</guid>
+      <guid>https://gqw.gitee.io/gqw/blog/2020/08/10/%E4%BB%8Ehellowold%E5%BC%80%E5%A7%8B%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAc-20-coroutine-ts/</guid>
       <description>
         
         
@@ -194,10 +194,10 @@ main thread doing other things...
     
     <item>
       <title>Blog: 测试评论</title>
-      <link>https://gqw.gitee.io/blog/2020/08/10/%E6%B5%8B%E8%AF%95%E8%AF%84%E8%AE%BA/</link>
+      <link>https://gqw.gitee.io/gqw/blog/2020/08/10/%E6%B5%8B%E8%AF%95%E8%AF%84%E8%AE%BA/</link>
       <pubDate>Mon, 10 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/blog/2020/08/10/%E6%B5%8B%E8%AF%95%E8%AF%84%E8%AE%BA/</guid>
+      <guid>https://gqw.gitee.io/gqw/blog/2020/08/10/%E6%B5%8B%E8%AF%95%E8%AF%84%E8%AE%BA/</guid>
       <description>
         
         
