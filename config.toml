@@ -1,7 +1,7 @@
 baseURL = "https://gqw.gitee.io/"
-title = "Goldydocs"
+# title = "Goldydocs"
 author = "Gu.Qiwei"
-
+publishDir = "docs"
 enableRobotsTXT = true
 
 # Hugo allows theme composition (and inheritance). The precedence is from left to right.
