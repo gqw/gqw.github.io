@@ -1,5 +1,6 @@
-baseURL = "/"
+baseURL = "https://gqw.gitee.io/"
 title = "Goldydocs"
+author = "Gu.Qiwei"
 
 enableRobotsTXT = true
 
@@ -10,8 +11,8 @@ theme = ["docsy"]
 enableGitInfo = true
 
 # Language settings
-contentDir = "content/en"
-defaultContentLanguage = "en"
+contentDir = "content/zh"
+defaultContentLanguage = "zh"
 defaultContentLanguageInSubdir = false
 # Useful when translating.
 enableMissingTranslationPlaceholders = true
@@ -52,29 +53,26 @@ id = "UA-00000000-0"
 # Language configuration
 
 [languages]
-[languages.en]
-title = "Goldydocs"
-description = "A Docsy example site"
-languageName ="English"
+[languages.zh]
+title = "挑战不可能"
+description = "顾起威的技术站点"
+languageName ="中文"
+contentDir = "content/zh"
 # Weight used for sorting.
 weight = 1
-[languages.no]
-title = "Goldydocs"
-description = "Docsy er operativsystem for skyen"
-languageName ="Norsk"
-contentDir = "content/no"
-time_format_default = "02.01.2006"
-time_format_blog = "02.01.2006"
+# [languages.en]
+# title = "Goldydocs"
+# description = "A Docsy example site"
+# languageName ="English"
+# contentDir = "content/en"
+# # Weight used for sorting.
+# weight = 2
+
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
-  [markup.highlight]
-      # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
-      style = "tango"
-      # Uncomment if you want your chosen highlight style used for code blocks without a specified language
-      # guessSyntax = "true"
 
 # Everything below this are Site Params
 
@@ -101,18 +99,18 @@ version = "0.0"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
-url_latest_version = "https://example.com"
+url_latest_version = "https://gqw.gitee.io/"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/google/docsy-example"
+github_repo = "https://github.com/gqw"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-github_project_repo = "https://github.com/google/docsy"
+github_project_repo = "https://github.com/gqw"
 
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
-gcs_engine_id = "011737558837375720776:fsdu1nryfng"
+gcs_engine_id = "014288068890443380133:ejccvngmr4i"
 
 # Enable Algolia DocSearch
 algolia_docsearch = false
@@ -143,43 +141,43 @@ enable = true
 yes = 'Glad to hear it! Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
 no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
 
-# Adds a reading time to the top of each doc.
-# If you want this feature, but occasionally need to remove the Reading time from a single page, 
-# add "hide_readingtime: true" to the page's front matter
-[params.ui.readingtime]
-enable = false
-
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
 	name = "User mailing list"
-	url = "https://example.org/mail"
+	url = "gqwmail@qq.com"
 	icon = "fa fa-envelope"
         desc = "Discussion and help from your fellow users"
-[[params.links.user]]
-	name ="Twitter"
-	url = "https://example.org/twitter"
-	icon = "fab fa-twitter"
-        desc = "Follow us on Twitter to get the latest news!"
-[[params.links.user]]
-	name = "Stack Overflow"
-	url = "https://example.org/stack"
-	icon = "fab fa-stack-overflow"
-        desc = "Practical questions and curated answers"
+# [[params.links.user]]
+# 	name ="Twitter"
+# 	url = "https://example.org/twitter"
+# 	icon = "fab fa-twitter"
+#         desc = "Follow us on Twitter to get the latest news!"
+# [[params.links.user]]
+# 	name = "Stack Overflow"
+# 	url = "https://example.org/stack"
+# 	icon = "fab fa-stack-overflow"
+#         desc = "Practical questions and curated answers"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "GitHub"
-	url = "https://github.com/google/docsy"
+	url = "https://github.com/gqw"
 	icon = "fab fa-github"
         desc = "Development takes place here!"
-[[params.links.developer]]
-	name = "Slack"
-	url = "https://example.org/slack"
-	icon = "fab fa-slack"
-        desc = "Chat with other project developers"
-[[params.links.developer]]
-	name = "Developer mailing list"
-	url = "https://example.org/mail"
-	icon = "fa fa-envelope"
-        desc = "Discuss development issues around the project"
+# [[params.links.developer]]
+# 	name = "Slack"
+# 	url = "https://example.org/slack"
+# 	icon = "fab fa-slack"
+#         desc = "Chat with other project developers"
+# [[params.links.developer]]
+# 	name = "Developer mailing list"
+# 	url = "https://example.org/mail"
+# 	icon = "fa fa-envelope"
+#         desc = "Discuss development issues around the project"
 
+[params.utter]
+    repo = "gqw/hugocomment"
+    issueTerm = "title" #设置每篇文章对应的 issue 的名字，可选 pathname title url，
+    theme = "github-light"
+
+staticDir = ["static"]
