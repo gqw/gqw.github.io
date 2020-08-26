@@ -33,7 +33,7 @@
 ">
 <meta itemprop="datePublished" content="2020-08-10T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-08-13T20:22:58&#43;08:00" />
-<meta itemprop="wordCount" content="408">
+<meta itemprop="wordCount" content="455">
 
 
 
@@ -144,12 +144,6 @@
       <a class="td-sidebar-link td-sidebar-link__page  active" id="m-blog20200810e4bb8ehellowolde5bc80e5a78be6b7b1e585a5e6b585e587bac-20-coroutine-ts" href="/blog/2020/08/10/%E4%BB%8Ehellowold%E5%BC%80%E5%A7%8B%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAc-20-coroutine-ts/">C&#43;&#43; 20 Coroutine</a>
       
       
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-blog20200810e6b58be8af95e8af84e8aeba" href="/blog/2020/08/10/%E6%B5%8B%E8%AF%95%E8%AF%84%E8%AE%BA/">test</a>
-      
-      
     </li>
   </ul>
 </ul>
@@ -196,6 +190,7 @@
     <li><a href="#主角登场">主角登场</a></li>
     <li><a href="#先从定义说起">先从定义说起</a></li>
     <li><a href="#参考引用">参考引用</a></li>
+    <li><a href="#未整理部分">未整理部分</a></li>
   </ul>
 </nav>
 
@@ -364,13 +359,23 @@ main thread doing other things...
 <li>
 <p>协程是能暂停执行以在之后恢复的函数。</p>
 <p>这里的协程就是前面说的<code>Coroutine</code>, 这句说出了协程的本质。首先它是一个函数，然后这个函数与普通函数的区别是能够“暂停”和“恢复”执行代码。所以协程最关键的点是“暂停”和“恢复”。用一段代码说明下：</p>
-<pre><code>void func() {
-  code1;
-  code2;
-  code3;
-}
-</code></pre></li>
+<pre><code>  void foo() {
+      code1;
+      code2;
+      code3;
+  }
+    
+ int main() {
+      foo();
+      return 0;
+  }
+</code></pre><p>这是一段普通的代码，代码从main函数开始，先调用foo函数，接着依次调用code1、code2、code3，然后返回main函数，最后执行return 0。这种执行顺序是我们见到的最常见的顺序，代码逐行执行，按部就班符合我们的预期。但是如果是协程，代码就可以在执行完code1后立马返回到main函数，在适当时候再返回foo执行code1后面的代码code2——这就是前面所谓的“暂停”和“恢复”。其实仔细想想所谓协程也只是计算机执行顺序的一种规范，有点类似goto指令，都是用于改变常规的代码执行顺序，只是这些规范我们用的比较少见而已。其实翻阅维基百科的“协程”页面<sup><a href="#ref_9">[9]</a></sup>，你会发现其实协程历史并不短，起码已经超过半个世纪了。但是直到最近几年才开始火热是有原因的，就像goto语句一样过多的自由有时也是一种灾难（代码逻辑混乱，难以维护）。但是随着计算机硬件的发展（多核多线程）和一些成熟的案例（如腾讯的libco<sup><a href="#ref_10">[10]</a></sup>和golang<sup><a href="#ref_11">[11]</a></sup>）出现，让人们认识到了协程的优势和闪光点。</p>
+</li>
+<li>
+<p>协程是无栈的：它们通过返回到调用方暂停执行，并且从栈分离存储恢复所要求的数据。</p>
+</li>
 </ul>
+<p>未完待续&hellip;</p>
 <h2 id="参考引用">参考引用</h2>
 <p>[1]  <a id="ref_1" href="https://en.cppreference.com/w/cpp/compiler_support" >C++ compiler support</a><code>[EB/OL].</code>  <a href="https://en.cppreference.com/w/cpp/compiler_support">https://en.cppreference.com/w/cpp/compiler_support</a></p>
 <p>[2]  <a id="ref_2" href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program" >&quot;Hello, World!&rdquo; program</a><code>[EB/OL].</code><a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">https://en.wikipedia.org/wiki/%22Hello,_World!%22_program</a></p>
@@ -381,12 +386,32 @@ main thread doing other things...
 <p>[7]  <a id="ref_7" href="https://www.boost.org/doc/libs/1_47_0/doc/html/boost_asio/overview/core/async.html" >Proactor and Boost.Asio</a><code>[EB/OL].</code><a href="https://www.boost.org/doc/libs/1_47_0/doc/html/boost_asio/overview/core/async.html">https://www.boost.org/doc/libs/1_47_0/doc/html/boost_asio/overview/core/async.html</a></p>
 <p>[8]  <a id="ref_8" href="https://en.cppreference.com/w/cpp/language/coroutines" >Coroutines (C++20)
 </a><code>[EB/OL].</code><a href="https://en.cppreference.com/w/cpp/language/coroutines">https://en.cppreference.com/w/cpp/language/coroutines</a></p>
+<p>[9]  <a id="ref_9" href="https://zh.wikipedia.org/zh-cn/%E5%8D%8F%E7%A8%8B" >协程
+</a><code>[EB/OL].</code><a href="https://zh.wikipedia.org/zh-cn/%E5%8D%8F%E7%A8%8B">https://zh.wikipedia.org/zh-cn/%E5%8D%8F%E7%A8%8B</a></p>
+<p>[10]  <a id="ref_10" href="https://github.com/Tencent/libco" >Tencent/libco</a><code>[EB/OL].</code><a href="https://github.com/Tencent/libco">https://github.com/Tencent/libco</a></p>
+<p>[11]  <a id="ref_11" href="http://www.golangpatterns.info/concurrency/coroutines" >Go Language Patterns/Coroutines</a><code>[EB/OL].</code><a href="http://www.golangpatterns.info/concurrency/coroutines">http://www.golangpatterns.info/concurrency/coroutines</a></p>
+<h2 id="未整理部分">未整理部分</h2>
+<p>天涯明月刀-无栈协程的应用 <a href="https://gameinstitute.qq.com/community/detail/107515">https://gameinstitute.qq.com/community/detail/107515</a></p>
+<p>有栈协程与无栈协程 <a href="https://mthli.xyz/stackful-stackless/">https://mthli.xyz/stackful-stackless/</a></p>
+<p>luncliff/coroutineExploring MSVC Coroutine 
+<a href="https://luncliff.github.io/coroutine/articles/exploring-msvc-coroutine/">https://luncliff.github.io/coroutine/articles/exploring-msvc-coroutine/</a>
+<a href="https://luncliff.github.io/posts/Exploring-MSVC-Coroutine.html">https://luncliff.github.io/posts/Exploring-MSVC-Coroutine.html</a>
+<a href="https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf">https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf</a></p>
+<p>coroutines <a href="https://github.com/topics/coroutines?l=c%2B%2B">https://github.com/topics/coroutines?l=c%2B%2B</a></p>
+<p>汇编 <a href="https://cs.lmu.edu/~ray/notes/nasmtutorial/">https://cs.lmu.edu/~ray/notes/nasmtutorial/</a>
+汇编编译 <a href="https://godbolt.org/">https://godbolt.org/</a></p>
+<p><a href="https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf">https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf</a></p>
+<p>N3858.pdf <a href="https://isocpp.org/files/papers/N3858.pdf">https://isocpp.org/files/papers/N3858.pdf</a></p>
+<p>达夫设备 <a href="https://mthli.xyz/coroutines-in-c/">https://mthli.xyz/coroutines-in-c/</a></p>
+<p>其实上面说的是有一些问题，因为这个执行权的切换实际上是（调用者–被调用者）之间的切换，对称就是它们之间都是平等的，就是假如A协程执行了B，C协程，那么B协程可以切换回A，也可以切换回C。而非对称只能是B切换回A，A切换回C，C再切换回A，以此类推。
+<a href="https://blog.csdn.net/weixin_43705457/article/details/106924435">https://blog.csdn.net/weixin_43705457/article/details/106924435</a></p>
+<p>callback hell <a href="https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997">https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997</a></p>
 
 	
 
 	<ul class="list-unstyled d-flex justify-content-between align-items-center mb-0 pt-5">
   <li>
-    <a href="/blog/2020/08/10/%E6%B5%8B%E8%AF%95%E8%AF%84%E8%AE%BA/" class="btn btn-primary "><span class="mr-1">←</span> 上一页</a>
+    <a  class="btn btn-primary  disabled"><span class="mr-1">←</span> 上一页</a>
   </li>
     <a  class="btn btn-primary  disabled">下一页 <span class="ml-1">→</span></a>
   </li>

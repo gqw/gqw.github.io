@@ -170,13 +170,23 @@ main thread doing other things...
 &lt;li&gt;
 &lt;p&gt;协程是能暂停执行以在之后恢复的函数。&lt;/p&gt;
 &lt;p&gt;这里的协程就是前面说的&lt;code&gt;Coroutine&lt;/code&gt;, 这句说出了协程的本质。首先它是一个函数，然后这个函数与普通函数的区别是能够“暂停”和“恢复”执行代码。所以协程最关键的点是“暂停”和“恢复”。用一段代码说明下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;void func() {
-  code1;
-  code2;
-  code3;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code&gt;  void foo() {
+      code1;
+      code2;
+      code3;
+  }
+    
+ int main() {
+      foo();
+      return 0;
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这是一段普通的代码，代码从main函数开始，先调用foo函数，接着依次调用code1、code2、code3，然后返回main函数，最后执行return 0。这种执行顺序是我们见到的最常见的顺序，代码逐行执行，按部就班符合我们的预期。但是如果是协程，代码就可以在执行完code1后立马返回到main函数，在适当时候再返回foo执行code1后面的代码code2——这就是前面所谓的“暂停”和“恢复”。其实仔细想想所谓协程也只是计算机执行顺序的一种规范，有点类似goto指令，都是用于改变常规的代码执行顺序，只是这些规范我们用的比较少见而已。其实翻阅维基百科的“协程”页面&lt;sup&gt;&lt;a href=&#34;#ref_9&#34;&gt;[9]&lt;/a&gt;&lt;/sup&gt;，你会发现其实协程历史并不短，起码已经超过半个世纪了。但是直到最近几年才开始火热是有原因的，就像goto语句一样过多的自由有时也是一种灾难（代码逻辑混乱，难以维护）。但是随着计算机硬件的发展（多核多线程）和一些成熟的案例（如腾讯的libco&lt;sup&gt;&lt;a href=&#34;#ref_10&#34;&gt;[10]&lt;/a&gt;&lt;/sup&gt;和golang&lt;sup&gt;&lt;a href=&#34;#ref_11&#34;&gt;[11]&lt;/a&gt;&lt;/sup&gt;）出现，让人们认识到了协程的优势和闪光点。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;协程是无栈的：它们通过返回到调用方暂停执行，并且从栈分离存储恢复所要求的数据。&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;未完待续&amp;hellip;&lt;/p&gt;
 &lt;h2 id=&#34;参考引用&#34;&gt;参考引用&lt;/h2&gt;
 &lt;p&gt;[1]  &lt;a id=&#34;ref_1&#34; href=&#34;https://en.cppreference.com/w/cpp/compiler_support&#34; &gt;C++ compiler support&lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;  &lt;a href=&#34;https://en.cppreference.com/w/cpp/compiler_support&#34;&gt;https://en.cppreference.com/w/cpp/compiler_support&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[2]  &lt;a id=&#34;ref_2&#34; href=&#34;https://en.wikipedia.org/wiki/%22Hello,_World!%22_program&#34; &gt;&amp;quot;Hello, World!&amp;rdquo; program&lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/%22Hello,_World!%22_program&#34;&gt;https://en.wikipedia.org/wiki/%22Hello,_World!%22_program&lt;/a&gt;&lt;/p&gt;
@@ -187,21 +197,26 @@ main thread doing other things...
 &lt;p&gt;[7]  &lt;a id=&#34;ref_7&#34; href=&#34;https://www.boost.org/doc/libs/1_47_0/doc/html/boost_asio/overview/core/async.html&#34; &gt;Proactor and Boost.Asio&lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;&lt;a href=&#34;https://www.boost.org/doc/libs/1_47_0/doc/html/boost_asio/overview/core/async.html&#34;&gt;https://www.boost.org/doc/libs/1_47_0/doc/html/boost_asio/overview/core/async.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[8]  &lt;a id=&#34;ref_8&#34; href=&#34;https://en.cppreference.com/w/cpp/language/coroutines&#34; &gt;Coroutines (C++20)
 &lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;&lt;a href=&#34;https://en.cppreference.com/w/cpp/language/coroutines&#34;&gt;https://en.cppreference.com/w/cpp/language/coroutines&lt;/a&gt;&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Blog: 测试评论</title>
-      <link>https://gqw.gitee.io/blog/2020/08/10/%E6%B5%8B%E8%AF%95%E8%AF%84%E8%AE%BA/</link>
-      <pubDate>Mon, 10 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://gqw.gitee.io/blog/2020/08/10/%E6%B5%8B%E8%AF%95%E8%AF%84%E8%AE%BA/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;测试评论&#34;&gt;测试评论&lt;/h2&gt;
-&lt;p&gt;前一阵子在查看&lt;code&gt;asio&lt;/code&gt;库的时候看到在example目录中已经提供了&lt;code&gt;coroutines_ts&lt;/code&gt;代码。很是好奇，便慢慢翻看代码，在感叹Coroutine给异步编程带来的优雅简洁的同时也带来了许多概念上的复杂和难以理解。由于C++ Coroutine还是一个比较新的概念，各个编译器厂商的实现还处于实验性的阶段&lt;sup&gt;&lt;a href=&#34;#ref_1&#34;&gt;[1]&lt;/a&gt;&lt;/sup&gt; ，网上的资料少而松散。由此内心涌出一个念头想把自己的学习过程记录下来以期帮助后面学习的人。&lt;/p&gt;
+&lt;p&gt;[9]  &lt;a id=&#34;ref_9&#34; href=&#34;https://zh.wikipedia.org/zh-cn/%E5%8D%8F%E7%A8%8B&#34; &gt;协程
+&lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;&lt;a href=&#34;https://zh.wikipedia.org/zh-cn/%E5%8D%8F%E7%A8%8B&#34;&gt;https://zh.wikipedia.org/zh-cn/%E5%8D%8F%E7%A8%8B&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[10]  &lt;a id=&#34;ref_10&#34; href=&#34;https://github.com/Tencent/libco&#34; &gt;Tencent/libco&lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;&lt;a href=&#34;https://github.com/Tencent/libco&#34;&gt;https://github.com/Tencent/libco&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[11]  &lt;a id=&#34;ref_11&#34; href=&#34;http://www.golangpatterns.info/concurrency/coroutines&#34; &gt;Go Language Patterns/Coroutines&lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;&lt;a href=&#34;http://www.golangpatterns.info/concurrency/coroutines&#34;&gt;http://www.golangpatterns.info/concurrency/coroutines&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;未整理部分&#34;&gt;未整理部分&lt;/h2&gt;
+&lt;p&gt;天涯明月刀-无栈协程的应用 &lt;a href=&#34;https://gameinstitute.qq.com/community/detail/107515&#34;&gt;https://gameinstitute.qq.com/community/detail/107515&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;有栈协程与无栈协程 &lt;a href=&#34;https://mthli.xyz/stackful-stackless/&#34;&gt;https://mthli.xyz/stackful-stackless/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;luncliff/coroutineExploring MSVC Coroutine 
+&lt;a href=&#34;https://luncliff.github.io/coroutine/articles/exploring-msvc-coroutine/&#34;&gt;https://luncliff.github.io/coroutine/articles/exploring-msvc-coroutine/&lt;/a&gt;
+&lt;a href=&#34;https://luncliff.github.io/posts/Exploring-MSVC-Coroutine.html&#34;&gt;https://luncliff.github.io/posts/Exploring-MSVC-Coroutine.html&lt;/a&gt;
+&lt;a href=&#34;https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf&#34;&gt;https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;coroutines &lt;a href=&#34;https://github.com/topics/coroutines?l=c%2B%2B&#34;&gt;https://github.com/topics/coroutines?l=c%2B%2B&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;汇编 &lt;a href=&#34;https://cs.lmu.edu/~ray/notes/nasmtutorial/&#34;&gt;https://cs.lmu.edu/~ray/notes/nasmtutorial/&lt;/a&gt;
+汇编编译 &lt;a href=&#34;https://godbolt.org/&#34;&gt;https://godbolt.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf&#34;&gt;https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;N3858.pdf &lt;a href=&#34;https://isocpp.org/files/papers/N3858.pdf&#34;&gt;https://isocpp.org/files/papers/N3858.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;达夫设备 &lt;a href=&#34;https://mthli.xyz/coroutines-in-c/&#34;&gt;https://mthli.xyz/coroutines-in-c/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;其实上面说的是有一些问题，因为这个执行权的切换实际上是（调用者–被调用者）之间的切换，对称就是它们之间都是平等的，就是假如A协程执行了B，C协程，那么B协程可以切换回A，也可以切换回C。而非对称只能是B切换回A，A切换回C，C再切换回A，以此类推。
+&lt;a href=&#34;https://blog.csdn.net/weixin_43705457/article/details/106924435&#34;&gt;https://blog.csdn.net/weixin_43705457/article/details/106924435&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;callback hell &lt;a href=&#34;https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997&#34;&gt;https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997&lt;/a&gt;&lt;/p&gt;
 
       </description>
     </item>
