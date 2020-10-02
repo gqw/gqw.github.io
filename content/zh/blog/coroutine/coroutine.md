@@ -169,7 +169,7 @@ main thread doing other things...
 看到了吗？打印结果还是一样的，但是回调没有了,  从代码上看函数`remote_query_all`的逻辑也是在一个for循环中按步执行。好了，讲到这里只是希望你能直观的体会到使用Coroutine的作用和好处，但是你心中一定会有n个问号。
 
 - 这不科学呀，`remote_query`返回值不是`std::future<std::string>`吗？ 怎么直接赋值给`std::string`了？
-- `co_await` 有时什么鬼？
+- `co_await` 又是什么鬼？
 - `remote_query` 是个异步调用,  返回的`ret`直接用会不会崩溃？
 - ...
 
@@ -179,7 +179,7 @@ main thread doing other things...
 
 ## 先从定义说起
 
-翻开`cppreference`看看官方的定义<sup>[[8]](#ref_8)</sup>：
+翻开`cppreference`看看协程的定义<sup>[[8]](#ref_8)</sup>：
 
 ```
 协程是能暂停执行以在之后恢复的函数。协程是无栈的：它们通过返回到调用方暂停执行，并且从栈分离存储恢复所要求的数据。这允许编写异步执行的顺序代码（例如不使用显式的回调来处理非阻塞 I/O），还支持对惰性计算的无限序列上的算法及其他用途。
@@ -217,9 +217,10 @@ main thread doing other things...
   “无栈” 两个字隐藏了太多的概念，对于一个完全没有接触过协程的人来说这个概念太含糊和陌生了。这里的“无栈”是相对于协程的另一种实现方式“有栈”协程而言的。在介绍这两个概念前先看下普通函数调用堆栈。函数堆栈非正式的理解就是函数调用时申请的用于存放参数和临时变量的内存块，按照后进先出（LIFO, Last In First Out）的规则分配内存，因为只有push和pop两种操作所以比较简单和快捷，由编译器自动管理其分配内存的生命周期。 在https://godbolt.org/里写下测试代码得到如下汇编指令：
   
 
-![image-20200831213859208](image-20200831212842162.png)
+![image-20200831212842162.png](https://i.loli.net/2020/10/02/g2thx7oSOYybrpE.png)
 
-  经过简单整理可得到堆栈的使用情况如下图所示：![函数调用栈](subrotine_call_stack.png)
+  经过简单整理可得到堆栈的使用情况如下图所示：
+  ![subrotine_call_stack.png](https://i.loli.net/2020/10/02/zdcHC9wYpSAfrv3.png)
 
 ---
 **注意**

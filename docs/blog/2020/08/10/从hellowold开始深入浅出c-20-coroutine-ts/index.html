@@ -341,13 +341,13 @@ main thread doing other things...
 </code></pre><p>看到了吗？打印结果还是一样的，但是回调没有了,  从代码上看函数<code>remote_query_all</code>的逻辑也是在一个for循环中按步执行。好了，讲到这里只是希望你能直观的体会到使用Coroutine的作用和好处，但是你心中一定会有n个问号。</p>
 <ul>
 <li>这不科学呀，<code>remote_query</code>返回值不是<code>std::future&lt;std::string&gt;</code>吗？ 怎么直接赋值给<code>std::string</code>了？</li>
-<li><code>co_await</code> 有时什么鬼？</li>
+<li><code>co_await</code> 又是什么鬼？</li>
 <li><code>remote_query</code> 是个异步调用,  返回的<code>ret</code>直接用会不会崩溃？</li>
 <li>&hellip;</li>
 </ul>
 <p>请少安毋躁， 暂时按下心中的疑惑，因为这边的水很深，坑很大，不是三言两语能够解释的清楚的。我会尽量努力在后面的内容中消除你心中的困惑。</p>
 <h2 id="先从定义说起">先从定义说起</h2>
-<p>翻开<code>cppreference</code>看看官方的定义<sup><a href="#ref_8">[8]</a></sup>：</p>
+<p>翻开<code>cppreference</code>看看协程的定义<sup><a href="#ref_8">[8]</a></sup>：</p>
 <pre><code>协程是能暂停执行以在之后恢复的函数。协程是无栈的：它们通过返回到调用方暂停执行，并且从栈分离存储恢复所要求的数据。这允许编写异步执行的顺序代码（例如不使用显式的回调来处理非阻塞 I/O），还支持对惰性计算的无限序列上的算法及其他用途。
 
 若函数的定义做下列任何内容之一，则它是协程：
@@ -377,8 +377,9 @@ main thread doing other things...
 <p>“无栈” 两个字隐藏了太多的概念，对于一个完全没有接触过协程的人来说这个概念太含糊和陌生了。这里的“无栈”是相对于协程的另一种实现方式“有栈”协程而言的。在介绍这两个概念前先看下普通函数调用堆栈。函数堆栈非正式的理解就是函数调用时申请的用于存放参数和临时变量的内存块，按照后进先出（LIFO, Last In First Out）的规则分配内存，因为只有push和pop两种操作所以比较简单和快捷，由编译器自动管理其分配内存的生命周期。 在https://godbolt.org/里写下测试代码得到如下汇编指令：</p>
 </li>
 </ul>
-<p><img src="image-20200831212842162.png" alt="image-20200831213859208"></p>
-<p>经过简单整理可得到堆栈的使用情况如下图所示：<img src="subrotine_call_stack.png" alt="函数调用栈"></p>
+<p><img src="https://i.loli.net/2020/10/02/g2thx7oSOYybrpE.png" alt="image-20200831212842162.png"></p>
+<p>经过简单整理可得到堆栈的使用情况如下图所示：
+<img src="https://i.loli.net/2020/10/02/zdcHC9wYpSAfrv3.png" alt="subrotine_call_stack.png"></p>
 <hr>
 <p><strong>注意</strong></p>
 <p>上面的代码是使用<code>x64</code>位的<code>msvc</code>编译的，和经常见到<code>x86</code>版本相比64位版本的更加简洁易懂，少了“基址指针寄存器”的概念所以省去了保存和恢复基址指针的操作。这里也没有常规的push和pop操作，而是直接通过sub和add相应的地址偏移获得相同的效果。</p>
