@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.75.1" />
 
 
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -21,23 +21,24 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS | 挑战不可能</title><meta property="og:title" content="从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS" />
+<title>从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS | 努力探求技术边界</title><meta property="og:title" content="从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS" />
 <meta property="og:description" content="分析研究协程原理
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://gqw.gitee.io/blog/2020/08/10/%E4%BB%8Ehellowold%E5%BC%80%E5%A7%8B%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAc-20-coroutine-ts/" />
 <meta property="article:published_time" content="2020-08-10T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-08-13T20:22:58+08:00" /><meta property="og:site_name" content="挑战不可能" />
+<meta property="article:modified_time" content="2020-08-13T20:22:58+08:00" /><meta property="og:site_name" content="努力探求技术边界" />
 <meta itemprop="name" content="从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS">
 <meta itemprop="description" content="分析研究协程原理
 ">
-<meta itemprop="datePublished" content="2020-08-10T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-08-13T20:22:58&#43;08:00" />
-<meta itemprop="wordCount" content="455">
+<meta itemprop="datePublished" content="2020-08-10T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-08-13T20:22:58+08:00" />
+<meta itemprop="wordCount" content="466">
 
 
 
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS"/>
 <meta name="twitter:description" content="分析研究协程原理
 "/>
@@ -46,8 +47,8 @@
 
 
 
-<link rel="preload" href="/scss/main.min.4e97b1a76f791ffe96a4c49b296c1a25ee66b475fd3869363799d5d8fa912a37.css" as="style">
-<link href="/scss/main.min.4e97b1a76f791ffe96a4c49b296c1a25ee66b475fd3869363799d5d8fa912a37.css" rel="stylesheet" integrity="">
+<link rel="preload" href="/scss/main.min.ed511094865f0dabad78dba28090672b58d374dd029644ea486c763b823054c8.css" as="style">
+<link href="/scss/main.min.ed511094865f0dabad78dba28090672b58d374dd029644ea486c763b823054c8.css" rel="stylesheet" integrity="">
 
 
 <script
@@ -63,7 +64,7 @@
       
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
         <a class="navbar-brand" href="/">
-		<span class="navbar-logo"><svg height="232pt" viewBox="0 0 232 232" width="232pt" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(.1 0 0 -.1 0 232)"><path d="m1385 2213c-22-20-68-49-103-65-73-35-137-40-282-20-189 26-321-20-336-118-5-33-9-36-40-36-64 0-130-93-188-266-29-86-48-221-41-298 9-114 18-162 30-166 7-3 30-1 52 5l39 11 22 96c21 90 68 198 111 253l18 23 6-47c17-118 89-171 231-169 65 1 119 11 276 54 161 45 209 54 275 54 144 0 205-61 205-204v-57l61-12c34-7 62-11 64-9 10 10 25 144 25 223 0 173-46 299-144 4e2l-55 56-54-31c-62-35-89-40-37-7 75 47 141 138 156 215l7 32-58-35c-66-39-139-58-207-53l-47 3 20 45c19 42 44 148 37 155-2 2-21-13-43-32z"/><path d="m516 1230c-49-10-95-21-102-24-16-6-19-76-4-76 17 0 50-63 50-94 0-68 33-149 79-197 56-57 103-73 222-73 73 0 93 4 142 28 97 47 167 157 167 261 0 44 1 45 33 45s32 0 33-53c1-75 36-148 99-206 65-58 120-76 231-75 170 2 255 80 279 254 8 63 27 105 50 114 11 4 15 16 13 38-3 32-5 33-78 50-170 41-351 33-479-20-89-37-211-38-285-4-111 52-292 65-450 32zm385-59c78-30 114-70 113-126-1-62-47-150-97-186-53-39-108-52-188-47-131 10-198 78-207 212-6 91 12 129 71 157 58 27 226 22 308-10zm708 11c73-36 97-114 67-215-22-76-64-123-129-142-1e2-30-201-14-266 41-75 64-114 187-76 241 40 57 145 91 280 92 67 1 99-4 124-17z"/><path d="m783 1105c-29-20-46-75-34-107 11-30 57-68 81-68 35 0 78 22 89 46 14 32 14 85-2 105-30 39-96 51-134 24z"/><path d="m1473 1105c-29-20-46-75-34-106 5-13 19-35 31-48 19-19 30-22 64-18 54 7 86 44 86 97 0 70-89 116-147 75z"/><path d="m459 537c-25-7-59-23-76-35-89-63-92-230-6-301 60-49 134-59 231-29l32 10v74c0 59 3 74 15 74 8 0 15 5 15 10 0 6-33 10-80 10s-80-4-80-10c0-5 11-10 25-10 25 0 25-1 25-80v-80h-35c-77 0-125 71-125 182 1 116 53 183 138 176 34-3 37-6 51-50 10-34 20-48 33-48 15 0 18 8 18 45 0 38-4 47-23 54-45 17-112 20-158 8z"/><path d="m960 538c-77-21-124-92-124-188 0-84 31-145 91-178 29-16 45-33 53-56 15-48 84-73 150-57l35 9-41 1c-44 1-70 21-76 58-2 18 6 27 42 45 71 36 105 116 94 215-8 71-63 135-128 152-51 13-49 13-96-1zm89-18c32-16 51-83 51-173-1-134-39-192-116-173-77 20-90 288-17 344 20 14 57 16 82 2z"/><path d="m1367 525c18-13 24-26 38-85 2-8 22-72 43-142 22-70 37-130 34-133s6-5 21-5c24 0 28 7 52 88 48 162 62 198 69 181 4-9 24-72 44-140 31-103 41-125 58-127 18-3 24 10 53 110 74 260 70 248 96 248 14 0 25 5 25 10 0 6-27 10-60 10s-60-4-60-10c0-5 12-10 26-10 22 0 24-3 18-22-4-13-20-72-35-131-15-60-29-111-32-113-3-4-48 141-62 203-2 10-7 28-11 41-5 19-3 22 20 22 14 0 26 5 26 10 0 6-33 10-80 10-44 0-80-4-80-9s11-11 23-13l24-3-29-1e2c-16-55-31-111-34-124-11-52-18-41-46 65-42 159-42 164-18 164 11 0 20 5 20 10 0 6-34 10-82 10-76 0-81-1-61-15z"/></g></svg></span><span class="text-uppercase font-weight-bold">挑战不可能</span>
+		<span class="navbar-logo"><svg height="232pt" viewBox="0 0 232 232" width="232pt" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(.1 0 0 -.1 0 232)"><path d="m1385 2213c-22-20-68-49-103-65-73-35-137-40-282-20-189 26-321-20-336-118-5-33-9-36-40-36-64 0-130-93-188-266-29-86-48-221-41-298 9-114 18-162 30-166 7-3 30-1 52 5l39 11 22 96c21 90 68 198 111 253l18 23 6-47c17-118 89-171 231-169 65 1 119 11 276 54 161 45 209 54 275 54 144 0 205-61 205-204v-57l61-12c34-7 62-11 64-9 10 10 25 144 25 223 0 173-46 299-144 4e2l-55 56-54-31c-62-35-89-40-37-7 75 47 141 138 156 215l7 32-58-35c-66-39-139-58-207-53l-47 3 20 45c19 42 44 148 37 155-2 2-21-13-43-32z"/><path d="m516 1230c-49-10-95-21-102-24-16-6-19-76-4-76 17 0 50-63 50-94 0-68 33-149 79-197 56-57 103-73 222-73 73 0 93 4 142 28 97 47 167 157 167 261 0 44 1 45 33 45s32 0 33-53c1-75 36-148 99-206 65-58 120-76 231-75 170 2 255 80 279 254 8 63 27 105 50 114 11 4 15 16 13 38-3 32-5 33-78 50-170 41-351 33-479-20-89-37-211-38-285-4-111 52-292 65-450 32zm385-59c78-30 114-70 113-126-1-62-47-150-97-186-53-39-108-52-188-47-131 10-198 78-207 212-6 91 12 129 71 157 58 27 226 22 308-10zm708 11c73-36 97-114 67-215-22-76-64-123-129-142-1e2-30-201-14-266 41-75 64-114 187-76 241 40 57 145 91 280 92 67 1 99-4 124-17z"/><path d="m783 1105c-29-20-46-75-34-107 11-30 57-68 81-68 35 0 78 22 89 46 14 32 14 85-2 105-30 39-96 51-134 24z"/><path d="m1473 1105c-29-20-46-75-34-106 5-13 19-35 31-48 19-19 30-22 64-18 54 7 86 44 86 97 0 70-89 116-147 75z"/><path d="m459 537c-25-7-59-23-76-35-89-63-92-230-6-301 60-49 134-59 231-29l32 10v74c0 59 3 74 15 74 8 0 15 5 15 10 0 6-33 10-80 10s-80-4-80-10c0-5 11-10 25-10 25 0 25-1 25-80v-80h-35c-77 0-125 71-125 182 1 116 53 183 138 176 34-3 37-6 51-50 10-34 20-48 33-48 15 0 18 8 18 45 0 38-4 47-23 54-45 17-112 20-158 8z"/><path d="m960 538c-77-21-124-92-124-188 0-84 31-145 91-178 29-16 45-33 53-56 15-48 84-73 150-57l35 9-41 1c-44 1-70 21-76 58-2 18 6 27 42 45 71 36 105 116 94 215-8 71-63 135-128 152-51 13-49 13-96-1zm89-18c32-16 51-83 51-173-1-134-39-192-116-173-77 20-90 288-17 344 20 14 57 16 82 2z"/><path d="m1367 525c18-13 24-26 38-85 2-8 22-72 43-142 22-70 37-130 34-133s6-5 21-5c24 0 28 7 52 88 48 162 62 198 69 181 4-9 24-72 44-140 31-103 41-125 58-127 18-3 24 10 53 110 74 260 70 248 96 248 14 0 25 5 25 10 0 6-27 10-60 10s-60-4-60-10c0-5 12-10 26-10 22 0 24-3 18-22-4-13-20-72-35-131-15-60-29-111-32-113-3-4-48 141-62 203-2 10-7 28-11 41-5 19-3 22 20 22 14 0 26 5 26 10 0 6-33 10-80 10-44 0-80-4-80-9s11-11 23-13l24-3-29-1e2c-16-55-31-111-34-124-11-52-18-41-46 65-42 159-42 164-18 164 11 0 20 5 20 10 0 6-34 10-82 10-76 0-81-1-61-15z"/></g></svg></span><span class="text-uppercase font-weight-bold">努力探求技术边界</span>
 	</a>
 	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
 		<ul class="navbar-nav mt-2 mt-lg-0">
@@ -213,17 +214,17 @@
 	<h2 id="缘起">缘起</h2>
 <p>前一阵子在查看<code>asio</code>库的时候看到在example目录中已经提供了<code>coroutines_ts</code>代码。很是好奇，便慢慢翻看代码，在感叹Coroutine给异步编程带来的优雅简洁的同时也带来了许多概念上的复杂和难以理解。由于C++ Coroutine还是一个比较新的概念，各个编译器厂商的实现还处于实验性的阶段<sup><a href="#ref_1">[1]</a></sup> ，网上的资料少而松散。由此内心涌出一个念头想把自己的学习过程记录下来以期帮助后面学习的人。</p>
 <h2 id="从helloworld说起">从<code>HelloWorld</code>说起</h2>
-<p>再过两年这个世界的第一条<code>HelloWorld</code>代码就要有50年历史了<sup><a href="#ref_2">[2]</a></sup> ，在此先提前蹭下热点，:smile:&hellip;</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
+<p>再过两年这个世界的第一条<code>HelloWorld</code>代码就要有50年历史了<sup><a href="#ref_2">[2]</a></sup> ，在此先提前蹭下热点，:)&hellip;</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span> 
   <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06">&#34;hello, world&#34;</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;</span> 
   <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><p>这是一段平淡无奇的符合<code>C++98</code>标准的代码，你甚至可以用古董级编译器<code>GCC 4.3</code>都能编译通过<sup><a href="#ref_3">[3]</a></sup>。但是我希望通过对这段代码的演化带领大家学习了解C++ 20中的Coroutine。</p>
-<p>这段代码的作用很简单，打印一条&quot;hello, world&rdquo;，执行的也很快。但是这个世界并不总是那么简单美好，如果打印的逻辑非常耗时（特别是读取磁盘文件和进行网络请求时）而又需要频繁的调用就有些尴尬了，好了，我们改下代码来模拟这种情形：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;thread&gt;</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;chrono&gt;</span><span style="color:#8f5902;font-style:italic">
+<p>这段代码的作用很简单，打印一条&quot;hello, world&quot;，执行的也很快。但是这个世界并不总是那么简单美好，如果打印的逻辑非常耗时（特别是读取磁盘文件和进行网络请求时）而又需要频繁的调用就有些尴尬了，好了，我们改下代码来模拟这种情形：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;thread&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;chrono&gt;</span><span style="color:#8f5902;font-style:italic">
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">chrono_literals</span><span style="color:#000;font-weight:bold">;</span>
 
 <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">remote_query</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
@@ -245,12 +246,12 @@
 <hr>
 <h2 id="多线程callback解决方案">多线程+<code>Callback</code>解决方案</h2>
 <p>为了解决上面的问题，我们对上面的代码进行如下改造：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;thread&gt;</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;chrono&gt;</span><span style="color:#8f5902;font-style:italic">
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;thread&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;chrono&gt;</span><span style="color:#8f5902;font-style:italic">
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">chrono_literals</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;string&gt;</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;future&gt;</span><span style="color:#8f5902;font-style:italic">
+<span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;string&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;future&gt;</span><span style="color:#8f5902;font-style:italic">
 </span><span style="color:#8f5902;font-style:italic"></span>
 <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">remote_query</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">uint32_t</span> <span style="color:#000">query_index</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">function</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">void</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">uint32_t</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">&gt;&amp;&amp;</span> <span style="color:#000">callback</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> 
  <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#204a87;font-weight:bold">thread</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">(</span>
@@ -288,15 +289,15 @@ main thread doing other things...
 2 times query: Hello, world!
 main thread doing other things...
 main thread doing other things...
-</code></pre><p>是的，我们可以通过多线程解决卡顿的问题，但这是个好的方案吗？不说线程的开销（其实创建和销毁一个线程无论从时间还是空间上来说都是非常大的开销），单从代码的组织来看也足够让人头疼的了。上面的代码只是循环调用同样的远程方法，如果<code>remote_callback</code>调用<code>remote_query1</code>(另一个远程调用)，<code>remote_query1</code>回调中再调用<code>remote_query2</code>&hellip;如此下去代码逻辑将会非常恐怖。为什么说是恐怖，因为这完全不符合人类的思维逻辑。人类喜欢的代码是有条不紊的按步执行，而不是在各个回调中跳来跳去。最好就像前面的同步代码，一个请求走完再执行下一个请求。</p>
+</code></pre><p>是的，我们可以通过多线程解决卡顿的问题，但这是个好的方案吗？不说线程的开销（其实创建和销毁一个线程无论从时间还是空间上来说都是非常大的开销），单从代码的组织来看也足够让人头疼的了。上面的代码只是循环调用同样的远程方法，如果<code>remote_callback</code>调用<code>remote_query1</code>(另一个远程调用)，<code>remote_query1</code>回调中再调用<code>remote_query2</code>&hellip;如此下去代码逻辑将会非常恐怖。如果不能明白我说的是什么意思，<code>callback hell</code> 了解下:)， 为什么说是恐怖，因为这完全不符合人类的思维逻辑。人类喜欢的代码是有条不紊的按步执行，而不是在各个回调中跳来跳去。最好就像前面的同步代码，一个请求走完再执行下一个请求。</p>
 <h2 id="主角登场">主角登场</h2>
-<p>有没有什么方法解决这种复杂性呢？有的，技术牛人们早已发现这个问题并且给出了设计模型，有类似于<code>libevent</code>的reactor模式<sup><a href="#ref_6">[6]</a></sup>，也有<code>asio</code>的<code>proactor</code>模式<sup><a href="#ref_7">[7]</a></sup>。但<code>Reactor</code>，<code>Proactor</code>模式的核心思想都是通过事先注册回调函数，收到消息再根据消息内容查找并执行回调，有效的将层层包裹的回调给摊平以达到降低回调函数管理的复杂度。但是无论<code>Reactor</code>还是<code>Proactor</code>调用逻辑和回调逻辑还是被硬生生的给割裂开了。如何弥合这里的割裂呢？这就需要请出我们今天的主角<code>Corouter</code>了，还是先看代码吧：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;thread&gt;</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;chrono&gt;</span><span style="color:#8f5902;font-style:italic">
+<p>有没有什么方法解决这种复杂性呢？有的，技术牛人们早已发现这个问题并且给出了设计模型，有类似于<code>libevent</code>的<code>Reactor</code>模式<sup><a href="#ref_6">[6]</a></sup>，也有<code>asio</code>的<code>Proactor</code>模式<sup><a href="#ref_7">[7]</a></sup>。但<code>Reactor</code>，<code>Proactor</code>模式的核心思想都是通过事先注册回调函数，收到消息再根据消息内容查找并执行回调，有效的将层层包裹的回调给摊平以达到降低回调函数管理的复杂度。但是无论<code>Reactor</code>还是<code>Proactor</code>调用逻辑和回调逻辑还是被硬生生的给割裂开了。如何弥合这里的割裂呢？这就需要请出我们今天的主角<code>Corouter</code>了，还是先看代码吧：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;thread&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;chrono&gt;</span><span style="color:#8f5902;font-style:italic">
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">chrono_literals</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;string&gt;</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;future&gt;</span><span style="color:#8f5902;font-style:italic">
+<span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;string&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;future&gt;</span><span style="color:#8f5902;font-style:italic">
 </span><span style="color:#8f5902;font-style:italic"></span>
 <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">future</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">string</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">remote_query</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">uint32_t</span> <span style="color:#000">query_index</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
   <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">async</span><span style="color:#000;font-weight:bold">([</span><span style="color:#000">query_index</span><span style="color:#000;font-weight:bold">]()</span> <span style="color:#000;font-weight:bold">{</span>
@@ -369,16 +370,23 @@ main thread doing other things...
       foo();
       return 0;
   }
-</code></pre><p>这是一段普通的代码，代码从main函数开始，先调用foo函数，接着依次调用code1、code2、code3，然后返回main函数，最后执行return 0。这种执行顺序是我们见到的最常见的顺序，代码逐行执行，按部就班符合我们的预期。但是如果是协程，代码就可以在执行完code1后立马返回到main函数，在适当时候再返回foo执行code1后面的代码code2——这就是前面所谓的“暂停”和“恢复”。其实仔细想想所谓协程也只是计算机执行顺序的一种规范，有点类似goto指令，都是用于改变常规的代码执行顺序，只是这些规范我们用的比较少见而已。其实翻阅维基百科的“协程”页面<sup><a href="#ref_9">[9]</a></sup>，你会发现其实协程历史并不短，起码已经超过半个世纪了。但是直到最近几年才开始火热是有原因的，就像goto语句一样过多的自由有时也是一种灾难（代码逻辑混乱，难以维护）。但是随着计算机硬件的发展（多核多线程）和一些成熟的案例（如腾讯的libco<sup><a href="#ref_10">[10]</a></sup>和golang<sup><a href="#ref_11">[11]</a></sup>）出现，让人们认识到了协程的优势和闪光点。</p>
+</code></pre><p>这是一段普通的代码，代码从main函数开始，先调用<code>foo</code>函数，接着依次调用<code>code1</code>、<code>code2</code>、<code>code3</code>，然后返回<code>main</code>函数，最后执行<code>return 0</code>。这种执行顺序是我们见到的最常见的顺序，代码逐行执行，按部就班符合我们的预期。但是如果是协程，代码就可以在执行完<code>code1</code>后立马返回到main函数，在适当时候再返回<code>foo</code>执行<code>code1</code>后面的代码<code>code2</code>——这就是前面所谓的“暂停”和“恢复”。其实仔细想想所谓协程也只是计算机执行顺序的一种规范，有点类似goto指令，都是用于改变常规的代码执行顺序，只是这些规范我们用的比较少见而已。其实翻阅维基百科的“协程”页面<sup><a href="#ref_9">[9]</a></sup>，你会发现其实协程历史并不短，起码已经超过半个世纪了。但是直到最近几年才开始火热是有原因的，就像goto语句一样过多的自由有时也是一种灾难（代码逻辑混乱，难以维护）。但是随着计算机硬件的发展（多核多线程）和一些成熟的案例（如腾讯的<code>libco</code><sup><a href="#ref_10">[10]</a></sup>和<code>golang</code><sup><a href="#ref_11">[11]</a></sup>）出现，让人们认识到了协程的优势和闪光点。</p>
 </li>
 <li>
 <p>协程是无栈的：它们通过返回到调用方暂停执行，并且从栈分离存储恢复所要求的数据。</p>
+<p>“无栈” 两个字隐藏了太多的概念，对于一个完全没有接触过协程的人来说这个概念太含糊和陌生了。这里的“无栈”是相对于协程的另一种实现方式“有栈”协程而言的。在介绍这两个概念前先看下普通函数调用堆栈。函数堆栈非正式的理解就是函数调用时申请的用于存放参数和临时变量的内存块，按照后进先出（LIFO, Last In First Out）的规则分配内存，因为只有push和pop两种操作所以比较简单和快捷，由编译器自动管理其分配内存的生命周期。 在https://godbolt.org/里写下测试代码得到如下汇编指令：</p>
 </li>
 </ul>
+<p><img src="image-20200831212842162.png" alt="image-20200831213859208"></p>
+<p>经过简单整理可得到堆栈的使用情况如下图所示：<img src="subrotine_call_stack.png" alt="函数调用栈"></p>
+<hr>
+<p><strong>注意</strong></p>
+<p>上面的代码是使用<code>x64</code>位的<code>msvc</code>编译的，和经常见到<code>x86</code>版本相比64位版本的更加简洁易懂，少了“基址指针寄存器”的概念所以省去了保存和恢复基址指针的操作。这里也没有常规的push和pop操作，而是直接通过sub和add相应的地址偏移获得相同的效果。</p>
+<hr>
 <p>未完待续&hellip;</p>
 <h2 id="参考引用">参考引用</h2>
 <p>[1]  <a id="ref_1" href="https://en.cppreference.com/w/cpp/compiler_support" >C++ compiler support</a><code>[EB/OL].</code>  <a href="https://en.cppreference.com/w/cpp/compiler_support">https://en.cppreference.com/w/cpp/compiler_support</a></p>
-<p>[2]  <a id="ref_2" href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program" >&quot;Hello, World!&rdquo; program</a><code>[EB/OL].</code><a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">https://en.wikipedia.org/wiki/%22Hello,_World!%22_program</a></p>
+<p>[2]  <a id="ref_2" href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program" >&ldquo;Hello, World!&rdquo; program</a><code>[EB/OL].</code><a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">https://en.wikipedia.org/wiki/%22Hello,_World!%22_program</a></p>
 <p>[3]  <a id="ref_3" href="https://gcc.gnu.org/projects/cxx-status.html#cxx98" >C++ Standards Support in GCC</a><code>[EB/OL].</code><a href="https://gcc.gnu.org/projects/cxx-status.html#cxx98">https://gcc.gnu.org/projects/cxx-status.html#cxx98</a></p>
 <p>[4]  <a id="ref_4" href="https://en.cppreference.com/w/cpp/thread/get_id" >std::this_thread::get_id</a><code>[EB/OL].</code><a href="https://en.cppreference.com/w/cpp/thread/get_id">https://en.cppreference.com/w/cpp/thread/get_id</a></p>
 <p>[5]  <a id="ref_5" href="https://en.cppreference.com/w/cpp/language/user_literal%23Standard_library" >User-defined literals</a><code>[EB/OL].</code><a href="https://en.cppreference.com/w/cpp/language/user_literal%23Standard_library">https://en.cppreference.com/w/cpp/language/user_literal%23Standard_library</a></p>
@@ -406,6 +414,8 @@ main thread doing other things...
 <p>其实上面说的是有一些问题，因为这个执行权的切换实际上是（调用者–被调用者）之间的切换，对称就是它们之间都是平等的，就是假如A协程执行了B，C协程，那么B协程可以切换回A，也可以切换回C。而非对称只能是B切换回A，A切换回C，C再切换回A，以此类推。
 <a href="https://blog.csdn.net/weixin_43705457/article/details/106924435">https://blog.csdn.net/weixin_43705457/article/details/106924435</a></p>
 <p>callback hell <a href="https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997">https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997</a></p>
+<p><a href="https://software.intel.com/content/www/us/en/develop/blogs/the-reasons-why-64-bit-programs-require-more-stack-memory.html">The reasons why 64-bit programs require more stack memory</a>   <a href="https://software.intel.com/content/www/us/en/develop/blogs/the-reasons-why-64-bit-programs-require-more-stack-memory.html">https://software.intel.com/content/www/us/en/develop/blogs/the-reasons-why-64-bit-programs-require-more-stack-memory.html</a></p>
+<h1 id="heading"></h1>
 
 	
 

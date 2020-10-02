@@ -14,7 +14,7 @@ description: >
 
 ## 从`HelloWorld`说起
 
-再过两年这个世界的第一条`HelloWorld`代码就要有50年历史了<sup>[[2]](#ref_2)</sup> ，在此先提前蹭下热点，:smile:...
+再过两年这个世界的第一条`HelloWorld`代码就要有50年历史了<sup>[[2]](#ref_2)</sup> ，在此先提前蹭下热点，:)...
 
 ```cpp
 #include <iostream>
@@ -109,11 +109,11 @@ main thread doing other things...
 main thread doing other things...
 ```
 
-是的，我们可以通过多线程解决卡顿的问题，但这是个好的方案吗？不说线程的开销（其实创建和销毁一个线程无论从时间还是空间上来说都是非常大的开销），单从代码的组织来看也足够让人头疼的了。上面的代码只是循环调用同样的远程方法，如果`remote_callback`调用`remote_query1`(另一个远程调用)，`remote_query1`回调中再调用`remote_query2`...如此下去代码逻辑将会非常恐怖。为什么说是恐怖，因为这完全不符合人类的思维逻辑。人类喜欢的代码是有条不紊的按步执行，而不是在各个回调中跳来跳去。最好就像前面的同步代码，一个请求走完再执行下一个请求。
+是的，我们可以通过多线程解决卡顿的问题，但这是个好的方案吗？不说线程的开销（其实创建和销毁一个线程无论从时间还是空间上来说都是非常大的开销），单从代码的组织来看也足够让人头疼的了。上面的代码只是循环调用同样的远程方法，如果`remote_callback`调用`remote_query1`(另一个远程调用)，`remote_query1`回调中再调用`remote_query2`...如此下去代码逻辑将会非常恐怖。如果不能明白我说的是什么意思，`callback hell` 了解下:)， 为什么说是恐怖，因为这完全不符合人类的思维逻辑。人类喜欢的代码是有条不紊的按步执行，而不是在各个回调中跳来跳去。最好就像前面的同步代码，一个请求走完再执行下一个请求。
 
 ## 主角登场
 
-有没有什么方法解决这种复杂性呢？有的，技术牛人们早已发现这个问题并且给出了设计模型，有类似于`libevent`的reactor模式<sup>[[6]](#ref_6)</sup>，也有`asio`的`proactor`模式<sup>[[7]](#ref_7)</sup>。但`Reactor`，`Proactor`模式的核心思想都是通过事先注册回调函数，收到消息再根据消息内容查找并执行回调，有效的将层层包裹的回调给摊平以达到降低回调函数管理的复杂度。但是无论`Reactor`还是`Proactor`调用逻辑和回调逻辑还是被硬生生的给割裂开了。如何弥合这里的割裂呢？这就需要请出我们今天的主角`Corouter`了，还是先看代码吧：
+有没有什么方法解决这种复杂性呢？有的，技术牛人们早已发现这个问题并且给出了设计模型，有类似于`libevent`的`Reactor`模式<sup>[[6]](#ref_6)</sup>，也有`asio`的`Proactor`模式<sup>[[7]](#ref_7)</sup>。但`Reactor`，`Proactor`模式的核心思想都是通过事先注册回调函数，收到消息再根据消息内容查找并执行回调，有效的将层层包裹的回调给摊平以达到降低回调函数管理的复杂度。但是无论`Reactor`还是`Proactor`调用逻辑和回调逻辑还是被硬生生的给割裂开了。如何弥合这里的割裂呢？这就需要请出我们今天的主角`Corouter`了，还是先看代码吧：
 
 ```cpp
 #include <iostream>
@@ -196,16 +196,41 @@ main thread doing other things...
 - 协程是能暂停执行以在之后恢复的函数。
 
   这里的协程就是前面说的`Coroutine`, 这句说出了协程的本质。首先它是一个函数，然后这个函数与普通函数的区别是能够“暂停”和“恢复”执行代码。所以协程最关键的点是“暂停”和“恢复”。用一段代码说明下：
-
-  ```
-  void func() {
-  	code1;
-  	code2;
-  	code3;
-  }
-  ```
-
   
+  ```
+    void foo() {
+    	code1;
+    	code2;
+    	code3;
+    }
+    
+   int main() {
+    	foo();
+    	return 0;
+    }
+  ```
+  
+  这是一段普通的代码，代码从main函数开始，先调用`foo`函数，接着依次调用`code1`、`code2`、`code3`，然后返回`main`函数，最后执行`return 0`。这种执行顺序是我们见到的最常见的顺序，代码逐行执行，按部就班符合我们的预期。但是如果是协程，代码就可以在执行完`code1`后立马返回到main函数，在适当时候再返回`foo`执行`code1`后面的代码`code2`——这就是前面所谓的“暂停”和“恢复”。其实仔细想想所谓协程也只是计算机执行顺序的一种规范，有点类似goto指令，都是用于改变常规的代码执行顺序，只是这些规范我们用的比较少见而已。其实翻阅维基百科的“协程”页面<sup>[[9]](#ref_9)</sup>，你会发现其实协程历史并不短，起码已经超过半个世纪了。但是直到最近几年才开始火热是有原因的，就像goto语句一样过多的自由有时也是一种灾难（代码逻辑混乱，难以维护）。但是随着计算机硬件的发展（多核多线程）和一些成熟的案例（如腾讯的`libco`<sup>[[10]](#ref_10)</sup>和`golang`<sup>[[11]](#ref_11)</sup>）出现，让人们认识到了协程的优势和闪光点。
+
+- 协程是无栈的：它们通过返回到调用方暂停执行，并且从栈分离存储恢复所要求的数据。
+
+  “无栈” 两个字隐藏了太多的概念，对于一个完全没有接触过协程的人来说这个概念太含糊和陌生了。这里的“无栈”是相对于协程的另一种实现方式“有栈”协程而言的。在介绍这两个概念前先看下普通函数调用堆栈。函数堆栈非正式的理解就是函数调用时申请的用于存放参数和临时变量的内存块，按照后进先出（LIFO, Last In First Out）的规则分配内存，因为只有push和pop两种操作所以比较简单和快捷，由编译器自动管理其分配内存的生命周期。 在https://godbolt.org/里写下测试代码得到如下汇编指令：
+  
+
+![image-20200831213859208](image-20200831212842162.png)
+
+  经过简单整理可得到堆栈的使用情况如下图所示：![函数调用栈](subrotine_call_stack.png)
+
+---
+**注意**
+
+上面的代码是使用`x64`位的`msvc`编译的，和经常见到`x86`版本相比64位版本的更加简洁易懂，少了“基址指针寄存器”的概念所以省去了保存和恢复基址指针的操作。这里也没有常规的push和pop操作，而是直接通过sub和add相应的地址偏移获得相同的效果。
+
+---
+
+
+
+未完待续...
 
 
 
@@ -228,5 +253,44 @@ main thread doing other things...
 [8]  <a id="ref_8" href="https://en.cppreference.com/w/cpp/language/coroutines" >Coroutines (C++20)
 </a>`[EB/OL].`https://en.cppreference.com/w/cpp/language/coroutines
 
+[9]  <a id="ref_9" href="https://zh.wikipedia.org/zh-cn/%E5%8D%8F%E7%A8%8B" >协程
+</a>`[EB/OL].`https://zh.wikipedia.org/zh-cn/%E5%8D%8F%E7%A8%8B
+
+[10]  <a id="ref_10" href="https://github.com/Tencent/libco" >Tencent/libco</a>`[EB/OL].`https://github.com/Tencent/libco
+
+[11]  <a id="ref_11" href="http://www.golangpatterns.info/concurrency/coroutines" >Go Language Patterns/Coroutines</a>`[EB/OL].`http://www.golangpatterns.info/concurrency/coroutines
 
 
+
+
+
+## 未整理部分
+
+天涯明月刀-无栈协程的应用 https://gameinstitute.qq.com/community/detail/107515
+
+有栈协程与无栈协程 https://mthli.xyz/stackful-stackless/
+
+luncliff/coroutineExploring MSVC Coroutine 
+https://luncliff.github.io/coroutine/articles/exploring-msvc-coroutine/
+https://luncliff.github.io/posts/Exploring-MSVC-Coroutine.html
+https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf
+
+coroutines https://github.com/topics/coroutines?l=c%2B%2B
+
+汇编 https://cs.lmu.edu/~ray/notes/nasmtutorial/
+汇编编译 https://godbolt.org/
+
+https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf
+
+N3858.pdf https://isocpp.org/files/papers/N3858.pdf
+
+达夫设备 https://mthli.xyz/coroutines-in-c/
+
+其实上面说的是有一些问题，因为这个执行权的切换实际上是（调用者–被调用者）之间的切换，对称就是它们之间都是平等的，就是假如A协程执行了B，C协程，那么B协程可以切换回A，也可以切换回C。而非对称只能是B切换回A，A切换回C，C再切换回A，以此类推。
+https://blog.csdn.net/weixin_43705457/article/details/106924435
+
+callback hell https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997
+
+ [The reasons why 64-bit programs require more stack memory](https://software.intel.com/content/www/us/en/develop/blogs/the-reasons-why-64-bit-programs-require-more-stack-memory.html)   https://software.intel.com/content/www/us/en/develop/blogs/the-reasons-why-64-bit-programs-require-more-stack-memory.html
+
+# 

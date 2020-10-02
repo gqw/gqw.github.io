@@ -54,7 +54,7 @@ id = "UA-00000000-0"
 
 [languages]
 [languages.zh]
-title = "挑战不可能"
+title = "努力探求技术边界"
 description = "顾起威的技术站点"
 languageName ="中文"
 contentDir = "content/zh"
