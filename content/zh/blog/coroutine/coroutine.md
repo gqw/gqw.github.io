@@ -345,25 +345,48 @@ main thread doing other things...
 
 
 
-### `promise_type`概念
+### 协程函数展开
 ---
-  让我们回到前面的代码，看看`main`函数调用`remote_query_all`时发生了什么。
+  让我们看个最简单的例子，看看`main`函数调用`remote_query_all`时发生了什么。
 
   ```cpp
-  std::future<void> remote_query_all() { 
-    uint32_t query_index  = 0;
-    for (;;)
-    {
-      std::string ret = co_await remote_query(++query_index);
-      std::cout << ret << std::endl;
-    }
+  #include <experimental/coroutine>
+
+  return_ignore test_coroutine() {
+    co_await std::experimental::suspend_always{};
   }
 
   int main() {
-    remote_query_all();
-    ...
+    test_coroutine();
+
+    return 0;
   }
   ```
+
+  其中`return_ignore`的定义如下：
+  ```cpp
+  struct return_ignore {
+    struct promise_type {
+      return_ignore get_return_object() {
+        return return_ignore{};
+      }
+
+      auto initial_suspend() {
+        return std::experimental::suspend_always{};
+      }
+
+      auto final_suspend() {
+        return std::experimental::suspend_never{};
+      }
+
+      void unhandled_exception() {
+      }
+
+      void return_void() {}
+    };
+  };
+  ```
+
 
 未完待续...
 

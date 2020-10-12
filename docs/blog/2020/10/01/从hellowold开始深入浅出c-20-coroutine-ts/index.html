@@ -27,13 +27,13 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://gqw.github.io/blog/2020/10/01/%E4%BB%8Ehellowold%E5%BC%80%E5%A7%8B%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAc-20-coroutine-ts/" />
 <meta property="article:published_time" content="2020-10-01T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-10-02T17:00:53+08:00" /><meta property="og:site_name" content="努力探求技术边界" />
+<meta property="article:modified_time" content="2020-10-12T20:28:34+08:00" /><meta property="og:site_name" content="努力探求技术边界" />
 <meta itemprop="name" content="从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS">
 <meta itemprop="description" content="分析研究协程原理
 ">
 <meta itemprop="datePublished" content="2020-10-01T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2020-10-02T17:00:53+08:00" />
-<meta itemprop="wordCount" content="751">
+<meta itemprop="dateModified" content="2020-10-12T20:28:34+08:00" />
+<meta itemprop="wordCount" content="772">
 
 
 
@@ -192,7 +192,7 @@
     <li><a href="#先从定义说起">先从定义说起</a></li>
     <li><a href="#原理剖析">原理剖析</a>
       <ul>
-        <li><a href="#promise_type概念"><code>promise_type</code>概念</a></li>
+        <li><a href="#协程函数展开">协程函数展开</a></li>
       </ul>
     </li>
     <li><a href="#参考引用">参考引用</a></li>
@@ -495,22 +495,41 @@ main thread doing other things...
 </ul>
 <h2 id="原理剖析">原理剖析</h2>
 <p><code>C++</code>语言的难学已经是恶名远播，提起C++时许多程序员（甚至是学C语言的程序员）第一反应就是“这是个令人胆颤、难缠、恶心的家伙”。其实换个角度<code>C</code>与<code>C++</code>的关系非常类似于<code>JavaScript</code>和<code>Typescript</code>(如果你用过应该很好理解)，C++作为C的超集经过编译器的转换绝大部分的代码是可以转换成C，因为有了编译器的帮助C++可以实现许多高级的封装，每次编译时编译器都会根据需要向用户编写的代码里“偷偷”加料。例如构造析构函数的自动创建、虚函数表、this指针传递等等，对于这方面的知识建议大家看看《深入了解c++内核对象模型》这本书。因为编译器的这些小动作对用户是无感知的，这就造成了用户对C++一些行为表现的困惑，也加大了大家学习C++的难度。而协程特性是我目前见到C++让编译器加料最多的一次，理所当然理解的难度指数也是陡增。现在就让我们细细的分析下编译器给我们加的这些料的配方吧！</p>
-<h3 id="promise_type概念"><code>promise_type</code>概念</h3>
+<h3 id="协程函数展开">协程函数展开</h3>
 <hr>
-<p>让我们回到前面的代码，看看<code>main</code>函数调用<code>remote_query_all</code>时发生了什么。</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">future</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">void</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">remote_query_all</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span> 
-  <span style="color:#204a87;font-weight:bold">uint32_t</span> <span style="color:#000">query_index</span>  <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
-  <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(;;)</span>
-  <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">string</span> <span style="color:#000">ret</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">co_await</span> <span style="color:#000">remote_query</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000">query_index</span><span style="color:#000;font-weight:bold">);</span>
-    <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">ret</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;</span>
-  <span style="color:#000;font-weight:bold">}</span>
+<p>让我们看个最简单的例子，看看<code>main</code>函数调用<code>remote_query_all</code>时发生了什么。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;experimental/coroutine&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#000">return_ignore</span> <span style="color:#000">test_coroutine</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">co_await</span> <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">experimental</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">suspend_always</span><span style="color:#000;font-weight:bold">{};</span>
 <span style="color:#000;font-weight:bold">}</span>
 
 <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
-  <span style="color:#000">remote_query_all</span><span style="color:#000;font-weight:bold">();</span>
-  <span style="color:#000;font-weight:bold">...</span>
+  <span style="color:#000">test_coroutine</span><span style="color:#000;font-weight:bold">();</span>
+
+  <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>其中<code>return_ignore</code>的定义如下：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">return_ignore</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">promise_type</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">return_ignore</span> <span style="color:#000">get_return_object</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+      <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">return_ignore</span><span style="color:#000;font-weight:bold">{};</span>
+    <span style="color:#000;font-weight:bold">}</span>
+
+    <span style="color:#204a87;font-weight:bold">auto</span> <span style="color:#000">initial_suspend</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+      <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">experimental</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">suspend_always</span><span style="color:#000;font-weight:bold">{};</span>
+    <span style="color:#000;font-weight:bold">}</span>
+
+    <span style="color:#204a87;font-weight:bold">auto</span> <span style="color:#000">final_suspend</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+      <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">experimental</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">suspend_never</span><span style="color:#000;font-weight:bold">{};</span>
+    <span style="color:#000;font-weight:bold">}</span>
+
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">unhandled_exception</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000;font-weight:bold">}</span>
+
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">return_void</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{}</span>
+  <span style="color:#000;font-weight:bold">};</span>
+<span style="color:#000;font-weight:bold">};</span>
 </code></pre></div><p>未完待续&hellip;</p>
 <h2 id="参考引用">参考引用</h2>
 <p>[1]  <a id="ref_1" href="https://en.cppreference.com/w/cpp/compiler_support" >C++ compiler support</a><code>[EB/OL].</code>  <a href="https://en.cppreference.com/w/cpp/compiler_support">https://en.cppreference.com/w/cpp/compiler_support</a></p>
