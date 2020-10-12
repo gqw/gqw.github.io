@@ -27,6 +27,8 @@ The theme is included as a Git submodule:
 
 If you want to do SCSS edits and want to publish these, you need to install `PostCSS` (not needed for `hugo server`):
 
+$$N=(0, 1, 2, 3, ...)$$ 
+
 ```bash
 npm install
 ```
