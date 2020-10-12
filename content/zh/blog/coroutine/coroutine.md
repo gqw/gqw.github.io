@@ -390,7 +390,7 @@ main thread doing other things...
   }
   ```
 
-  下面我们看看编译器展开test_coroutine函数后的代码成什么样子， 韩国的luncliff对其做了精彩的分析，推荐看看他的报告<sup>[[21]](#ref_21)</sup>：
+  下面我们看看编译器展开test_coroutine函数后的代码成什么样子， 韩国的luncliff对其做了精彩的分析，推荐看看他的报告<sup>[[21]](#ref_21)</sup>，下面是我结合Gor Nishanov的报告<sup>[[22]](#ref_22)</sup>整理出来的全部展开：
 
   ```cpp
   template<typename ...Args>
@@ -496,6 +496,8 @@ main thread doing other things...
 [20]  <a id="ref_20" href="https://github.com/lewissbaker/cppcoro" >CppCoro - A coroutine library for C++</a>`[EB/OL].`https://github.com/lewissbaker/cppcoro
 
 [21]  <a id="ref_21" href="https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf" >Exploring the C++ Coroutine</a>`[EB/OL].`https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf
+
+[22]  <a id="ref_22" href="https://raw.githubusercontent.com/CppCon/CppCon2016/master/Presentations/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers%20-%20Gor%20Nishanov%20-%20CppCon%202016.pdf" >Exploring the C++ Coroutine</a>`[EB/OL].`https://raw.githubusercontent.com/CppCon/CppCon2016/master/Presentations/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers%20-%20Gor%20Nishanov%20-%20CppCon%202016.pdf
 
 
 
