@@ -348,22 +348,8 @@ main thread doing other things...
 ### 协程函数展开
 ---
   让我们看个最简单的例子，看看`main`函数调用`remote_query_all`时发生了什么。
-
-  ```cpp
-  #include <experimental/coroutine>
-
-  return_ignore test_coroutine() {
-    co_await std::experimental::suspend_always{};
-  }
-
-  int main() {
-    test_coroutine();
-
-    return 0;
-  }
-  ```
-
-  其中`return_ignore`的定义如下：
+  
+  我们先定义个函数返回对象的类型`return_ignore`，为什么要定义它以及怎么定义我们后面介绍，提前申明只是不想干扰后面的分析，如果不清楚具体的含义就先无视它。
   ```cpp
   struct return_ignore {
     struct promise_type {
@@ -386,6 +372,79 @@ main thread doing other things...
     };
   };
   ```
+
+  下面是我们现在需要关注的代码，为了排除干扰我已经做了最大程度的精简。test_coroutine的模板参数其实是不必要的，但是为了通用性还是加上了。
+
+  ```cpp
+  #include <experimental/coroutine>
+
+  template<typename ...Args>
+  return_ignore test_coroutine(Args... args) {
+    co_await std::experimental::suspend_always{};
+  }
+
+  int main() {
+    test_coroutine();
+
+    return 0;
+  }
+  ```
+
+  下面我们看看编译器展开test_coroutine函数后的代码成什么样子， 韩国的luncliff对其做了精彩的分析，推荐看看他的报告<sup>[[21]](#ref_21)</sup>：
+
+  ```cpp
+  template<typename ...Args>
+  return_ignore test_coroutine(Args... args) {
+    using T = coroutine_traits<return_type, Args...>;
+    using promise_type = T::promise_type;
+    using frame_type = tuple<frame_prefix, promise_type, Args...>;
+    auto *frame = (frame_type *)promise_type::operator new(sizeof(frame_type));
+    auto *p = addressof(get<1>(*frame)); 
+    return_ignore*__return_object;
+    *__return_object = { p.get_return_object() };
+    
+    {
+      auto&& tmp = p.initial_suspend();
+      if (!tmp.await_ready()) {
+        __builtin_coro_save() // frame->suspend_index = n;
+        tmp.await_suspend(<coroutine_handle>);
+        __builtin_coro_suspend() // jmp 
+      }
+
+      resume_label_n:
+        tmp.await_resume();
+    }
+    
+
+    try {
+      // co_await std::experimental::suspend_always{};
+      {
+        auto&& tmp = std::experimental::suspend_always{};
+        if (!tmp.await_ready()) {
+          __builtin_coro_save() // frame->suspend_index = m;
+          tmp.await_suspend(<coroutine_handle>);
+          __builtin_coro_suspend() // jmp 
+        }
+
+      resume_label_m:
+        tmp.await_resume();        
+      }
+
+      p->return_void();
+      goto __final_suspend_point;
+    } catch (...) {
+      p->unhandled_exception();
+    }
+
+    __final_suspend_point:
+      co_await p->final_suspend();
+
+    __destroy_point:
+      promise_type::operator delete(frame, sizeof(frame_type));
+  }
+  ```
+  哈哈，惊不惊喜？意不意外？你的一行代码，编译器给你加了这么多东西。
+
 
 
 未完待续...
@@ -436,6 +495,10 @@ main thread doing other things...
 
 [20]  <a id="ref_20" href="https://github.com/lewissbaker/cppcoro" >CppCoro - A coroutine library for C++</a>`[EB/OL].`https://github.com/lewissbaker/cppcoro
 
+[21]  <a id="ref_21" href="https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf" >Exploring the C++ Coroutine</a>`[EB/OL].`https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf
+
+
+
 ## 未整理部分
 
 天涯明月刀-无栈协程的应用 https://gameinstitute.qq.com/community/detail/107515
@@ -452,7 +515,6 @@ coroutines https://github.com/topics/coroutines?l=c%2B%2B
 汇编 https://cs.lmu.edu/~ray/notes/nasmtutorial/
 汇编编译 https://godbolt.org/
 
-https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf
 
 N3858.pdf https://isocpp.org/files/papers/N3858.pdf
 
