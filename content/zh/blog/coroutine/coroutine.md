@@ -341,6 +341,7 @@ main thread doing other things...
 
 
  ## 原理剖析 
+
   `C++`语言的难学已经是恶名远播，提起C++时许多程序员（甚至是学C语言的程序员）第一反应就是“这是个令人胆颤、难缠、恶心的家伙”。其实换个角度`C`与`C++`的关系非常类似于`JavaScript`和`Typescript`(如果你用过应该很好理解)，C++作为C的超集经过编译器的转换绝大部分的代码是可以转换成C，因为有了编译器的帮助C++可以实现许多高级的封装，每次编译时编译器都会根据需要向用户编写的代码里“偷偷”加料。例如构造析构函数的自动创建、虚函数表、this指针传递等等，对于这方面的知识建议大家看看《深入了解c++内核对象模型》这本书。因为编译器的这些小动作对用户是无感知的，这就造成了用户对C++一些行为表现的困惑，也加大了大家学习C++的难度。而协程特性是我目前见到C++让编译器加料最多的一次，理所当然理解的难度指数也是陡增。现在就让我们细细的分析下编译器给我们加的这些料的配方吧！
 
 
@@ -390,7 +391,7 @@ main thread doing other things...
   }
   ```
 
-  下面我们看看编译器展开test_coroutine函数后的代码成什么样子， 韩国的luncliff对其做了精彩的分析，推荐看看他的报告<sup>[[21]](#ref_21)</sup>，下面是我结合Gor Nishanov的报告<sup>[[22]](#ref_22)</sup>整理出来的全部展开：
+  下面我们看看编译器展开test_coroutine函数后的代码成什么样子， Gor Nishanov和luncliff对其做了精彩的分析，推荐看看他们的报告<sup>[[21]](#ref_21)</sup><sup>[[22]](#ref_22)</sup>，下面是我结合他们俩的报告整理出来的全部展开：
 
   ```cpp
   template<typename ...Args>
@@ -401,14 +402,15 @@ main thread doing other things...
     auto *frame = (frame_type *)promise_type::operator new(sizeof(frame_type));
     auto *p = addressof(get<1>(*frame)); 
     return_ignore*__return_object;
-    *__return_object = { p.get_return_object() };
+    *__return_object = { p->get_return_object() };
     
     {
-      auto&& tmp = p.initial_suspend();
+      auto&& tmp = p->initial_suspend();
       if (!tmp.await_ready()) {
         __builtin_coro_save() // frame->suspend_index = n;
-        tmp.await_suspend(<coroutine_handle>);
-        __builtin_coro_suspend() // jmp 
+        if (tmp.await_suspend(<coroutine_handle>)) {
+          __builtin_coro_suspend() // jmp 
+        }
       }
 
       resume_label_n:
@@ -422,15 +424,17 @@ main thread doing other things...
         auto&& tmp = std::experimental::suspend_always{};
         if (!tmp.await_ready()) {
           __builtin_coro_save() // frame->suspend_index = m;
-          tmp.await_suspend(<coroutine_handle>);
-          __builtin_coro_suspend() // jmp 
+          if (tmp.await_suspend(<coroutine_handle>)) {
+            __builtin_coro_suspend() // jmp 
+          }
         }
 
       resume_label_m:
-        tmp.await_resume();        
+        p->return_void(tmp.await_resume());
+        // p->return_value(tmp.await_resume());        
       }
 
-      p->return_void();
+      
       goto __final_suspend_point;
     } catch (...) {
       p->unhandled_exception();
@@ -443,7 +447,277 @@ main thread doing other things...
       promise_type::operator delete(frame, sizeof(frame_type));
   }
   ```
-  哈哈，惊不惊喜？意不意外？你的一行代码，编译器给你加了这么多东西。
+  哈哈，惊不惊喜？意不意外？你的一行代码，编译器给你加了这么多东西。上面的代码对理解协程非常重要，它就像导航地图里面的预览图一样，在你学习协程的各种知识和概念是不被绕晕。我在刚开始学习协程时就因为缺乏对全局的理解，导致当面对一大堆新的概念时不说其它的，心理上就有莫大压力，想理清它们关系也无所适从，希望上面的代码能够帮助到你。
+
+  ---
+  **注意**
+
+  上面的代码并非真实的代码，只是根据文献和逆向推导而来，而且各个编译器厂商实现也有差异，这里列出的代码只是帮助大家理解而已。
+
+  ---
+
+  下面我们对照着上面的代码说说协程的几个重要概念。
+
+  ### co_await 表达式		
+
+  co_await 表达式， 就是我们在co_await关键词后面的运算对象(operand)，这个运算对象必须满足特定的规则：必须包含`await_ready`、`await_suspend`、`await_resume`三个函数。通过展开的代码我们很容易理解为什么做这样的规定。例如我们前面例子中`std::experimental::suspend_always`的定义是这样的：
+  ```cpp
+  struct suspend_always {
+      bool await_ready() noexcept {
+          return false;
+      }
+
+      void await_suspend(coroutine_handle<>) noexcept {}
+
+      void await_resume() noexcept {}
+  };
+  ```
+  co_await 表达式展开后是这样的：
+  ```cpp
+  // co_await std::experimental::suspend_always{};
+  {
+    auto&& tmp = std::experimental::suspend_always{};
+    if (!tmp.await_ready()) {
+      __builtin_coro_save() // frame->suspend_index = m;
+      if (tmp.await_suspend(<coroutine_handle>)) {
+        __builtin_coro_suspend() // jmp 
+      }
+    }
+
+  resume_label_m:
+    tmp.await_resume();
+  }
+  ```
+  可以看到展开后直接调用了运算对象的`await_ready`、`await_suspend`、`await_resume`三个方法。那么这三个函数式作什么用的呢？
+
+  - `await_ready`: 在暂停协程前给了一次机会，判断是否可以避免异步调用以达到节省暂停带来的开销。
+  - `await_suspend`：可以看做是暂停前的准备，通常我们在这个函数中分配任务系统，线程去完成异步完成，然后进入暂停状态。注意这个函数有一个非常重要的参数`coroutine_handle`(协程句柄)，通过这个句柄我们可以操控协程的状态，通常我们需要将这个句柄保存起来，在适当的时机（异步任务完成时）通过它恢复当前协程。
+  - `await_resume`：这个很好理解，协程恢复后执行的代码，值得注意的是恢复后而不是回复前。
+
+### 承诺（promise）对象
+
+  编译器用 std::coroutine_traits 从协程的返回类型确定 Promise 类型<sup>[[8]](#ref_8)</sup>。也就是说编译器会根据你的协程函数放回值类型去确定Promise类型，确定方法就是看你的返回类型有没有promise_type的定义，比如return_ignore的Promise类型就是return_ignore::promise_type。这个Promise类型类似于std::promise，应为是异步所以无法立即给你结果，但是我承诺你将来你可以向我申请查询结果。同样通过展开代码我们可以看到编译器调用了Promise的许多方法，所以我们在定义promise_type时必须符合编译的规范和需求。下面是promise_type必须具有的接口：
+
+  - `get_return_object`: 按照规定该调用的结果将在协程首次暂停时返回给调用方<sup>[[8]](#ref_8)</sup>。调用者可以通过此函数返回的对象获得协程函数最终的结果。可以参考`return_ignore`的代码，这里需要注意的是我们不能将结果保存在`promise_type`里，因为协程函数结束时会析构这个对象，保存的数据会丢失。可选的方案是在`promise_type`中保存返回对象然后在返回去，如下面的代码，但是返回值类型是个问题，如果返回_ret指针，`promise_type`析构后_ret一样会被收回，返回对象会多出一份数据，return_value函数操作的还不是同一个对象, 所以_value只能是个指针类型。还有个小的问题是直接在内部类声明外面的类对象会导致类型未定义的错误，只能放到类定义外面定义内部类。
+    ```cpp
+    struct return_object {
+      struct promise_type;
+
+      int get_ret() { return *_value; }
+
+    private:
+      std::shared_ptr<int> _value = std::make_shared<int>(0);
+    };
+
+    struct return_object::promise_type {
+      return_object get_return_object() {
+        return _ret;
+      }
+
+      ...
+
+      void return_value(int value) {
+        *_ret._value =  value;
+      }
+
+      return_object _ret;
+    };
+    ```
+    另一个方案是在promise_type类中提供个方法让返回对象将this指针传给promise_type类，相当于来了个回马枪：
+    ```cpp
+    struct return_object {
+      struct promise_type {
+        return_object get_return_object() {
+          return return_object(this);
+        }
+
+        void set_return_object(return_object* ret) { _ret = ret; }
+
+        auto initial_suspend() {
+          return std::experimental::suspend_never{};
+        }
+
+        auto final_suspend() {
+          return std::experimental::suspend_never{};
+        }
+
+        void unhandled_exception() {
+        }
+
+        void return_value(int value) {
+          _ret->_value = value;
+        }
+        return_object* _ret = nullptr;
+      };
+
+      int get_ret() { return _value; }
+
+    private:
+      return_object(promise_type* p) { p->set_return_object(this); }
+      int _value = 0;
+    };
+    ``` 
+
+  - `initial_suspend`: 控制是否在进入协程函数前先暂停协程。
+  - `initial_suspend`: 做些收尾工作。
+  - `unhandled_exception`: 参考展开代码，捕获到异常时调用此方法。
+  - `return_value`, `return_void`: 这两个函数根据协程函数内的`co_return`表达式二选一即可，协程函数遇到`co_return`会根据表达式内容调用这两个函数之一，并将结果传递给放回对象。
+
+### 协程句柄 (coroutine handle)
+
+未完成...
+
+### 协程状态 (coroutine state)
+
+未完成...
+
+### 协程跳转
+
+在协程展开代码中还有两个函数`__builtin_coro_save`和`__builtin_coro_suspend`，这其实是编译器内置的代码，在msvc的头文件experimental\resumable中你可以看到许多以`_coro_`开头的类似函数，这些函数式协程实现的基础。下面我们以一个简单的例子，通过跟踪汇编代码来看下编译器是怎么实现协程的“暂停”和“恢复”操作的。
+```CPP
+std::experimental::coroutine_handle<> g_h;
+
+struct awaitee {
+	bool await_ready() noexcept {
+		return false;
+	}
+
+	void await_suspend(std::experimental::coroutine_handle<> h) noexcept {
+		g_h = h;
+	}
+
+	void await_resume() noexcept {}
+};
+
+template<typename ...Args>
+return_object test_coroutine(Args... args) {
+	co_await awaitee();
+
+	co_return 1;
+}
+
+int main() {
+	auto& ret = test_coroutine();
+	if (ret.get_ret() == 0) {
+		g_h.resume();
+	}
+
+	std::cout << "coroutine ended."  << ret.get_ret() << std::endl;
+	return 0;
+}
+```
+
+
+```asm
+; test_coroutine
+xor         edi,edi  
+mov         ecx,100h  
+add         rcx,28h  
+call        operator new (07FF6282C10CDh)                 ; 在堆上分配协程帧内存
+lea         r9,[a]                                        ；向_InitCoro 传递 test_coroutine 参数 a
+mov         dword ptr [rsp+170h],edi  
+mov         r8,rbx  
+lea         rcx,[rsp+170h]  
+lea         rdx,[rax+10h]                                 ; 计算协程句柄地址
+lea         rax,[b]                                       ；向_InitCoro 传递 test_coroutine 参数 b
+mov         qword ptr [rsp+20h],rax  
+call        test_coroutine$_InitCoro$1 (07FF6282C1630h)   ; 调用初始化协程的内置函数
+```
+请在后面注意这里的内存变化：
+![create_coroutine_frame.png](https://i.loli.net/2020/10/14/7PvtWDedrpn9z2s.png)
+
+这里值得一提的是计算协程句柄地址中的偏移地址`10h`, 这个值怎么来的呢？ 翻看msvc中resumable头文件，可以看到coroutine_handle的定义：
+```CPP
+template <typename _PromiseT>
+struct coroutine_handle : coroutine_handle<> { 
+
+    static coroutine_handle from_promise(_PromiseT& _Prom) noexcept {
+        auto _FramePtr = reinterpret_cast<char*>(_STD addressof(_Prom)) + _ALIGNED_SIZE;
+        coroutine_handle<_PromiseT> _Result;
+        _Result._Ptr = reinterpret_cast<_Resumable_frame_prefix*>(_FramePtr);
+        return _Result;
+    }
+
+    ...
+    
+    static const size_t _ALIGN_REQ = sizeof(void*) * 2;
+
+    static const size_t _ALIGNED_SIZE =
+        is_empty_v<_PromiseT> ? 0 : ((sizeof(_PromiseT) + _ALIGN_REQ - 1) & ~(_ALIGN_REQ - 1));
+
+    _PromiseT& promise() const noexcept {
+        return *const_cast<_PromiseT*>(
+            reinterpret_cast<_PromiseT const*>(reinterpret_cast<char const*>(_Ptr) - _ALIGNED_SIZE));
+    }
+};
+```
+从中分析可以知道promise地址（实际上就是协程栈的地址）与协程句柄的帧前缀地址是可以互相转换的，这两个地址之间相差了`_ALIGNED_SIZE`字节，所以得到一个地址相加或相减便能转换成另一个地址。那么`_ALIGNED_SIZE`是怎么算出来的呢？其实这是根据我们定义的promise_type的大小进行字节对齐（两倍的`sizeof(void*)`）得到的。例如我们定义的`return_object::promise_type`里面有一个指针成员变量，所以它的大小为8（64位机器）在和`sizeof(void*) * 2 == 16 == 10h`对齐后得到的结果便是16即10h, 如果我们在`promise_type`里面定义三个指针变量，大小变为24与16字节对齐后变为32即20h。
+
+下面我们继续分析`_InitCoro`函数：
+
+```CPP
+mov         qword ptr [rsp+10h],rdx                 ; 从前面的分析我们知道rdx其实是协程句柄帧前缀的地址
+sub         rsp,28h  
+mov         r11d,100h  
+mov         rax,qword ptr [&b]                      ; 参数b
+mov         r10d,dword ptr [rax]  
+mov         eax,dword ptr [r9]                      ; 参数a
+mov         dword ptr [rdx+r11+10h],eax             ; 加参数a, 存入协程栈
+mov         dword ptr [rdx+r11+14h],r10d            ; 将参数b, 存入协程栈
+lea         rax,[test_coroutine$_ResumeCoro$2 (07FF6282C2FF0h)]  ; 协程函数入口地址
+mov         qword ptr [rdx],rax                     ; 初始化协程句柄帧前缀的_Fn变量
+mov         eax,10002h                              ; 初始化协程句柄帧前缀的_Index和_Flags变量， 注意这里的_Index初始化值为2
+mov         r9d,2  
+cmp         dword ptr [rcx],0  
+cmovne      eax,r9d  
+mov         dword ptr [rdx+8],eax  
+xor         eax,eax  
+mov         dword ptr [r8],eax  
+mov         qword ptr [rdx-10h],r8                  ; 初始化我们定义的 promise_type 的 _ret 变量
+                                                    ; 注意这里的地址是 rdx-10h，即协程帧地址
+mov         byte ptr [rdx+r11],al  
+mov         rcx,rdx  
+call        test_coroutine$_ResumeCoro$2 (07FF6282C2FF0h)  
+nop  
+add         rsp,28h  
+ret  
+```
+![coro_init.png](https://i.loli.net/2020/10/14/SXGvEuV4xjCNOPZ.png)
+
+接着看下_ResumeCoro：
+
+```CPP
+mov         qword ptr [rsp+8],rcx  
+sub         rsp,38h  
+mov         r8,qword ptr [<coro_frame_ptr>]     ; 帧地址
+movzx       eax,word ptr [r8+8]                 ; 获得_Index值
+mov         word ptr [rsp+20h],ax  
+inc         ax                                  ; _Index + 1，获得`恢复`索引， _Index为`暂停`索引
+cmp         ax,8  
+ja          test_coroutine$_ResumeCoro$2+12Dh (07FF6282C311Dh)  
+movsx       rax,ax  
+lea         rdx,[__ImageBase (07FF6282C0000h)]  ; 获取索引表
+mov         ecx,dword ptr [rdx+rax*4+3124h]     ; 计算下条指令的执行地址偏移
+add         rcx,rdx                             ; 计算下条指令的执行地址
+jmp         rcx                                 ; 跳转
+```
+
+![resume.png](https://i.loli.net/2020/10/14/svSIUMe2Xf61iGj.png)
+
+这段代码可以说是协程实现的最关键的地方了，通过指令`mov ecx,dword ptr [rdx+rax*4+3124h] `我们甚至可以猜测到隐藏在编译器后面整个实现逻辑。因为编译器在编译时知道我们所有代码的执行地址，所以编译器在生成程序时帮我建立了一张表
+
+|  暂停点地址   | 恢复点地址  |
+|  ----  | ----  |
+| 暂停点1  | 恢复点1 |
+| 暂停点2  | 恢复点2 |
+| ...  | ... |
+
+编译器每次遇到co_await, co_yied, 或者其他需要暂停恢复的地方都往这个表里添加一条记录。在执行时每次暂停，恢复时修改_Index值来动态找到需要跳转的地址。解释下为什么_Index初始化时值为2， 因为第一个暂停点和恢复点时留给cancel操作的。怎么样这里的逻辑是不是有点“达夫设备”的感觉，只是编译器做的更好。
+
+
+## 总结
+
+未完成...
 
 
 
@@ -495,9 +769,11 @@ main thread doing other things...
 
 [20]  <a id="ref_20" href="https://github.com/lewissbaker/cppcoro" >CppCoro - A coroutine library for C++</a>`[EB/OL].`https://github.com/lewissbaker/cppcoro
 
-[21]  <a id="ref_21" href="https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf" >Exploring the C++ Coroutine</a>`[EB/OL].`https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf
 
-[22]  <a id="ref_22" href="https://raw.githubusercontent.com/CppCon/CppCon2016/master/Presentations/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers%20-%20Gor%20Nishanov%20-%20CppCon%202016.pdf" >Exploring the C++ Coroutine</a>`[EB/OL].`https://raw.githubusercontent.com/CppCon/CppCon2016/master/Presentations/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers%20-%20Gor%20Nishanov%20-%20CppCon%202016.pdf
+
+[21]  <a id="ref_21" href="https://raw.githubusercontent.com/CppCon/CppCon2016/master/Presentations/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers%20-%20Gor%20Nishanov%20-%20CppCon%202016.pdf" >Exploring the C++ Coroutine</a>`[EB/OL].`https://raw.githubusercontent.com/CppCon/CppCon2016/master/Presentations/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers%20-%20Gor%20Nishanov%20-%20CppCon%202016.pdf
+
+[22]  <a id="ref_22" href="https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf" >Exploring the C++ Coroutine</a>`[EB/OL].`https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf
 
 
 
