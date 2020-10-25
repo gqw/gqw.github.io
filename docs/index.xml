@@ -349,7 +349,8 @@ main thread doing other things...
   &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;__return_object&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;p&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;get_return_object&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;};&lt;/span&gt;
   
   &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
-    &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;tmp&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;p&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;initial_suspend&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;();&lt;/span&gt;
+    &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// co_await p-&amp;gt;initial_suspend();
+&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;tmp&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;p&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;initial_suspend&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;();&lt;/span&gt;
     &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;tmp&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;await_ready&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;())&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
       &lt;span style=&#34;color:#000&#34;&gt;__builtin_coro_save&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// frame-&amp;gt;suspend_index = n;
 &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;tmp&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;await_suspend&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;coroutine_handle&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;))&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
@@ -501,9 +502,44 @@ main thread doing other things...
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;协程句柄-coroutine-handle&#34;&gt;协程句柄 (coroutine handle)&lt;/h3&gt;
-&lt;p&gt;未完成&amp;hellip;&lt;/p&gt;
+&lt;p&gt;这是用于恢复协程执行或销毁协程帧的非拥有柄。前面的“承诺对象”是从内部控制协程，将异常和结果传递给系统外部，而协程句柄正好相反，它提供了从外部操控协程的方法。先看下结构声明：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;   &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;template&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;coroutine_handle&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;void&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;// no promise access
+&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;&lt;/span&gt;
+        &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;coroutine_handle&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;from_address&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;void&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;_Addr&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;);&lt;/span&gt;
+
+        &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;void&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;address&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;noexcept&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;
+
+        &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;operator&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;()()&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;noexcept&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color:#000&#34;&gt;resume&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;();&lt;/span&gt;
+        &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+
+        &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;resume&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color:#000&#34;&gt;_coro_resume&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;_Ptr&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+
+        &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;destroy&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color:#000&#34;&gt;_coro_destroy&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;_Ptr&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+
+        &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;bool&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;done&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;_Ptr&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;_Index&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+
+        &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;_Resumable_frame_prefix&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;_Resume_fn&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;void&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;__cdecl&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;)(&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;void&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;);&lt;/span&gt;
+
+            &lt;span style=&#34;color:#000&#34;&gt;_Resume_fn&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;_Fn&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;
+            &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;uint16_t&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;_Index&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;
+            &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;uint16_t&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;_Flags&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;};&lt;/span&gt;
+
+    &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;protected&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt;
+        &lt;span style=&#34;color:#000&#34;&gt;_Resumable_frame_prefix&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;_Ptr&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;nullptr&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;
+    &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在协程句柄中我们看到一个非常重要的方法&lt;code&gt;resume&lt;/code&gt;和一个&lt;code&gt;frame_prefix&lt;/code&gt;的成员变量，&lt;code&gt;resume&lt;/code&gt;方法应该不用多说了，调用它可以将协程从“暂停”的地方“恢复”。有意思的是&lt;code&gt;_Ptr&lt;/code&gt;这个指针，它的类型是&lt;code&gt;_Resumable_frame_prefix&lt;/code&gt;, 其中包括一个函数指针&lt;code&gt;_Fn&lt;/code&gt;和两个状态值。&lt;code&gt;_Fn&lt;/code&gt;其实就是协程跳转后真正执行的函数地址，它通过和&lt;code&gt;_Index&lt;/code&gt;配合能够跳转到协程暂停后的指令地址。具体的分析参考后面的&lt;a href=&#34;%E5%8D%8F%E7%A8%8B%E8%B7%B3%E8%BD%AC&#34;&gt;协程跳转&lt;/a&gt;相关内容。&lt;/p&gt;
 &lt;h3 id=&#34;协程状态-coroutine-state&#34;&gt;协程状态 (coroutine state)&lt;/h3&gt;
-&lt;p&gt;未完成&amp;hellip;&lt;/p&gt;
+&lt;p&gt;可以把协程状态理解为为使协程正常工作在堆上申请分配的内存，这里面包括前面说过的承诺对象、参数、临时变量和协程句柄里面记录的&lt;code&gt;_Resumable_frame_prefix&lt;/code&gt;内容。&lt;/p&gt;
 &lt;h3 id=&#34;协程跳转&#34;&gt;协程跳转&lt;/h3&gt;
 &lt;p&gt;在协程展开代码中还有两个函数&lt;code&gt;__builtin_coro_save&lt;/code&gt;和&lt;code&gt;__builtin_coro_suspend&lt;/code&gt;，这其实是编译器内置的代码，在msvc的头文件experimental\resumable中你可以看到许多以&lt;code&gt;_coro_&lt;/code&gt;开头的类似函数，这些函数式协程实现的基础。下面我们以一个简单的例子，通过跟踪汇编代码来看下编译器是怎么实现协程的“暂停”和“恢复”操作的。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-CPP&#34; data-lang=&#34;CPP&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;std&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;experimental&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;coroutine_handle&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;g_h&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;
@@ -616,34 +652,69 @@ main thread doing other things...
 &lt;span style=&#34;color:#000&#34;&gt;mov&lt;/span&gt;         &lt;span style=&#34;color:#000&#34;&gt;ecx&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;dword&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ptr&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;rdx&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;rax&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3124&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;h&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;     &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color:#a40000&#34;&gt;计算下条指令的执行地址偏移&lt;/span&gt;
 &lt;span style=&#34;color:#000&#34;&gt;add&lt;/span&gt;         &lt;span style=&#34;color:#000&#34;&gt;rcx&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;rdx&lt;/span&gt;                             &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color:#a40000&#34;&gt;计算下条指令的执行地址&lt;/span&gt;
 &lt;span style=&#34;color:#000&#34;&gt;jmp&lt;/span&gt;         &lt;span style=&#34;color:#000&#34;&gt;rcx&lt;/span&gt;                                 &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color:#a40000&#34;&gt;跳转&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/10/14/svSIUMe2Xf61iGj.png&#34; alt=&#34;resume.png&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/10/25/IyThvu8k6rAjbDV.jpg&#34; alt=&#34;Inkedcoro_goto_2_LI.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;这段代码可以说是协程实现的最关键的地方了，通过指令&lt;code&gt;mov ecx,dword ptr [rdx+rax*4+3124h] &lt;/code&gt;我们甚至可以猜测到隐藏在编译器后面整个实现逻辑。因为编译器在编译时知道我们所有代码的执行地址，所以编译器在生成程序时帮我建立了一张表&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;暂停点地址&lt;/th&gt;
 &lt;th&gt;恢复点地址&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;暂停点1&lt;/td&gt;
 &lt;td&gt;恢复点1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;暂停点2&lt;/td&gt;
 &lt;td&gt;恢复点2&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&amp;hellip;&lt;/td&gt;
-&lt;td&gt;&amp;hellip;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;编译器每次遇到co_await, co_yied, 或者其他需要暂停恢复的地方都往这个表里添加一条记录。在执行时每次暂停，恢复时修改_Index值来动态找到需要跳转的地址。解释下为什么_Index初始化时值为2， 因为第一个暂停点和恢复点时留给cancel操作的。怎么样这里的逻辑是不是有点“达夫设备”的感觉，只是编译器做的更好。&lt;/p&gt;
+&lt;p&gt;编译器每次遇到co_await, co_yied, 或者其他需要暂停恢复的地方都往这个表里添加一条记录。在执行时每次暂停，恢复时修改_Index值来动态找到需要跳转的地址。解释下为什么_Index初始化时值为2， 因为第一个暂停点和恢复点时留给cancel操作的。怎么样这里的逻辑是不是有点“达夫设备”的感觉，只是编译器做的更好。下面我们来验证下各个跳转点：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/10/25/rX5yeIvYUMgABj3.png&#34; alt=&#34;coro_goto_1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;从上面的代码可以看出，rcx是一个内存映射好的地址，现在让我们分别加上前面的地址偏移看看jmp最终跳转到的代码时什么。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;第1个 rax = rcx + (rcx+0*4+34E8h) = 0x00007ff7eca10000 + 0x000034a1 （注意这里的字节序，需要反过来取值） = 0x00007ff7eca134a1，&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第2个 rax = rcx + (rcx+1*4+34E8h) = 0x00007ff7eca10000 + 0x000034cb  = 0x00007ff7eca134cb 看下0x00007ff7eca134a1和0x00007ff7eca134cb地址处的代码：
+&lt;img src=&#34;./coroutine.md.assets/coro_goto_3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以很容易的发现这是_resumable_cancel函数的进入和退出点， 同样我们再看看根据后面几个值算出的地址是什么代码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第3个00007FF7ECA13431是 promise_type展开中的 co_await initial_suspend() 代码
+&lt;img src=&#34;https://i.loli.net/2020/10/25/moVFx5KaIwJ1DqG.png&#34; alt=&#34;coro_goto_4.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这是 co_await initial_suspend() 的代码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第4个0x00007ff7eca12c4f是 第一次进入协程函数的代码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第5个0x00007ff7eca12c4a是 0x00007ff7eca12c4f  失败时的恢复点。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第6个0x00007ff7eca12e20是 第一次调用 co_await awaitee() 恢复后代码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第7个0x00007ff7eca12e1b是 0x00007ff7eca12e20  失败时的恢复点。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第8个0x00007ff7eca130da是 第二次调用 co_await awaitee() 恢复后代码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第9个0x00007ff7eca130d5是 0x00007ff7eca130da  失败时的恢复点。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/10/25/MmLxGjk23shNzKo.png&#34; alt=&#34;coro_goto_5.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;从上图可以看到每次失败时都会跳转到 0x00007ff7eca134a1 即 _resumable_cancel函数的进入点。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
-&lt;p&gt;未完成&amp;hellip;&lt;/p&gt;
-&lt;p&gt;未完待续&amp;hellip;&lt;/p&gt;
+&lt;p&gt;协程最关键的操作是暂停和恢复函数的执行，C++20中的协程借助于编译器在编译期插入相关代码、记录相应跳转点然后运行期根据协程状态计算跳转地址实现协程的各种功能。希望经过本文的讲解和分析后能够帮助大家更为深刻的了解和理解协程的机理，能够让大家放下对协程的恐惧，在以后的使用中能够更加自信。&lt;/p&gt;
+&lt;p&gt;比如很多人在使用协程时都会想协程时线程安全的吗？其实在我看来这是个伪命题，既然是问是否是线程安全，那么肯定要出现资源被多个线程竞争的情况。但是从我们前面的例子可以看出整个代码都是在一个线程执行的，所以谈不上线程安不安全。当然如果我们改下前面的代码，将resume的调用放在不同线程里面执行，这种情况下协程函数中如果使用了共享的对象，那肯定不是线程安全的。至于网上许多说协程没有线程安全问题应该是指在一个协程函数中多次暂停和恢复，由于是顺序进行的，所以协程对象上的变量在此过程中不会存在竞争，所以可以说是线程安全的。总之，线程是否安全关键还是看线程而不是协程，协程只是改变代码执行流程的一种手段。&lt;/p&gt;
+&lt;p&gt;在使用协程时，我们关心的另一问题就是性能效率问题。在理解C++的协程原理后我们知道建立一个协程函数后需要建立个协程对象这个协程对象中包含承诺对象、形参信息、临时变量、协程句柄。与回调函数比起来真正多出来的应该只有协程句柄内包含的信息，承诺对象相当于放回值， 形参和临时变量回调函数也是少不了的（经过编译器优化可以直接在堆上分配），而协程句柄的内存也是极少的（只有一个函数指针和两个状态值）。对于执行时间，协程跳转只需计算一个地址然后直接跳转，效率上是不会比一次函数调用差多少。所以C++的协程无论是空间还是时间复杂度性能都是相当可观的。&lt;/p&gt;
+&lt;p&gt;最后，回到开头我是因为看到asio中的协程示例才开始学习研究C++ Coroutine的，但是此文通篇都买有提及asio， 所以在下篇文章中我会带大家一起学习研究下asio是怎样使用协程实现异步调用的。&lt;/p&gt;
 &lt;h2 id=&#34;参考引用&#34;&gt;参考引用&lt;/h2&gt;
 &lt;p&gt;[1]  &lt;a id=&#34;ref_1&#34; href=&#34;https://en.cppreference.com/w/cpp/compiler_support&#34; &gt;C++ compiler support&lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;  &lt;a href=&#34;https://en.cppreference.com/w/cpp/compiler_support&#34;&gt;https://en.cppreference.com/w/cpp/compiler_support&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[2]  &lt;a id=&#34;ref_2&#34; href=&#34;https://en.wikipedia.org/wiki/%22Hello,_World!%22_program&#34; &gt;&amp;ldquo;Hello, World!&amp;rdquo; program&lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/%22Hello,_World!%22_program&#34;&gt;https://en.wikipedia.org/wiki/%22Hello,_World!%22_program&lt;/a&gt;&lt;/p&gt;
@@ -669,25 +740,43 @@ main thread doing other things...
 &lt;p&gt;[20]  &lt;a id=&#34;ref_20&#34; href=&#34;https://github.com/lewissbaker/cppcoro&#34; &gt;CppCoro - A coroutine library for C++&lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;&lt;a href=&#34;https://github.com/lewissbaker/cppcoro&#34;&gt;https://github.com/lewissbaker/cppcoro&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[21]  &lt;a id=&#34;ref_21&#34; href=&#34;https://raw.githubusercontent.com/CppCon/CppCon2016/master/Presentations/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers%20-%20Gor%20Nishanov%20-%20CppCon%202016.pdf&#34; &gt;Exploring the C++ Coroutine&lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;&lt;a href=&#34;https://raw.githubusercontent.com/CppCon/CppCon2016/master/Presentations/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers%20-%20Gor%20Nishanov%20-%20CppCon%202016.pdf&#34;&gt;https://raw.githubusercontent.com/CppCon/CppCon2016/master/Presentations/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers/C%2B%2B%20Coroutines%20-%20Under%20The%20Covers%20-%20Gor%20Nishanov%20-%20CppCon%202016.pdf&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[22]  &lt;a id=&#34;ref_22&#34; href=&#34;https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf&#34; &gt;Exploring the C++ Coroutine&lt;/a&gt;&lt;code&gt;[EB/OL].&lt;/code&gt;&lt;a href=&#34;https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf&#34;&gt;https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;未整理部分&#34;&gt;未整理部分&lt;/h2&gt;
-&lt;p&gt;天涯明月刀-无栈协程的应用 &lt;a href=&#34;https://gameinstitute.qq.com/community/detail/107515&#34;&gt;https://gameinstitute.qq.com/community/detail/107515&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;有栈协程与无栈协程 &lt;a href=&#34;https://mthli.xyz/stackful-stackless/&#34;&gt;https://mthli.xyz/stackful-stackless/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;luncliff/coroutineExploring MSVC Coroutine 
-&lt;a href=&#34;https://luncliff.github.io/coroutine/articles/exploring-msvc-coroutine/&#34;&gt;https://luncliff.github.io/coroutine/articles/exploring-msvc-coroutine/&lt;/a&gt;
-&lt;a href=&#34;https://luncliff.github.io/posts/Exploring-MSVC-Coroutine.html&#34;&gt;https://luncliff.github.io/posts/Exploring-MSVC-Coroutine.html&lt;/a&gt;
-&lt;a href=&#34;https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf&#34;&gt;https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;coroutines &lt;a href=&#34;https://github.com/topics/coroutines?l=c%2B%2B&#34;&gt;https://github.com/topics/coroutines?l=c%2B%2B&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;汇编 &lt;a href=&#34;https://cs.lmu.edu/~ray/notes/nasmtutorial/&#34;&gt;https://cs.lmu.edu/~ray/notes/nasmtutorial/&lt;/a&gt;
-汇编编译 &lt;a href=&#34;https://godbolt.org/&#34;&gt;https://godbolt.org/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;N3858.pdf &lt;a href=&#34;https://isocpp.org/files/papers/N3858.pdf&#34;&gt;https://isocpp.org/files/papers/N3858.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;达夫设备 &lt;a href=&#34;https://mthli.xyz/coroutines-in-c/&#34;&gt;https://mthli.xyz/coroutines-in-c/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;其实上面说的是有一些问题，因为这个执行权的切换实际上是（调用者–被调用者）之间的切换，对称就是它们之间都是平等的，就是假如A协程执行了B，C协程，那么B协程可以切换回A，也可以切换回C。而非对称只能是B切换回A，A切换回C，C再切换回A，以此类推。
-&lt;a href=&#34;https://blog.csdn.net/weixin_43705457/article/details/106924435&#34;&gt;https://blog.csdn.net/weixin_43705457/article/details/106924435&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;callback hell &lt;a href=&#34;https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997&#34;&gt;https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://software.intel.com/content/www/us/en/develop/blogs/the-reasons-why-64-bit-programs-require-more-stack-memory.html&#34;&gt;The reasons why 64-bit programs require more stack memory&lt;/a&gt;   &lt;a href=&#34;https://software.intel.com/content/www/us/en/develop/blogs/the-reasons-why-64-bit-programs-require-more-stack-memory.html&#34;&gt;https://software.intel.com/content/www/us/en/develop/blogs/the-reasons-why-64-bit-programs-require-more-stack-memory.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;C++ Coroutines: Understanding Symmetric Transfer &lt;a href=&#34;https://lewissbaker.github.io/2020/05/11/understanding_symmetric_transfer&#34;&gt;https://lewissbaker.github.io/2020/05/11/understanding_symmetric_transfer&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;C++网络编程之asio(五)——在asio中使用协程 &lt;a href=&#34;https://zhuanlan.zhihu.com/p/58784652&#34;&gt;https://zhuanlan.zhihu.com/p/58784652&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
+&lt;!-- 
+
+## 未整理部分
+
+天涯明月刀-无栈协程的应用 https://gameinstitute.qq.com/community/detail/107515
+
+有栈协程与无栈协程 https://mthli.xyz/stackful-stackless/
+
+luncliff/coroutineExploring MSVC Coroutine 
+https://luncliff.github.io/coroutine/articles/exploring-msvc-coroutine/
+https://luncliff.github.io/posts/Exploring-MSVC-Coroutine.html
+https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf
+
+coroutines https://github.com/topics/coroutines?l=c%2B%2B
+
+汇编 https://cs.lmu.edu/~ray/notes/nasmtutorial/
+汇编编译 https://godbolt.org/
+
+
+N3858.pdf https://isocpp.org/files/papers/N3858.pdf
+
+达夫设备 https://mthli.xyz/coroutines-in-c/
+
+其实上面说的是有一些问题，因为这个执行权的切换实际上是（调用者–被调用者）之间的切换，对称就是它们之间都是平等的，就是假如A协程执行了B，C协程，那么B协程可以切换回A，也可以切换回C。而非对称只能是B切换回A，A切换回C，C再切换回A，以此类推。
+https://blog.csdn.net/weixin_43705457/article/details/106924435
+
+callback hell https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997
+
+ [The reasons why 64-bit programs require more stack memory](https://software.intel.com/content/www/us/en/develop/blogs/the-reasons-why-64-bit-programs-require-more-stack-memory.html)   https://software.intel.com/content/www/us/en/develop/blogs/the-reasons-why-64-bit-programs-require-more-stack-memory.html
+
+ C++ Coroutines: Understanding Symmetric Transfer https://lewissbaker.github.io/2020/05/11/understanding_symmetric_transfer 
+
+C++网络编程之asio(五)——在asio中使用协程 https://zhuanlan.zhihu.com/p/58784652
+
+# 
+--&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
 
       </description>
     </item>

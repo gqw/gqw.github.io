@@ -3,8 +3,8 @@ date: 2020-10-01
 title: "从HelloWold开始，深入浅出C++ 20 Coroutine TS"
 linkTitle: "C++ 20 Coroutine"
 description: "分析C++20协程的使用和原理分析"
-author: 顾起威 ([@gqw](https://gitee.com/gqw))
-description: >
+author: 顾起威 ([@gqw](https://gqw.github.io))
+description: 
   分析研究协程原理
 ---
 
@@ -405,6 +405,7 @@ main thread doing other things...
     *__return_object = { p->get_return_object() };
     
     {
+      // co_await p->initial_suspend();
       auto&& tmp = p->initial_suspend();
       if (!tmp.await_ready()) {
         __builtin_coro_save() // frame->suspend_index = n;
@@ -565,11 +566,50 @@ main thread doing other things...
 
 ### 协程句柄 (coroutine handle)
 
-未完成...
+这是用于恢复协程执行或销毁协程帧的非拥有柄。前面的“承诺对象”是从内部控制协程，将异常和结果传递给系统外部，而协程句柄正好相反，它提供了从外部操控协程的方法。先看下结构声明：
+
+```cpp
+   template <>
+    struct coroutine_handle<void> { // no promise access
+
+        static coroutine_handle from_address(void* _Addr);
+
+        void* address() const noexcept;
+
+        void operator()() const noexcept {
+            resume();
+        }
+
+        void resume() const {
+            _coro_resume(_Ptr);
+        }
+
+        void destroy() {
+            _coro_destroy(_Ptr);
+        }
+
+        bool done() const {
+            return _Ptr->_Index == 0;
+        }
+
+        struct _Resumable_frame_prefix {
+            using _Resume_fn = void(__cdecl*)(void*);
+
+            _Resume_fn _Fn;
+            uint16_t _Index;
+            uint16_t _Flags;
+        };
+
+    protected:
+        _Resumable_frame_prefix* _Ptr = nullptr;
+    };
+```
+
+在协程句柄中我们看到一个非常重要的方法`resume`和一个`frame_prefix`的成员变量，`resume`方法应该不用多说了，调用它可以将协程从“暂停”的地方“恢复”。有意思的是`_Ptr`这个指针，它的类型是`_Resumable_frame_prefix`, 其中包括一个函数指针`_Fn`和两个状态值。`_Fn`其实就是协程跳转后真正执行的函数地址，它通过和`_Index`配合能够跳转到协程暂停后的指令地址。具体的分析参考后面的[协程跳转](协程跳转)相关内容。
 
 ### 协程状态 (coroutine state)
 
-未完成...
+可以把协程状态理解为为使协程正常工作在堆上申请分配的内存，这里面包括前面说过的承诺对象、参数、临时变量和协程句柄里面记录的`_Resumable_frame_prefix`内容。
 
 ### 协程跳转
 
@@ -702,27 +742,52 @@ add         rcx,rdx                             ; 计算下条指令的执行地
 jmp         rcx                                 ; 跳转
 ```
 
-![resume.png](https://i.loli.net/2020/10/14/svSIUMe2Xf61iGj.png)
+![Inkedcoro_goto_2_LI.jpg](https://i.loli.net/2020/10/25/IyThvu8k6rAjbDV.jpg)
 
 这段代码可以说是协程实现的最关键的地方了，通过指令`mov ecx,dword ptr [rdx+rax*4+3124h] `我们甚至可以猜测到隐藏在编译器后面整个实现逻辑。因为编译器在编译时知道我们所有代码的执行地址，所以编译器在生成程序时帮我建立了一张表
 
-|  暂停点地址   | 恢复点地址  |
-|  ----  | ----  |
-| 暂停点1  | 恢复点1 |
-| 暂停点2  | 恢复点2 |
-| ...  | ... |
+| 恢复点地址  |
+|  ----  |
+| 恢复点1  |
+| 恢复点2  | 
+| ...  | 
 
-编译器每次遇到co_await, co_yied, 或者其他需要暂停恢复的地方都往这个表里添加一条记录。在执行时每次暂停，恢复时修改_Index值来动态找到需要跳转的地址。解释下为什么_Index初始化时值为2， 因为第一个暂停点和恢复点时留给cancel操作的。怎么样这里的逻辑是不是有点“达夫设备”的感觉，只是编译器做的更好。
+编译器每次遇到co_await, co_yied, 或者其他需要暂停恢复的地方都往这个表里添加一条记录。在执行时每次暂停，恢复时修改_Index值来动态找到需要跳转的地址。解释下为什么_Index初始化时值为2， 因为第一个暂停点和恢复点时留给cancel操作的。怎么样这里的逻辑是不是有点“达夫设备”的感觉，只是编译器做的更好。下面我们来验证下各个跳转点：
+
+![coro_goto_1.png](https://i.loli.net/2020/10/25/rX5yeIvYUMgABj3.png)
+
+从上面的代码可以看出，rcx是一个内存映射好的地址，现在让我们分别加上前面的地址偏移看看jmp最终跳转到的代码时什么。
+  - 第1个 rax = rcx + (rcx+0*4+34E8h) = 0x00007ff7eca10000 + 0x000034a1 （注意这里的字节序，需要反过来取值） = 0x00007ff7eca134a1，
+  - 第2个 rax = rcx + (rcx+1*4+34E8h) = 0x00007ff7eca10000 + 0x000034cb  = 0x00007ff7eca134cb 看下0x00007ff7eca134a1和0x00007ff7eca134cb地址处的代码：
+    ![](./coroutine.md.assets/coro_goto_3.png)
+  
+    可以很容易的发现这是_resumable_cancel函数的进入和退出点， 同样我们再看看根据后面几个值算出的地址是什么代码。
+  - 第3个00007FF7ECA13431是 promise_type展开中的 co_await initial_suspend() 代码
+    ![coro_goto_4.png](https://i.loli.net/2020/10/25/moVFx5KaIwJ1DqG.png)
+
+    这是 co_await initial_suspend() 的代码
+  
+  - 第4个0x00007ff7eca12c4f是 第一次进入协程函数的代码。
+  - 第5个0x00007ff7eca12c4a是 0x00007ff7eca12c4f  失败时的恢复点。
+  - 第6个0x00007ff7eca12e20是 第一次调用 co_await awaitee() 恢复后代码。
+  - 第7个0x00007ff7eca12e1b是 0x00007ff7eca12e20  失败时的恢复点。
+  - 第8个0x00007ff7eca130da是 第二次调用 co_await awaitee() 恢复后代码。
+  - 第9个0x00007ff7eca130d5是 0x00007ff7eca130da  失败时的恢复点。
+  
+    ![coro_goto_5.png](https://i.loli.net/2020/10/25/MmLxGjk23shNzKo.png)
+
+    从上图可以看到每次失败时都会跳转到 0x00007ff7eca134a1 即 _resumable_cancel函数的进入点。
 
 
 ## 总结
 
-未完成...
+  协程最关键的操作是暂停和恢复函数的执行，C++20中的协程借助于编译器在编译期插入相关代码、记录相应跳转点然后运行期根据协程状态计算跳转地址实现协程的各种功能。希望经过本文的讲解和分析后能够帮助大家更为深刻的了解和理解协程的机理，能够让大家放下对协程的恐惧，在以后的使用中能够更加自信。
+  
+  比如很多人在使用协程时都会想协程时线程安全的吗？其实在我看来这是个伪命题，既然是问是否是线程安全，那么肯定要出现资源被多个线程竞争的情况。但是从我们前面的例子可以看出整个代码都是在一个线程执行的，所以谈不上线程安不安全。当然如果我们改下前面的代码，将resume的调用放在不同线程里面执行，这种情况下协程函数中如果使用了共享的对象，那肯定不是线程安全的。至于网上许多说协程没有线程安全问题应该是指在一个协程函数中多次暂停和恢复，由于是顺序进行的，所以协程对象上的变量在此过程中不会存在竞争，所以可以说是线程安全的。总之，线程是否安全关键还是看线程而不是协程，协程只是改变代码执行流程的一种手段。
 
+  在使用协程时，我们关心的另一问题就是性能效率问题。在理解C++的协程原理后我们知道建立一个协程函数后需要建立个协程对象这个协程对象中包含承诺对象、形参信息、临时变量、协程句柄。与回调函数比起来真正多出来的应该只有协程句柄内包含的信息，承诺对象相当于放回值， 形参和临时变量回调函数也是少不了的（经过编译器优化可以直接在堆上分配），而协程句柄的内存也是极少的（只有一个函数指针和两个状态值）。对于执行时间，协程跳转只需计算一个地址然后直接跳转，效率上是不会比一次函数调用差多少。所以C++的协程无论是空间还是时间复杂度性能都是相当可观的。
 
-
-未完待续...
-
+  最后，回到开头我是因为看到asio中的协程示例才开始学习研究C++ Coroutine的，但是此文通篇都买有提及asio， 所以在下篇文章中我会带大家一起学习研究下asio是怎样使用协程实现异步调用的。
 
 
 ## 参考引用
@@ -775,7 +840,7 @@ jmp         rcx                                 ; 跳转
 
 [22]  <a id="ref_22" href="https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf" >Exploring the C++ Coroutine</a>`[EB/OL].`https://luncliff.github.io/coroutine/ppt/%5BEng%5DExploringTheCppCoroutine.pdf
 
-
+<!-- 
 
 ## 未整理部分
 
@@ -810,3 +875,4 @@ callback hell https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promi
 C++网络编程之asio(五)——在asio中使用协程 https://zhuanlan.zhihu.com/p/58784652
 
 # 
+-->
