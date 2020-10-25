@@ -681,7 +681,7 @@ main thread doing other things...
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;第2个 rax = rcx + (rcx+1*4+34E8h) = 0x00007ff7eca10000 + 0x000034cb  = 0x00007ff7eca134cb 看下0x00007ff7eca134a1和0x00007ff7eca134cb地址处的代码：
-&lt;img src=&#34;./coroutine.md.assets/coro_goto_3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://i.loli.net/2020/10/25/swdDnMfXv3FZpSP.png&#34; alt=&#34;coro_goto_3.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;可以很容易的发现这是_resumable_cancel函数的进入和退出点， 同样我们再看看根据后面几个值算出的地址是什么代码。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;

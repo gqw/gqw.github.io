@@ -759,7 +759,7 @@ jmp         rcx                                 ; 跳转
 从上面的代码可以看出，rcx是一个内存映射好的地址，现在让我们分别加上前面的地址偏移看看jmp最终跳转到的代码时什么。
   - 第1个 rax = rcx + (rcx+0*4+34E8h) = 0x00007ff7eca10000 + 0x000034a1 （注意这里的字节序，需要反过来取值） = 0x00007ff7eca134a1，
   - 第2个 rax = rcx + (rcx+1*4+34E8h) = 0x00007ff7eca10000 + 0x000034cb  = 0x00007ff7eca134cb 看下0x00007ff7eca134a1和0x00007ff7eca134cb地址处的代码：
-    ![](./coroutine.md.assets/coro_goto_3.png)
+    ![coro_goto_3.png](https://i.loli.net/2020/10/25/swdDnMfXv3FZpSP.png)
   
     可以很容易的发现这是_resumable_cancel函数的进入和退出点， 同样我们再看看根据后面几个值算出的地址是什么代码。
   - 第3个00007FF7ECA13431是 promise_type展开中的 co_await initial_suspend() 代码
