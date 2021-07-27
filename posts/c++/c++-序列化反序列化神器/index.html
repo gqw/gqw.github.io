@@ -1,0 +1,412 @@
+<!doctype html><html>
+<head>
+<title>C++序列化和反序列化工具</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<link rel=stylesheet href=/css/bootstrap.min.css>
+<link rel=stylesheet href=/css/layouts/main.css>
+<link rel=stylesheet href=/css/navigators/navbar.css>
+<link rel=stylesheet href=/css/plyr.css>
+<link rel=stylesheet href=/css/flag-icon.min.css>
+<link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css>
+<link rel=icon type=image/png href=/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_3.png>
+<meta property="og:title" content="C++序列化和反序列化工具">
+<meta property="og:description" content="std::stringstream, std::strstream, std::iostream, std::streambuf 使用技巧">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://gqw.gitee.io/posts/c++/c++-%E5%BA%8F%E5%88%97%E5%8C%96%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-11-18T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-11-18T00:00:00+00:00">
+<meta name=description content="std::stringstream, std::strstream, std::iostream, std::streambuf 使用技巧">
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css>
+<link rel=stylesheet href=/css/layouts/single.css>
+<link rel=stylesheet href=/css/navigators/sidebar.css>
+<link rel=stylesheet href=/css/style.css>
+</head>
+<body data-spy=scroll data-target=#TableOfContents data-offset=80>
+<div class="container-fluid bg-dimmed wrapper">
+<nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+<div class=container>
+<button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
+<span class=navbar-toggler-icon></span>
+</button>
+<a class=navbar-brand href=/>
+<img src=/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png alt=Logo>
+顾起威的博客</a>
+<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse lang-selector" id=top-nav-items>
+<ul class="navbar-nav ml-auto">
+</ul>
+</div>
+</div>
+<img src=/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png class=d-none id=main-logo alt=Logo>
+<img src=/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png class=d-none id=inverted-logo alt="Inverted Logo">
+</nav>
+<section class=sidebar-section id=sidebar-section>
+<div class=sidebar-holder>
+<div class=sidebar id=sidebar>
+<form class=mx-auto method=get action=/search>
+<input type=text name=keyword placeholder=Search data-search id=search-box>
+</form>
+<div class=sidebar-tree>
+<ul class=tree id=tree>
+<li id=list-heading><a href=/posts data-filter=all>博文</a></li>
+<div class=subtree>
+<li>
+<i class="fas fa-minus-circle"></i><a class=active href=/posts/c++/>C++</a>
+<ul class=active>
+<li><a class=active href=/posts/c++/c++-%E5%BA%8F%E5%88%97%E5%8C%96%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/ title=C++序列化和反序列化工具>C++序列化和反序列化工具</a></li>
+<li><a href=/posts/c++/coroutine/ title="深入浅出C++ 20 Coroutine TS">深入浅出C++ 20 Coroutine TS</a></li>
+</ul>
+</li>
+<li>
+<i class="fas fa-plus-circle"></i><a href=/posts/net/>网络</a>
+<ul>
+<li><a href=/posts/net/tcptrace/ title=Windows下基于tcp协议的traceroute实现>Windows下基于tcp协议的traceroute实现</a></li>
+<li><a href=/posts/net/p2p/ title=一种简单可行的P2SP实践方案>一种简单可行的P2SP实践方案</a></li>
+</ul>
+</li>
+</div>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class=content-section id=content-section>
+<div class=content>
+<div class="container p-0 read-area">
+<div class="hero-area col-sm-12" id=hero-area style=background-image:url(https://gqw.gitee.io/images/default-hero.jpg)>
+</div>
+<div class=page-content>
+<div class="author-profile ml-auto align-self-lg-center">
+<img class=rounded-circle src=/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_120x120_fit_box_3.png alt="Author Image">
+<h5 class=author-name>顾起威</h5>
+<p>November 18, 2020 | 500 Words | Read in about 3 Min | 本文总阅读量<span id=busuanzi_value_page_pv></span>次</p>
+<h6 id=wc></h6>
+</div>
+<div class=title>
+<h1>C++序列化和反序列化工具</h1>
+</div>
+<div class=post-content id=post-content>
+<p>在开发时我们经常会遇到需要序列号和反序列化得操作。比如将程序配置导出下次打开再从配置中读取，通常你可以将信息保存成json、xml或ini格式，让后再解析出来。更常见的情形是我们通过网络发送和接收数据，也涉及到序列化和反序列化操作，当让你可以使用protobuf、msgpack等序列化库。但是如果你只是个简单程序，或者序列化和反序列化的业务不是很重，不想搞得那么复杂有什么简单的方法吗？</p>
+<h2 id=最直接的方法>最直接的方法</h2>
+<p>直接按字节拷贝，见代码:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>encode</span>(<span style=color:#66d9ef>const</span> std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> s, <span style=color:#66d9ef>int32_t</span> a, <span style=color:#66d9ef>int32_t</span> b,
+	<span style=color:#66d9ef>int32_t</span> c, std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> buf) {
+	<span style=color:#66d9ef>int32_t</span> d <span style=color:#f92672>=</span> <span style=color:#66d9ef>static_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int32_t</span><span style=color:#f92672>&gt;</span>(s.length());
+
+	<span style=color:#66d9ef>if</span> (buf.size() <span style=color:#f92672>&lt;</span> (<span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>) <span style=color:#f92672>*</span> <span style=color:#ae81ff>4</span> <span style=color:#f92672>+</span> d))
+		<span style=color:#66d9ef>return</span> false;
+
+	std<span style=color:#f92672>::</span>size_t pos <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+	memcpy(buf.data() <span style=color:#f92672>+</span> pos, <span style=color:#f92672>&amp;</span>a, <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>));
+	pos <span style=color:#f92672>+=</span> <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>);
+	memcpy(buf.data() <span style=color:#f92672>+</span> pos, <span style=color:#f92672>&amp;</span>b, <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>));
+	pos <span style=color:#f92672>+=</span> <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>);
+	memcpy(buf.data() <span style=color:#f92672>+</span> pos, <span style=color:#f92672>&amp;</span>c, <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>));
+	pos <span style=color:#f92672>+=</span> <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>);
+	memcpy(buf.data() <span style=color:#f92672>+</span> pos, <span style=color:#f92672>&amp;</span>d, <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>));
+	pos <span style=color:#f92672>+=</span> <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>);
+	memcpy(buf.data() <span style=color:#f92672>+</span> pos, s.data(), d);
+	<span style=color:#66d9ef>return</span> true;
+}
+
+<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>decode</span>(<span style=color:#66d9ef>const</span> std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> buf, <span style=color:#66d9ef>int32_t</span><span style=color:#f92672>&amp;</span> a, <span style=color:#66d9ef>int32_t</span><span style=color:#f92672>&amp;</span> b,
+	<span style=color:#66d9ef>int32_t</span><span style=color:#f92672>&amp;</span> c, std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> out) {
+	<span style=color:#66d9ef>if</span> (buf.size() <span style=color:#f92672>&lt;</span> (<span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>) <span style=color:#f92672>*</span> <span style=color:#ae81ff>4</span>))
+		<span style=color:#66d9ef>return</span> false;
+
+	std<span style=color:#f92672>::</span>size_t pos <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+	memcpy(<span style=color:#f92672>&amp;</span>a, buf.data() <span style=color:#f92672>+</span> pos, <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>));
+	pos <span style=color:#f92672>+=</span> <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>);
+	memcpy(<span style=color:#f92672>&amp;</span>b, buf.data() <span style=color:#f92672>+</span> pos, <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>));
+	pos <span style=color:#f92672>+=</span> <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>);
+	memcpy(<span style=color:#f92672>&amp;</span>c, buf.data() <span style=color:#f92672>+</span> pos, <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>));
+	pos <span style=color:#f92672>+=</span> <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>);
+	<span style=color:#66d9ef>int32_t</span> d <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+	memcpy(<span style=color:#f92672>&amp;</span>d, buf.data() <span style=color:#f92672>+</span> pos, <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>));
+	pos <span style=color:#f92672>+=</span> <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>int32_t</span>);
+
+	out <span style=color:#f92672>=</span> std<span style=color:#f92672>::</span>string(buf.data() <span style=color:#f92672>+</span> pos, d);
+	<span style=color:#66d9ef>return</span> true;
+}
+
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>()
+{
+	std<span style=color:#f92672>::</span>string buf;
+	buf.resize(<span style=color:#ae81ff>1024</span>);
+	encode(<span style=color:#e6db74>&#34;test&#34;</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, buf);
+	std<span style=color:#f92672>::</span>string out;
+	<span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, b <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, c <span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+	decode(buf, a, b, c, out);
+	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><p>或者简单封装下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>TestData</span> {
+	<span style=color:#66d9ef>int32_t</span> a <span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+	<span style=color:#66d9ef>int32_t</span> b <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+	<span style=color:#66d9ef>int32_t</span> c <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+	std<span style=color:#f92672>::</span>string s;
+
+	<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>encode</span>(std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> buf) {
+        ...
+	}
+
+	<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>decode</span>(<span style=color:#66d9ef>const</span> std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> buf) {
+		...
+	}
+};
+
+TestData in{ <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#e6db74>&#34;test&#34;</span> };
+std<span style=color:#f92672>::</span>string buf;
+buf.resize(<span style=color:#ae81ff>1024</span>);
+in.encode(buf);
+
+TestData out;
+out.decode(buf);
+</code></pre></div><h2 id=使用stringstream>使用stringstream</h2>
+<p>可以看到上面的代码还是比较繁琐的，不仅需要手动计算字符索引位置，还要直接使用memcpy函数。对于这个问题c++的stringstream可以简化不少代码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>TestData</span> {
+	<span style=color:#66d9ef>int32_t</span> a <span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+	<span style=color:#66d9ef>int32_t</span> b <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+	<span style=color:#66d9ef>int32_t</span> c <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+	std<span style=color:#f92672>::</span>string s;
+
+	<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>encode</span>(std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> buf) {
+		<span style=color:#66d9ef>int32_t</span> d <span style=color:#f92672>=</span> <span style=color:#66d9ef>static_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int32_t</span><span style=color:#f92672>&gt;</span>(s.length());
+
+		std<span style=color:#f92672>::</span>ostringstream ss;
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>a, <span style=color:#66d9ef>sizeof</span>(a));
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>b, <span style=color:#66d9ef>sizeof</span>(b));
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>c, <span style=color:#66d9ef>sizeof</span>(c));
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>d, <span style=color:#66d9ef>sizeof</span>(d));
+		ss <span style=color:#f92672>&lt;&lt;</span> s;
+		buf <span style=color:#f92672>=</span> ss.str();
+		<span style=color:#66d9ef>return</span> ss.good();
+	}
+
+	<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>decode</span>(<span style=color:#66d9ef>const</span> std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> buf) {
+		std<span style=color:#f92672>::</span>istringstream ss(buf);
+		<span style=color:#66d9ef>int32_t</span> d <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>a, <span style=color:#66d9ef>sizeof</span>(a));
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>b, <span style=color:#66d9ef>sizeof</span>(b));
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>c, <span style=color:#66d9ef>sizeof</span>(c));
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>d, <span style=color:#66d9ef>sizeof</span>(d));
+		ss <span style=color:#f92672>&gt;&gt;</span> s;
+		<span style=color:#66d9ef>return</span> ss.good();
+	}
+};
+</code></pre></div><p>可以明显的看出代码比前面的要简洁优雅多了，但是这里面却有个比较严重的问题，无论是encode还是decode都需要构建stringstream，而stringstream会在内部构建一个新的streambuf对象，无论是输入还是输出都需要一次拷贝操作。</p>
+<h2 id=我们还有strstream>我们还有strstream</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>TestData</span> {
+	<span style=color:#66d9ef>int32_t</span> a <span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+	<span style=color:#66d9ef>int32_t</span> b <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+	<span style=color:#66d9ef>int32_t</span> c <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+	std<span style=color:#f92672>::</span>string s;
+
+	<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>encode</span>(std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> buf) {
+		<span style=color:#66d9ef>int32_t</span> d <span style=color:#f92672>=</span> <span style=color:#66d9ef>static_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int32_t</span><span style=color:#f92672>&gt;</span>(s.length());
+
+		std<span style=color:#f92672>::</span>ostrstream ss(buf.data(), buf.length());
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>a, <span style=color:#66d9ef>sizeof</span>(a));
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>b, <span style=color:#66d9ef>sizeof</span>(b));
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>c, <span style=color:#66d9ef>sizeof</span>(c));
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>d, <span style=color:#66d9ef>sizeof</span>(d));
+		ss <span style=color:#f92672>&lt;&lt;</span> s;
+		<span style=color:#66d9ef>return</span> ss.good();
+	}
+
+	<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>decode</span>(<span style=color:#66d9ef>const</span> std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> buf) {
+		std<span style=color:#f92672>::</span>istrstream ss((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)buf.data(), buf.length());
+		ss.seekp(buf.length()); <span style=color:#75715e>// 设置写入位置（写入位置&gt;读取位置才代表有数据可读）
+</span><span style=color:#75715e></span>
+		<span style=color:#66d9ef>int32_t</span> d <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>a, <span style=color:#66d9ef>sizeof</span>(a));
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>b, <span style=color:#66d9ef>sizeof</span>(b));
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>c, <span style=color:#66d9ef>sizeof</span>(c));
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>d, <span style=color:#66d9ef>sizeof</span>(d));
+		ss <span style=color:#f92672>&gt;&gt;</span> s;
+		<span style=color:#66d9ef>return</span> ss.good();
+	}
+};
+</code></pre></div><p>stringstream使用的人比较多，但是知道strstream的就少的多了。strstream可以使用已有的内存做rdbuf, 但是很不幸的是这么好用的工具竟然被c++标准给废弃了<sup><a href=#ref_1>[1]</a></sup><sup><a href=#ref_2>[2]</a></sup>。</p>
+<h2 id=最后大招自己造轮子>最后大招，自己造轮子</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>serialization_streambuf</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>public</span> std<span style=color:#f92672>::</span>streambuf
+{
+	serialization_streambuf(<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span> s, std<span style=color:#f92672>::</span>size_t n)
+	{
+		setp(s, s, s <span style=color:#f92672>+</span> n); <span style=color:#75715e>// set write buffer pointer
+</span><span style=color:#75715e></span>		setg(s, s, s <span style=color:#f92672>+</span> n); <span style=color:#75715e>// set read buffer pointer
+</span><span style=color:#75715e></span>	}
+};
+
+<span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>TestData</span> {
+	<span style=color:#66d9ef>int32_t</span> a <span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+	<span style=color:#66d9ef>int32_t</span> b <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+	<span style=color:#66d9ef>int32_t</span> c <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+	std<span style=color:#f92672>::</span>string s;
+
+	<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>encode</span>(std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> buf) {
+		<span style=color:#66d9ef>int32_t</span> d <span style=color:#f92672>=</span> <span style=color:#66d9ef>static_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int32_t</span><span style=color:#f92672>&gt;</span>(s.length());
+
+		serialization_streambuf osrb(buf.data(), buf.length());
+		std<span style=color:#f92672>::</span>ostream ss(<span style=color:#f92672>&amp;</span>osrb);
+
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>a, <span style=color:#66d9ef>sizeof</span>(a));
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>b, <span style=color:#66d9ef>sizeof</span>(b));
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>c, <span style=color:#66d9ef>sizeof</span>(c));
+		ss.write((<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>d, <span style=color:#66d9ef>sizeof</span>(d));
+		ss <span style=color:#f92672>&lt;&lt;</span> s;
+		<span style=color:#66d9ef>return</span> ss.good();
+	}
+
+	<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>decode</span>(<span style=color:#66d9ef>const</span> std<span style=color:#f92672>::</span>string<span style=color:#f92672>&amp;</span> buf) {
+		serialization_streambuf osrb((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)buf.data(), buf.length());
+		std<span style=color:#f92672>::</span>istream ss(<span style=color:#f92672>&amp;</span>osrb);
+
+		<span style=color:#66d9ef>int32_t</span> d <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>a, <span style=color:#66d9ef>sizeof</span>(a));
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>b, <span style=color:#66d9ef>sizeof</span>(b));
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>c, <span style=color:#66d9ef>sizeof</span>(c));
+		ss.read((<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span>)<span style=color:#f92672>&amp;</span>d, <span style=color:#66d9ef>sizeof</span>(d));
+		ss <span style=color:#f92672>&gt;&gt;</span> s;
+		<span style=color:#66d9ef>return</span> ss.good();
+	}
+};
+</code></pre></div><p>可以看到，其实也很简单。就是模仿strstream为iostream构建streambuf就行了。这样不仅享受到了iostream类给我们提供的便利，也克服了stringstream需要内存拷贝的缺陷。</p>
+<h1 id=参考引用>参考引用</h1>
+<p>[1] <a id=ref_1 href=https://en.cppreference.com/w/cpp/io/strstream>std::strstream</a><code>[EB/OL].</code> <a href=https://en.cppreference.com/w/cpp/io/strstream>https://en.cppreference.com/w/cpp/io/strstream</a></p>
+<p>[2] <a id=ref_2 href=https://stackoverflow.com/questions/2820221/why-was-stdstrstream-deprecated>Why was std::strstream deprecated?</a><code>[EB/OL].</code> <a href=https://stackoverflow.com/questions/2820221/why-was-stdstrstream-deprecated>https://stackoverflow.com/questions/2820221/why-was-stdstrstream-deprecated</a></p>
+<div id=utter-container></div>
+<script src=https://utteranc.es/client.js repo=gqw/hugocomment issue-term=title theme=github-light crossorigin=anonymous async></script>
+</div>
+<div class=btn-improve-page>
+<a href=https://github.com/gqw/gqw.github.io/edit/source/content/posts/C++/c++%20%e5%ba%8f%e5%88%97%e5%8c%96%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96%e7%a5%9e%e5%99%a8/index.md title=改善此页面 target=_blank rel=noopener>
+<i class="fas fa-code-branch"></i>
+改善此页面
+</a>
+</div>
+<hr>
+<div class="row next-prev-navigator">
+<div class="col-md-12 next-article">
+<a href=/posts/c++/coroutine/ title="从HelloWold开始，深入浅出C++ 20 Coroutine TS" class="btn btn-outline-info">
+<div>下一篇 <i class="fas fa-chevron-circle-right"></i></div>
+<div class=next-prev-text>从HelloWold开始，深入浅出C++ 20 Coroutine TS</div>
+</a>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<a id=scroll-to-top class=btn><i class="fas fa-chevron-circle-up"></i></a>
+</section>
+<section class=toc-section id=toc-section>
+<div class=toc-holder>
+<h5 class="text-center pl-3">目录</h5>
+<hr>
+<div class=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#最直接的方法>最直接的方法</a></li>
+<li><a href=#使用stringstream>使用stringstream</a></li>
+<li><a href=#我们还有strstream>我们还有strstream</a></li>
+<li><a href=#最后大招自己造轮子>最后大招，自己造轮子</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</section>
+</div>
+<footer class="container-fluid text-center align-content-center footer pb-2">
+<div class="container pt-5">
+<div class="row text-left">
+<div class="col-md-4 col-sm-12">
+<h5>导航</h5>
+<ul>
+<li class=nav-item>
+<a class=smooth-scroll href=/#about>关于</a>
+</li>
+<li class=nav-item>
+<a class=smooth-scroll href=/#skills>技能</a>
+</li>
+<li class=nav-item>
+<a class=smooth-scroll href=/#experiences>工作经历</a>
+</li>
+<li class=nav-item>
+<a class=smooth-scroll href=/#education>教育经历</a>
+</li>
+<li class=nav-item>
+<a class=smooth-scroll href=/#projects>开源项目</a>
+</li>
+<li class=nav-item>
+<a class=smooth-scroll href=/#recent-posts>最近发表</a>
+</li>
+<li class=nav-item>
+<a class=smooth-scroll href=/#achievements>成就</a>
+</li>
+</ul>
+</div>
+<div class="col-md-4 col-sm-12">
+<h5>联系方式:</h5>
+<ul>
+<li><span>Email: </span> <span>gqwmail@qq.com</span></li>
+<li><span>Phone: </span> <span>+86 15000359722</span></li>
+</ul>
+<h5>友情链接: </h5>
+<ul>
+<li><a href=http://purecpp.org/ itemprop=url rel=index><span itemprop=name>Pure C++</span></a></li>
+<li><a href=https://kinly.github.io/ itemprop=url rel=index><span itemprop=name>蒋磊的博客</span></a></li>
+</ul>
+</div>
+<div class="col-md-4 col-sm-12">
+<span id=busuanzi_container_site_pv>
+本站访问量：<span id=busuanzi_value_site_pv></span>次
+</span>
+</br>
+<span id=busuanzi_container_site_uv>
+您是本站第 <span id=busuanzi_value_site_uv></span> 位访问者
+</span>
+<div>
+<a href=https://clustrmaps.com/site/1bj40 title="Visit tracker"><img alt=gqw.github.io src="//www.clustrmaps.com/map_v2.png?d=P-jZSVLaaxENhQ3Na5ckx6td6DpcUROVmi1mIeNEQTA&cl=ffffff"></a>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class=container>
+<div class="row text-left">
+<div class=col-md-4>
+<a id=theme href=https://github.com/hossainemruz/toha target=_blank rel=noopener>
+<img src=/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_3.png alt="Toha Theme Logo">
+Toha
+</a>
+</div>
+<div class="col-md-4 text-center">© 2020 Copyright.</div>
+<div class="col-md-4 text-right">
+<a id=hugo href=https://gohugo.io/ target=_blank rel=noopener>Powered by
+<img src=/images/hugo-logo.svg alt="Hugo Logo" height=18>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<script src=https://code.jquery.com/jquery-3.5.1.min.js integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin=anonymous></script>
+<script async src=https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<script type=text/javascript src=/js/jquery-3.4.1.min.js></script>
+<script type=text/javascript src=/js/popper.min.js></script>
+<script type=text/javascript src=/js/bootstrap.min.js></script>
+<script type=text/javascript src=/js/navbar.js></script>
+<script type=text/javascript src=/js/plyr.js></script>
+<script type=text/javascript src=/js/main.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script>
+<script src=/js/single.js></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
