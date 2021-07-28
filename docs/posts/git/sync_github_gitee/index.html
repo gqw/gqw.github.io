@@ -315,6 +315,7 @@ echo $commit_msg
     hugo
     <span style="color:#75715e"># 复制一些固定内容</span>
     cp -v ./static/search_engine/* ./docs/
+    git add ./
 <span style="color:#66d9ef">fi</span>
 exit <span style="color:#ae81ff">0</span>
 </code></pre></div><p>这样每次执行git commit时都会更新站点内容，保证每次提交内容都是最新的。</p>
