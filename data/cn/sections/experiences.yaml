@@ -1,0 +1,70 @@
+# section information
+section:
+  name: 工作经历
+  id: experiences
+  enable: true
+  weight: 3
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true 
+
+# Your experiences
+experiences:
+- company:
+    name: 网易
+    url: "https://www.baochuangames.com/"
+    location: 上海
+    # company overview
+    overview: 上海网易宝船游戏成立于2018年，总部设于上海市浦东新区。源于"郑和下西洋"的历史事件，旨在成为游戏领域内中国与世界交流的纽带，致力于拓展全球范围的游戏研发及运营业务。
+  positions:
+  - designation: 资深服务器开发工程师
+    start:  2018/8
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - 开发维护网关服务
+    - 设计，开发，管理游戏P2SP下载服务
+    - 开发，维护游戏SDK
+    - 游戏逆向，注入，离屏渲染，输入法，屏蔽词等游戏相关技术研究和方案实现
+
+
+- company:
+    name: 上海交叉点信息科技有限公司
+    url: "https://www.xidea-inc.com"
+    location: 上海
+    overview: 上海交叉点信息科技有限公司成立于2012年，由业内资深人士组建，拥有雄厚的游戏研发实力，专注于国内外著名IP移动游戏的开发，致力于成为“用户最喜爱的移动游戏制造商”。
+  positions:
+  - designation: 服务器主程
+    start: 2015/3
+    end: 2018/8
+    responsibilities:
+    - 《西游神转》日志，经济分析，后台系统开发
+    - 《花千骨》项目开发，维护
+    - 《烈火战神》项目开发，维护
+    - 《恋爱48天》项目开发，维护
+
+- company:
+    name: 盛大游戏
+    url: "https://www.sdo.com/"
+    location: 上海
+    overview: 盛大网络于1999年12月由陈天桥和陈大年在上海创立。因代理韩国游戏热血传奇而发展迅速，被誉为互联网界的神话。
+  positions:
+  - designation: 资深软件工程师
+    start: 2014/3
+    end: 2015/3
+    responsibilities:
+    - 《星辰变》服务器开发，维护
+    
+- company:
+    name: 上海游奇网络有限公司
+    url: "http://uqee.com/"
+    location: 上海
+    overview: 上海游奇网络有限公司是一家业界领先的手机游戏开发与运营公司，凭借坚定执着、追求卓越之精神，游奇网络已经成长为该领域一支极富创新精神的奇兵。
+  positions:
+  - designation: 高级软件工程师
+    start: 2011/11
+    end: 2014/3
+    responsibilities:
+    - 《卧龙吟》服务器维护    
+    - 《葵花宝典》服务器开发，维护

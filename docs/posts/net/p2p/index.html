@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>一种简单可行的P2SP实践方案</title>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/layouts/main.css"/>
+<link rel="stylesheet" href="/css/navigators/navbar.css"/>
+<link rel="stylesheet" href="/css/plyr.css"/>
+<link rel="stylesheet" href="/css/flag-icon.min.css"/>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+
+
+
+  
+
+  
+  
+  
+    
+  
+  
+
+  <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_2.png" />
+
+<meta property="og:title" content="一种简单可行的P2SP实践方案" />
+<meta property="og:description" content="缘由与目标 随着计算机硬件的发展，游戏的玩法和画质也得到了飞速的发展。游戏内容越来越丰富，画面质量也越来越精细。这也导致了游戏的包体越来越大。PC端游戏基本上10GB起步，《战地》，《易水寒》等游戏基本已经达到100G体量。如此大的体量对于游戏发行方，是一个必须要考虑的问题。用于游戏分发的下载器我们必须考虑以下几个方面：
+1. 可访问， 这是下载器的首要前提，我们必须保证数据能够被联网的任意玩家可以访问到。2. 数据可靠，下载的资源必须是正确的内容。3. 速度，我们必须尽可能的保证玩家的下载速度。4. 稳定，需要能够稳定下载所需资源。5. 节省流量，虽然这是个可选项但是流量就意味着金钱，所以下载器还需要尽可能的节约流量。 通常的下载器使用的是Http方式下载，虽然能够保证可靠地数据访问，但是离高速稳定省流量还有较大差距，为了提高速度和稳定性我们通过使用CDN的方案有效解决。但是CDN解决不了节省流量的目标（实际上是增加流量成本的）， 简单的解决方法是使用压缩下载内容，目前项目中使用的下载器就是使用的这种方法。压缩数据的方法效果还是非常有效的，以某款为例，12GB的包可以压缩到7GB, 也就是可以节省40%的流量。
+是否可以有更有效的方法解决流量问题呢？很自然的想法是使用P2P加速技术。P2P是指 peer to peer, 即节点到节点数据传输，就是各个客户端之间数据传输。大家常见的P2P技术主要是BT下载技术，但是BT与我们前面使用的技术是由冲突的。我们先看下HTTP与BT的结构图进行简单的对比下：
+HTTP下载方式BT下载方式对比可知， HTTP是基于C/S架构的，客户机是严格依赖中心服务器的，BT无中心节点所有数据都是玩家之间传输。HTTP的好处是访问可控，只要客户机能连接到服务器就肯定能获得所需数据，但是服务器必须承担所有流量压力和流量费用。 BT的好处也是显而易见的，所有数据传输都是玩家之间的行为，甚至可以不需要部署服务器，服务器的压力和费用为零，但是BT却有可能违背我们前面所述下载的最基本要求——可访问，玩家节点的连接并不能像HTTP那样是可靠稳定的。
+有没有可能结合HTTP和BT技术，充分利用各自的优势并互相弥补对方的缺点呢？实现如下的结构：
+P2SP下载方式幸运的是答案为YES, 迅雷的P2SP技术就是基于上述思想实现的，说明技术方向是对的，不用再去怀疑和验证技术的可行性。但是需要注意的是，迅雷的P2S我们的需求是有差异的， 迅雷下载器P2S部分的S并不是自己的服务器（而是各个下载站点的服务器），所以它不用考虑这部分的流量压力和费用，而我们作为内容提供方流量和费用必须自己承担。所以迅雷并不关心用户数据是否压缩，但是对于我们内容提供商就必须要考虑通过前面压缩技术获得的40%的利益。
+看到这里你可能会想，压缩还不容易吗？直接用压缩软件把下载内容打包下上传到HTTP服务器不就行了吗？是的如果不考虑BT文件的分享率，这样做是解决了问题，但这意味着我们BT分享的内容也是个压缩包，因为我们业务是游戏启动器，也就是说我们不可能将用户下载的游戏安装包一直保留，举个例子，如果我们的游戏原始文件为100GB压缩后为60GB，如果按刚才的方案，用户下载60GB的安装包后，再解压为100GB的原始文件，也就是说必须占用用户160GB的磁盘空间，而这其中的60GB只是为了方便他人下载用的。
+如果在用户安装完游戏后再将安装包删除，那此用户通过BT分享的时间也就只有其下载&#43;安装的时间了。如何解决这个矛盾呢？ 我们现在梳理下问题：
+ 通过HTTP下载的内容需要时压缩的数据 通过BT分享的内容必须是原始的内容  通过分析我们可以发现看似不可调和矛盾其实是有解的。那就是需要在下载的时候将HTTP压缩数据原地解压。自此方案的的思路已经基本清晰，但还有一个需要考虑的问题，根据BT的协议标准，BT下载时是将所有数据拼成一个数据块，再将这个数据块进行切块下载的。这就导致一个问题，通常我们压缩数据是按照文件为单位进行压缩的，但是BT下载时是按照切块进行下载的，这会导致HTTP和BT下载内容对应不上，如下图：
+ZIP格式BT格式BT的下载原理是根据上图将需要下载的内容先按照文件进行拼接再进行切片（Piece），建立多个下载通道，每个通道根据切片的状态选择下载并更新切片状态。在下载时BT将无视文件的概念，对于BT来说每次下载只是一片连续的数据块。这样如果HTTP按照文件从压缩包中提取数据，下载后将很难找到对应的BT文件中Piece的位移，也就无法更新下载Piece的状态。
+解决思路是，反过来我们在数据压缩时不再以文件为单位进行压缩，而是按照BT的Piece为单位创建压缩文件，并记录每个Piece在压缩文件中的位移。HTTP下载通道下载时先向BT模块申请需要下载的Piece，再根据Piece的位移从HTTP服务器下载相应内容，最后更新BT Piece状态。
+具体实施 准备阶段  创建种子文件（.torent） 根据种子文件中piece length创建压缩文件 修改种子文件添加peice的压缩信息，主要是每个piece压缩后大小和总压缩文件大小。可以根据piece压缩后大写算出每个piece的偏移量 上传压缩文件到CDN 修改种子文件添加CDN中压缩文件HTTP下载地址 上传种子文件到CDN  实际处理中1,2,3,5步骤可以通过修改torrent文件合并处理。
+下载阶段 修改BT下载器，根据torrent文件中的的压缩文件地址建立特殊下载通道，模拟BT请求下载块，根据BT文件中的压缩块大小计算Piece在压缩文件中的偏移，使用HTTP Range Requests标准下载对应的数据块，下载完后更新对应Piece状态。直至所有文件下载完成。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gqw.gitee.io/posts/net/p2p/" />
+<meta property="article:published_time" content="2021-07-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-07-27T00:00:00+00:00" />
+
+
+    
+    
+<meta name="description" content="一种简单可行的P2SP实践方案" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
+/>
+<link rel="stylesheet" href="/css/layouts/single.css"/>
+<link rel="stylesheet" href="/css/navigators/sidebar.css">
+
+<link rel="stylesheet" href="/css/style.css"/>
+
+
+
+    
+    
+  </head>
+
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
+    <div class="container-fluid bg-dimmed wrapper">
+      
+      
+    
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+  
+  
+    
+  
+  
+
+
+<nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+      
+        <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" alt="Logo">
+      顾起威的博客</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse lang-selector" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      
+      </ul>
+    </div>
+  </div>
+  
+  
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="main-logo" alt="Logo">
+  
+  
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
+  
+</nav>
+
+
+
+      
+      
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <form class="mx-auto" method="get" action="/search">
+          <input type="text" name="keyword" value="" placeholder="Search" data-search="" id="search-box" />
+        </form>
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">博文</a></li>
+            <div class="subtree">
+                
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/c&#43;&#43;/">C&#43;&#43;</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/c&#43;&#43;/c&#43;&#43;-%E5%BA%8F%E5%88%97%E5%8C%96%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/net/">网络</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/net/tcptrace/" title="Windows下基于tcp协议的traceroute实现">Windows下基于tcp协议的traceroute实现</a></li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li><a class="active" href="/posts/net/p2p/" title="一种简单可行的P2SP实践方案">一种简单可行的P2SP实践方案</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.gitee.io/posts/net/p2p/imgs/hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_120x120_fit_box_2.png' alt="Author Image">
+          <h5 class="author-name">顾起威</h5>
+          <p>July 27, 2021 | 100 Words | Read in about 1 Min | 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</p>
+		  <h6 id="wc"></h6>
+        </div>
+        <div class="title">
+          <h1>一种简单可行的P2SP实践方案</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <h2 id="缘由与目标">缘由与目标</h2>
+<p>随着计算机硬件的发展，游戏的玩法和画质也得到了飞速的发展。游戏内容越来越丰富，画面质量也越来越精细。这也导致了游戏的包体越来越大。PC端游戏基本上10GB起步，《战地》，《易水寒》等游戏基本已经达到100G体量。如此大的体量对于游戏发行方，是一个必须要考虑的问题。用于游戏分发的下载器我们必须考虑以下几个方面：</p>
+<pre><code>1. 可访问， 这是下载器的首要前提，我们必须保证数据能够被联网的任意玩家可以访问到。
+2. 数据可靠，下载的资源必须是正确的内容。
+3. 速度，我们必须尽可能的保证玩家的下载速度。
+4. 稳定，需要能够稳定下载所需资源。
+5. 节省流量，虽然这是个可选项但是流量就意味着金钱，所以下载器还需要尽可能的节约流量。
+</code></pre>
+<p>通常的下载器使用的是Http方式下载，虽然能够保证可靠地数据访问，但是离高速稳定省流量还有较大差距，为了提高速度和稳定性我们通过使用CDN的方案有效解决。但是CDN解决不了节省流量的目标（实际上是增加流量成本的）， 简单的解决方法是使用压缩下载内容，目前项目中使用的下载器就是使用的这种方法。压缩数据的方法效果还是非常有效的，以某款为例，12GB的包可以压缩到7GB, 也就是可以节省40%的流量。</p>
+<p>是否可以有更有效的方法解决流量问题呢？很自然的想法是使用P2P加速技术。P2P是指 peer to peer, 即节点到节点数据传输，就是各个客户端之间数据传输。大家常见的P2P技术主要是BT下载技术，但是BT与我们前面使用的技术是由冲突的。我们先看下HTTP与BT的结构图进行简单的对比下：</p>
+<div align=center style="display: flex;justify-content: space-around;">
+<center id="http">
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
+    width="300px" height="300px" src="imgs/cs_download.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">HTTP下载方式</div>
+</center>
+<center id="bt">
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
+    width="300px" height="300px" src="imgs/bt_download.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">BT下载方式</div>
+</center>
+</div>
+<p>对比可知， HTTP是基于C/S架构的，客户机是严格依赖中心服务器的，BT无中心节点所有数据都是玩家之间传输。HTTP的好处是访问可控，只要客户机能连接到服务器就肯定能获得所需数据，但是服务器必须承担所有流量压力和流量费用。 BT的好处也是显而易见的，所有数据传输都是玩家之间的行为，甚至可以不需要部署服务器，服务器的压力和费用为零，但是BT却有可能违背我们前面所述下载的最基本要求——可访问，玩家节点的连接并不能像HTTP那样是可靠稳定的。</p>
+<p>有没有可能结合HTTP和BT技术，充分利用各自的优势并互相弥补对方的缺点呢？实现如下的结构：</p>
+<div align=center>
+<center id="bt">
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
+    width="300px" height="300px" src="imgs/p2p_download.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">P2SP下载方式</div>
+</center>
+</div>
+<p>幸运的是答案为YES, 迅雷的P2SP技术就是基于上述思想实现的，说明技术方向是对的，不用再去怀疑和验证技术的可行性。但是需要注意的是，迅雷的P2S我们的需求是有差异的， 迅雷下载器P2S部分的S并不是自己的服务器（而是各个下载站点的服务器），所以它不用考虑这部分的流量压力和费用，而我们作为内容提供方流量和费用必须自己承担。所以迅雷并不关心用户数据是否压缩，但是对于我们内容提供商就必须要考虑通过前面压缩技术获得的40%的利益。</p>
+<p>看到这里你可能会想，压缩还不容易吗？直接用压缩软件把下载内容打包下上传到HTTP服务器不就行了吗？是的如果不考虑BT文件的分享率，这样做是解决了问题，但这意味着我们BT分享的内容也是个压缩包，因为我们业务是游戏启动器，也就是说我们不可能将用户下载的游戏安装包一直保留，举个例子，如果我们的游戏原始文件为100GB压缩后为60GB，如果按刚才的方案，用户下载60GB的安装包后，再解压为100GB的原始文件，也就是说必须占用用户160GB的磁盘空间，而这其中的60GB只是为了方便他人下载用的。</p>
+<p>如果在用户安装完游戏后再将安装包删除，那此用户通过BT分享的时间也就只有其下载+安装的时间了。如何解决这个矛盾呢？ 我们现在梳理下问题：</p>
+<ol>
+<li>通过HTTP下载的内容需要时压缩的数据</li>
+<li>通过BT分享的内容必须是原始的内容</li>
+</ol>
+<p>通过分析我们可以发现看似不可调和矛盾其实是有解的。那就是需要在下载的时候将HTTP压缩数据原地解压。自此方案的的思路已经基本清晰，但还有一个需要考虑的问题，根据BT的协议标准，BT下载时是将所有数据拼成一个数据块，再将这个数据块进行切块下载的。这就导致一个问题，通常我们压缩数据是按照文件为单位进行压缩的，但是BT下载时是按照切块进行下载的，这会导致HTTP和BT下载内容对应不上，如下图：</p>
+<div align=center>
+    <center id="bt">
+        <img style="border-radius: 0.3125em;
+        box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
+        width="700px" height="250px" src="imgs/zip_fmt.jfif">
+        <br>
+        <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+        display: inline-block;
+        color: #999;
+        padding: 2px;">ZIP格式</div>
+    </center>
+</div>
+<div align=center>
+    <center id="bt">
+        <img style="border-radius: 0.3125em;
+        box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
+        width="700px" height="250px" src="imgs/bt_fmt.png">
+        <br>
+        <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+        display: inline-block;
+        color: #999;
+        padding: 2px;">BT格式</div>
+    </center>
+</div>
+<p>BT的下载原理是根据上图将需要下载的内容先按照文件进行拼接再进行切片（Piece），建立多个下载通道，每个通道根据切片的状态选择下载并更新切片状态。在下载时BT将无视文件的概念，对于BT来说每次下载只是一片连续的数据块。这样如果HTTP按照文件从压缩包中提取数据，下载后将很难找到对应的BT文件中Piece的位移，也就无法更新下载Piece的状态。</p>
+<p>解决思路是，反过来我们在数据压缩时不再以文件为单位进行压缩，而是按照BT的Piece为单位创建压缩文件，并记录每个Piece在压缩文件中的位移。HTTP下载通道下载时先向BT模块申请需要下载的Piece，再根据Piece的位移从HTTP服务器下载相应内容，最后更新BT Piece状态。</p>
+<h2 id="具体实施">具体实施</h2>
+<h3 id="准备阶段">准备阶段</h3>
+<ol>
+<li>创建种子文件（.torent）</li>
+<li>根据种子文件中<code>piece length</code>创建压缩文件</li>
+<li>修改种子文件添加peice的压缩信息，主要是每个piece压缩后大小和总压缩文件大小。可以根据piece压缩后大写算出每个piece的偏移量</li>
+<li>上传压缩文件到CDN</li>
+<li>修改种子文件添加CDN中压缩文件HTTP下载地址</li>
+<li>上传种子文件到CDN</li>
+</ol>
+<p>实际处理中1,2,3,5步骤可以通过修改torrent文件合并处理。</p>
+<h3 id="下载阶段">下载阶段</h3>
+<p>修改BT下载器，根据torrent文件中的的压缩文件地址建立特殊下载通道，模拟BT请求下载块，根据BT文件中的压缩块大小计算Piece在压缩文件中的偏移，使用HTTP Range Requests标准下载对应的数据块，下载完后更新对应Piece状态。直至所有文件下载完成。</p>
+<h2 id="相关工程">相关工程</h2>
+<p><a href="https://github.com/gqw/libtorrent/tree/gqw">libtorrent</a></p>
+<div id="utter-container"></div>
+			<script src="https://utteranc.es/client.js"
+				repo= 'gqw/hugocomment'
+				issue-term= "title"
+				theme= 'github-light'
+				crossorigin= "anonymous"
+				async>
+			</script>
+        </div>
+
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/gqw/gqw.github.io/edit/source/content/posts/net/p2p/index.md" title="改善此页面" target="_blank" rel="noopener">
+                <i class="fas fa-code-branch"></i>
+                改善此页面
+              </a>
+          </div>
+        
+
+        
+      <hr />
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+    
+    
+  
+  
+
+
+<div class="row next-prev-navigator">
+  
+    <div class="col-md-6 previous-article">
+      <a href="/posts/net/tcptrace/" title="tcprt" class="btn btn-outline-info">
+        <div><i class="fas fa-chevron-circle-left"></i> 上一篇</div>
+        <div class="next-prev-text">tcprt</div>
+      </a>
+    </div>
+  
+  
+</div>
+
+      <hr />
+      
+      
+      </div>
+    </div>
+  </div>
+  
+  <a id="scroll-to-top" class="btn"><i class="fas fa-chevron-circle-up"></i></a>
+  
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+    <div class="toc-holder">
+      <h5 class="text-center pl-3">目录</h5>
+      <hr>
+      <div class="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#缘由与目标">缘由与目标</a></li>
+    <li><a href="#具体实施">具体实施</a>
+      <ul>
+        <li><a href="#准备阶段">准备阶段</a></li>
+        <li><a href="#下载阶段">下载阶段</a></li>
+      </ul>
+    </li>
+    <li><a href="#相关工程">相关工程</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+    
+  </section>
+
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+
+  
+  
+   
+    
+  
+
+  
+  
+  
+
+  
+  
+  
+    
+  
+  
+
+  
+  
+  
+
+  <footer class="container-fluid text-center align-content-center footer pb-2">
+    <div class="container pt-5">
+      <div class="row text-left">
+        
+        <div class="col-md-4 col-sm-12">
+          <h5>导航</h5>
+          
+          <ul>
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="/#about">关于</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="/#skills">技能</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="/#experiences">工作经历</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="/#education">教育经历</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="/#projects">开源项目</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="/#recent-posts">最近发表</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="/#achievements">成就</a>
+                </li>
+              
+          </ul>
+          
+        </div>
+        
+        
+        <div class="col-md-4 col-sm-12">
+          <h5>联系方式:</h5>
+          <ul>
+            
+            <li><span>Email: </span> <span>gqwmail@qq.com</span></li>
+            
+            <li><span>Phone: </span> <span>&#43;86 15000359722</span></li>
+            
+          </ul>
+		  
+		  <h5>友情链接: </h5>
+		  <ul>
+			<li><a href="http://purecpp.org/" itemprop="url" rel="index"><span itemprop="name">Pure C++</span></a></li>
+			<li><a href="https://kinly.github.io/" itemprop="url" rel="index"><span itemprop="name">蒋磊的博客</span></a></li>
+		  </ul>
+			  
+        </div>
+        
+		<div class="col-md-4 col-sm-12">
+			<span id="busuanzi_container_site_pv">
+            本站访问量：<span id="busuanzi_value_site_pv"></span>次
+			</span>
+			</br>
+			<span id="busuanzi_container_site_uv">
+				您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+			</span>
+			
+			<div>
+				<a href="https://clustrmaps.com/site/1bj40"  title="Visit tracker"><img alt="gqw.github.io" src="//www.clustrmaps.com/map_v2.png?d=P-jZSVLaaxENhQ3Na5ckx6td6DpcUROVmi1mIeNEQTA&cl=ffffff" /></a>
+			</div>
+		</div>
+        	  
+        
+      </div>
+    </div>
+    
+    
+    <hr />
+    <div class="container">
+      <div class="row text-left">
+        <div class="col-md-4">
+          <a id="theme" href="https://github.com/hossainemruz/toha" target="_blank" rel="noopener">
+            <img src="/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png" alt="Toha Theme Logo">
+            Toha
+          </a>
+        </div>
+        <div class="col-md-4 text-center">© 2020 Copyright.</div>
+        <div class="col-md-4 text-right">
+          <a id="hugo" href="https://gohugo.io/" target="_blank" rel="noopener">Powered by
+          <img
+            src="/images/hugo-logo.svg"
+            alt="Hugo Logo"
+            height="18"
+          />
+          </a>
+        </div>
+      </div>
+    </div>
+    
+  </footer>
+  <script
+	  src="https://code.jquery.com/jquery-3.5.1.min.js"
+	  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+	  crossorigin="anonymous"></script>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/js/navbar.js"></script>
+<script type="text/javascript" src="/js/plyr.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script src="/js/single.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+
+
+  </body>
+</html>

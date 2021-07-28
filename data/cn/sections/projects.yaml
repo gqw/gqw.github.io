@@ -1,0 +1,71 @@
+# section information
+section:
+  name: 开源项目
+  id: projects
+  enable: true
+  weight: 5
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# filter buttons
+buttons:
+- name: All
+  filter: "all"
+- name: Owner
+  filter: "Owner"
+- name: Contributor
+  filter: "Contributor"
+
+# your projects
+projects:
+- name: mRPC
+  logo: 
+  role: Owner
+  timeline: "March 2021 - Present"
+  repo: https://github.com/gqw/mrpc # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
+  summary: mRPC 是一个支持C++协程调用的轻量级、现代化的RPC库.
+  tags: ["Owner", "mRPC", "rpc", "c++"]
+
+- name: tcprt
+  logo: 
+  role: Owner
+  timeline: "Jun 2019 - Present"
+  repo: https://github.com/gqw/tcprt
+  summary: Windows 实现类似于linux的traceroute -T方法 
+  tags: ["Owner", "tcprt", "net", "c++"]   
+
+- name: spdlog_wrapper
+  logo: 
+  role: Owner
+  timeline: "Jun 2019 - Present"
+  repo: https://github.com/gqw/spdlog_wrapper
+  summary: spdlog简单封装 
+  tags: ["Owner", "spdlog_wrapper", "c++"]     
+  
+- name: zitie
+  logo: 
+  role: Owner
+  timeline: "Jun 2019 - Present"
+  repo: https://github.com/gqw/zitie
+  summary: 离线字帖生成器
+  tags: ["Owner", "zitie", "js"]     
+
+- name: ImGui
+  logo: 
+  role: Contributor
+  timeline: "Jun 2019 - Present"
+  repo: https://github.com/ocornut/imgui
+  summary: Dear ImGui is a bloat-free graphical user interface library for C++.
+  tags: ["Contributor", "ImGui"]
+  
+- name: libtorrent
+  logo: 
+  role: Contributor
+  timeline: "Jun 2019 - Present"
+  repo: https://github.com/arvidn/libtorrent
+  summary: libtorrent is an open source C++ library implementing the BitTorrent protocol, making it suitable for real world deployment. 
+  tags: ["Contributor", "libtorrent"]   
+  
+  

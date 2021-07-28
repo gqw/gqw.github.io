@@ -1,0 +1,17 @@
+# some information about you
+name: "顾起威"
+nickname: "阿修罗9527"
+# greeting message before your name. it will default to "Hi! I am" if not provided
+greeting: "Hi, 我是"
+image: "images/author/gqw.png"
+# give your some contact information. they will be used in the footer
+contactInfo:
+  email: "gqwmail@qq.com"
+  phone: "+86 15000359722"
+
+# some summary about what you do
+summary:
+  - 我是一个码农
+  - 也是一个游戏开发者
+  - 我喜爱我的工作
+  - 也热爱玩游戏

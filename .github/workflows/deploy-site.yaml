@@ -1,0 +1,20 @@
+name: Deploy to Github Pages
+
+# run when a commit is pushed to "source" branch
+on:
+  push:
+    branches:
+    - source
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+
+    - name: Find and Replace
+      uses: jacobtomlinson/gha-find-replace@master
+      with:
+        find: "gqw.gitee.io"
+        replace: "gqw.github.io"
+
+

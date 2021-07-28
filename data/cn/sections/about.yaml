@@ -1,0 +1,91 @@
+# section information
+section:
+  name: 关于
+  id: about
+  enable: true
+  weight: 1
+  showOnNavbar: true
+  template: sections/about.html
+
+# your designation
+designation: 资深软件工程师
+# your company information
+company:
+  name: 网易
+  url: "https://www.baochuangames.com/"
+
+# your resume. this file path should be relative to you "static" directory
+resume: "files/resume.pdf"
+
+# a summary about you
+summary: '我是一名从业超过10年的游戏开发老兵，开发和维护过多款游戏。
+</br>我是一名码农，也是游戏爱好者。
+</br>我喜爱我的工作，它创造快乐，也能让我享受到创造快乐的乐趣。'
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+- name: Email
+  icon: "fas fa-envelope"
+  url: "gqwmail@qq.com"
+
+- name: Github
+  icon: "fab fa-github"
+  url: "https://www.github.com/gqw"
+
+
+
+# Show your badges
+# You can show your verifiable certificates from https://www.credly.com.
+# You can also show a circular bar indicating the level of expertise on a certain skill
+badges:
+- type: certification
+  name: 卧龙吟
+  url: "http://wly.uqee.com/"
+  badge: "https://i.loli.net/2021/07/25/r8qy7IcCZhWJNOp.jpg"
+
+- type: certification
+  name: 葵花宝典
+  url: "http://k.uqee.com/activity/202007/15374.html"
+  badge: "https://i.loli.net/2021/07/25/LiaqXS4wn1NFh6o.jpg"
+
+- type: certification
+  name: 星辰变
+  url: "https://xcb.web.sdo.com/"
+  badge: "https://i.loli.net/2021/07/25/6IYcx43Ni1PvmUB.png"
+  
+- type: certification
+  name: 烈火战神
+  url: ""
+  badge: "https://i.loli.net/2021/07/25/RVXkBZFqSy9vuiD.jpg"
+
+- type: certification
+  name: SNH 48
+  url: "https://www.zhihu.com/question/278972566"
+  badge: "https://i.loli.net/2021/07/25/A5Zh3QsUuwpbv2q.jpg"
+
+- type: certification
+  name: More ...
+  url: ""
+  badge: "https://i.loli.net/2021/07/25/IfDnyABgS1aOFQp.jpg"  
+
+# - type: soft-skill-indicator
+  # name: Leadership
+  # percentage: 70
+  # color: blue
+
+# - type: soft-skill-indicator
+  # name: Team Work
+  # percentage: 90
+  # color: yellow
+
+# - type: soft-skill-indicator
+  # name: Hard Working
+  # percentage: 85
+  # color: orange
+
+# you can also provide color code instead of the color name
+# - type: soft-skill-indicator
+#   name: Example 1
+#   percentage: 75
+#   color: "#00adb5"

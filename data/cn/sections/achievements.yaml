@@ -1,0 +1,24 @@
+# section information
+section:
+  name: 成就
+  id: achievements
+  enable: true
+  weight: 8
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# Your achievements achievements
+achievements:
+- title: 月流水超亿元
+  image: /images/sections/achievements/presenter.jpg
+  summary: 《卧龙吟》游戏流水超亿元
+- title: 项目运营超10年
+  image: /images/sections/achievements/sport.jpg
+  summary: 《卧龙吟》，《葵花宝典》项目运营时间超10年，并将持续下去...
+- title: Graduation
+  image: /images/sections/achievements/graduation-cap.jpg
+  summary: 上海大学工程硕士毕业
+- title: 微信小游戏精品项目
+  image: /images/sections/achievements/woman-winner.jpg
+  summary: 《恋爱48天》获得微信小游戏精品项目资格

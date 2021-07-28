@@ -1,0 +1,26 @@
+# section information
+section:
+  name: 教育经历
+  id: education
+  template: sections/education.html # Use "sections/education-alt.html for alternate template.
+  enable: true
+  weight: 4
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+degrees:
+- name: 软件工程
+  icon: fa-graduation-cap
+  timeframe: 2009-2012
+  institution:
+    name: 上海大学
+    url: "https://www.shu.edu.cn/"
+
+- name: 工商管理
+  icon: fa-graduation-cap
+  timeframe: 2003-2007
+  institution:
+    name: 长春理工大学
+    url: "https://www.cust.edu.cn/"
+ 
