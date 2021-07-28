@@ -60,6 +60,7 @@ hero: imgs/github_gitee.jpg
         hugo
         # 复制一些固定内容
         cp -v ./static/search_engine/* ./docs/
+        git add ./
     fi
     exit 0
     ```
