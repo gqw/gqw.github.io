@@ -1417,6 +1417,32 @@
     <div class="row" id="recent-post-cards">
       
         <div class="col-lg-4 col-md-6 pt-2 post-card">
+  <a href="/posts/git/sync_github_gitee/" title="同步GitHub pages和 Gitee pages方法" class="post-card-link">
+    <div class="card">
+      <div class="card-head">
+        <img class="card-img-top" src='/posts/git/sync_github_gitee/imgs/github_gitee.jpg'
+          alt="Card image cap"
+        />
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">同步GitHub pages和 Gitee pages方法</h5>
+        <p class="card-text post-summary"> 问题 这两天在整理博客，一直使用GitHub和Gitee的Pages功能作为博客的静态托管站。但是遇到以下几个问题：
+ 每次PUSH都要向两个网站分别提交，操作繁琐 域名问题， 博客使用的Hugo博客生成系统，根域名是在config.yaml配置的，导致最终的域名管理比较混乱。比如配置了github的域名，提交给gitee时忘记改，就会导致某些图片或内容访问不稳定。 Gitee发布比较麻烦，需要手动更新提交  解决方法   对于多次提交的问题，最初解决方法是使用以下命令：
+$ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git remote -v origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) origin git@github.com:gqw/gqw.github.io.git (push) 方法解决。添加过后每次提交都会同时往两个仓库提交。
+但是为了解决第二个问题，即不同域名问题，最终并未使用此方案。
+  解决不同域名问题，解决思路是通过git hook在提交和上次时在hook脚本里修改Hugo生成好的内容。
+ 首先准备好远程url  $ git remote -v github_auto_change_domian git@github.com:gqw/gqw.github.io.git (fetch) github_auto_change_domian git@github.com:gqw/gqw.github.io.git (push) origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) 然后在仓库的.git/hooks目录中添加commit-msg文件，内容为：  commit_msg=$(cat $1) echo $commit_msg if [[ $commit_msg =~ &#34;replace domain to github&#34; ]]; then # 向github上传前会修改仓库内容，并做一次提交记录， # 这时不需要重新生成文档 echo &#34;replace domain to github&#34; else # 清空生成目录内容 rm -rfv .</p>
+      </div>
+      <div class="card-footer">
+        <span class="float-left">July 28, 2021</span>
+        <a href="/posts/git/sync_github_gitee/" title="Read" class="float-right btn btn-outline-info btn-sm">Read</a>
+      </div>
+    </div>
+  </a>
+</div>
+
+      
+        <div class="col-lg-4 col-md-6 pt-2 post-card">
   <a href="/posts/net/p2p/" title="一种简单可行的P2SP实践方案" class="post-card-link">
     <div class="card">
       <div class="card-head">
@@ -1473,29 +1499,6 @@ traceroute -T www.baidu.com 80 既然如此那就看看源码，借鉴下别人�
       <div class="card-footer">
         <span class="float-left">December 29, 2020</span>
         <a href="/posts/net/tcptrace/" title="Read" class="float-right btn btn-outline-info btn-sm">Read</a>
-      </div>
-    </div>
-  </a>
-</div>
-
-      
-        <div class="col-lg-4 col-md-6 pt-2 post-card">
-  <a href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具" class="post-card-link">
-    <div class="card">
-      <div class="card-head">
-        <img class="card-img-top" src='/images/default-hero.jpg'
-          alt="Card image cap"
-        />
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">C&#43;&#43;序列化和反序列化工具</h5>
-        <p class="card-text post-summary"> 在开发时我们经常会遇到需要序列号和反序列化得操作。比如将程序配置导出下次打开再从配置中读取，通常你可以将信息保存成json、xml或ini格式，让后再解析出来。更常见的情形是我们通过网络发送和接收数据，也涉及到序列化和反序列化操作，当让你可以使用protobuf、msgpack等序列化库。但是如果你只是个简单程序，或者序列化和反序列化的业务不是很重，不想搞得那么复杂有什么简单的方法吗？
-最直接的方法 直接按字节拷贝，见代码:
-#include &lt;string&gt; bool encode(const std::string&amp; s, int32_t a, int32_t b, int32_t c, std::string&amp; buf) { int32_t d = static_cast&lt;int32_t&gt;(s.length()); if (buf.size() &lt; (sizeof(int32_t) * 4 + d)) return false; std::size_t pos = 0; memcpy(buf.data() + pos, &amp;a, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;b, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;c, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;d, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, s.</p>
-      </div>
-      <div class="card-footer">
-        <span class="float-left">November 18, 2020</span>
-        <a href="/posts/c&#43;&#43;/serialization/" title="Read" class="float-right btn btn-outline-info btn-sm">Read</a>
       </div>
     </div>
   </a>
