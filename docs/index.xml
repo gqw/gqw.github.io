@@ -369,10 +369,10 @@ traceroute -T www.baidu.com 80 既然如此那就看看源码，借鉴下别人�
     
     <item>
       <title>C&#43;&#43;序列化和反序列化工具</title>
-      <link>https://gqw.gitee.io/posts/c&#43;&#43;/c&#43;&#43;-%E5%BA%8F%E5%88%97%E5%8C%96%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</link>
+      <link>https://gqw.gitee.io/posts/c&#43;&#43;/serialization/</link>
       <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/c&#43;&#43;-%E5%BA%8F%E5%88%97%E5%8C%96%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</guid>
+      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/serialization/</guid>
       <description>在开发时我们经常会遇到需要序列号和反序列化得操作。比如将程序配置导出下次打开再从配置中读取，通常你可以将信息保存成json、xml或ini格式，让后再解析出来。更常见的情形是我们通过网络发送和接收数据，也涉及到序列化和反序列化操作，当让你可以使用protobuf、msgpack等序列化库。但是如果你只是个简单程序，或者序列化和反序列化的业务不是很重，不想搞得那么复杂有什么简单的方法吗？
 最直接的方法 直接按字节拷贝，见代码:
 #include &amp;lt;string&amp;gt; bool encode(const std::string&amp;amp; s, int32_t a, int32_t b, int32_t c, std::string&amp;amp; buf) { int32_t d = static_cast&amp;lt;int32_t&amp;gt;(s.length()); if (buf.size() &amp;lt; (sizeof(int32_t) * 4 + d)) return false; std::size_t pos = 0; memcpy(buf.data() + pos, &amp;amp;a, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;b, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;c, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;d, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, s.</description>
