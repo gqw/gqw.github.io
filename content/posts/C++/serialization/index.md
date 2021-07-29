@@ -2,7 +2,7 @@
 date: 2020-11-18
 title: "C++序列化和反序列化工具"
 linkTitle: "C++序列化和反序列化工具"
-author: 顾起威 ([@gqw](https://gqw.github.io))
+author: asura9527 ([@gqw](https://gqw.github.io))
 description:
   std::stringstream, std::strstream, std::iostream, std::streambuf 使用技巧
 

@@ -2,7 +2,7 @@
 date: 2021-07-27
 title: "一种简单可行的P2SP实践方案"
 linkTitle: "p2sp"
-author: 顾起威 ([@gqw](https://gqw.github.io))
+author: asura9527 ([@gqw](https://gqw.github.io))
 menu:
   sidebar:
     name: 一种简单可行的P2SP实践方案

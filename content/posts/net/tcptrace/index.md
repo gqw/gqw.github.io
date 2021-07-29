@@ -2,7 +2,7 @@
 date: 2020-12-29
 title: "tcprt"
 linkTitle: "tcprt"
-author: 顾起威 ([@gqw](https://gqw.github.io))
+author: asura9527 ([@gqw](https://gqw.github.io))
 description:
   Windows下基于tcp协议的traceroute实现
 menu:

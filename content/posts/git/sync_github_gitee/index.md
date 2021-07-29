@@ -1,7 +1,7 @@
 ---
 date: 2021-07-28
 title: "同步GitHub pages和 Gitee pages方法"
-author: 顾起威 ([@gqw](https://gqw.github.io))
+author: asura9527 ([@gqw](https://gqw.github.io))
 menu:
   sidebar:
     name: 同步GitHub pages和 Gitee pages方法
