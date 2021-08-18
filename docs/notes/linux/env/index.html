@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Git</title>
+    <title>Linux环境配置</title>
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -31,20 +31,21 @@
 
   <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_2.png" />
 
-<meta property="og:title" content="Git" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://gqw.gitee.io/posts/git/" />
-<meta property="og:updated_time" content="2021-07-28T00:00:00+00:00" />
+<meta property="og:title" content="Linux环境配置" />
+<meta property="og:description" content="gcc 源文件编译 # 下载，解压 tar -xf gcc-11.1.0.tar.xz cd gcc-11.1.0.tar # 安装必要编译工具 sudo apt install build-essential # 安装依赖库 sudo apt install libgmp-dev # 生成makefile文件 ./configure # 编译安装 make -j 10 sudo make install     从PPA安装 sudo add-apt-repository ppa:ubuntu-toolchain-r/test sudo apt-get update sudo apt install gcc-11 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 --slave /usr/bin/g&#43;&#43; g&#43;&#43; /usr/bin/g&#43;&#43;-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11     " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gqw.gitee.io/notes/linux/env/" />
+
 
 
     
     
-    <link rel="stylesheet" href="/css/layouts/list.css">
-    <link rel="stylesheet" href="/css/navigators/sidebar.css">
-    
-    <link rel="stylesheet" href="/css/style.css"/>
-
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
+  />
+  <link rel="stylesheet" href="/css/layouts/notes.css">
+  <link rel="stylesheet" href="/css/navigators/sidebar.css">
 
 
     
@@ -127,7 +128,7 @@
         </form>
         <div class="sidebar-tree">
           <ul class="tree" id="tree">
-            <li id="list-heading"><a href="/posts" data-filter="all">博文</a></li>
+            <li id="list-heading"><a href="/notes" data-filter="all">笔记</a></li>
             <div class="subtree">
                 
   
@@ -136,8 +137,17 @@
   
   
     
+    <li><a class="" href="/notes/notes/" title="随手记">随手记</a></li>
+  
+
+  
+  
+  
+  
+  
+    
     <li>
-      <i class="fas fa-plus-circle"></i><a class="" href="/posts/c&#43;&#43;/">C&#43;&#43;</a>
+      <i class="fas fa-plus-circle"></i><a class="" href="/notes/html/">HTML</a>
       
       <ul class="">
         
@@ -147,34 +157,7 @@
   
   
     
-    <li><a class="" href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
-  
-
-  
-  
-  
-  
-  
-    
-    <li><a class="" href="/posts/c&#43;&#43;/coro_redis/" title="coro_redis 开发手记">coro_redis 开发手记</a></li>
-  
-
-  
-  
-  
-  
-  
-    
-    <li><a class="" href="/posts/c&#43;&#43;/build_gcc/" title="Linux 编译GCC 11">Linux 编译GCC 11</a></li>
-  
-
-  
-  
-  
-  
-  
-    
-    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
+    <li><a class="" href="/notes/html/markdown-html/" title="Html in markdown">Html in markdown</a></li>
   
 
 
@@ -192,7 +175,7 @@
   
     
     <li>
-      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/git/">Git</a>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/notes/linux/">Linux</a>
       
       <ul class="active">
         
@@ -200,14 +183,12 @@
   
   
   
+    
+    
+  
   
     
-    <li><a class="" href="/posts/git/sync_github_gitee/" title="同步GitHub pages和 Gitee pages方法">同步GitHub pages和 Gitee pages方法</a></li>
-  
-
-
-      </ul>
-    </li>
+    <li><a class="active" href="/notes/linux/env/" title="Linux环境配置">Linux环境配置</a></li>
   
 
   
@@ -216,27 +197,7 @@
   
   
     
-    <li>
-      <i class="fas fa-plus-circle"></i><a class="" href="/posts/net/">网络</a>
-      
-      <ul class="">
-        
-  
-  
-  
-  
-  
-    
-    <li><a class="" href="/posts/net/tcptrace/" title="Windows下基于tcp协议的traceroute实现">Windows下基于tcp协议的traceroute实现</a></li>
-  
-
-  
-  
-  
-  
-  
-    
-    <li><a class="" href="/posts/net/p2p/" title="一种简单可行的P2SP实践方案">一种简单可行的P2SP实践方案</a></li>
+    <li><a class="" href="/notes/linux/wsl/" title="wsl">wsl</a></li>
   
 
 
@@ -257,43 +218,45 @@
       
 <section class="content-section" id="content-section">
   <div class="content container-fluid" id="content">
-    <div class="container-fluid post-card-holder" id="post-card-holder">
-      
-      
-      
+    <div class="container-fluid note-card-holder" id="note-card-holder">
+      <!-- markdown 图片加标注 -->
+<div class="note-card ">
+    <div class="item">
+        <h5 class="note-title"><span>gcc 源文件编译</span></h5>
         
-          <div class="post-card">
-  <a href="/posts/git/sync_github_gitee/" class="post-card-link">
-    <div class="card">
-      <div class="card-head">
-        <img class="card-img-top" src='/posts/git/sync_github_gitee/imgs/github_gitee.jpg' alt="Hero Image">
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">同步GitHub pages和 Gitee pages方法</h5>
-        <p class="card-text post-summary">问题 这两天在整理博客，一直使用GitHub和Gitee的Pages功能作为博客的静态托管站。但是遇到以下几个问题：
- 每次PUSH都要向两个网站分别提交，操作繁琐 域名问题， 博客使用的Hugo博客生成系统，根域名是在config.yaml配置的，导致最终的域名管理比较混乱。比如配置了github的域名，提交给gitee时忘记改，就会导致某些图片或内容访问不稳定。 Gitee发布比较麻烦，需要手动更新提交  解决方法   对于多次提交的问题，最初解决方法是使用以下命令：
-$ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git remote -v origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) origin git@github.com:gqw/gqw.github.io.git (push) 方法解决。添加过后每次提交都会同时往两个仓库提交。
-但是为了解决第二个问题，即不同域名问题，最终并未使用此方案。
-  解决不同域名问题，解决思路是通过git hook在提交和上次时在hook脚本里修改Hugo生成好的内容。
- 首先准备好远程url  $ git remote -v github_auto_change_domian git@github.com:gqw/gqw.github.io.git (fetch) github_auto_change_domian git@github.com:gqw/gqw.github.io.git (push) origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) 然后在仓库的.git/hooks目录中添加commit-msg文件，内容为：  commit_msg=$(cat $1) echo $commit_msg if [[ $commit_msg =~ &#34;replace domain to github&#34; ]]; then # 向github上传前会修改仓库内容，并做一次提交记录， # 这时不需要重新生成文档 echo &#34;replace domain to github&#34; else # 清空生成目录内容 rm -rfv .</p>
-      </div>
-      <div class="card-footer">
-        <span class="float-left">July 28, 2021</span>
-        <a
-        href="/posts/git/sync_github_gitee/"
-        class="float-right btn btn-outline-info btn-sm"
-        >Read</a
-        >
-      </div>
+            <div class="card">
+                <div class="card-body"><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 下载，解压</span>
+tar -xf gcc-11.1.0.tar.xz
+cd gcc-11.1.0.tar
+<span style="color:#75715e"># 安装必要编译工具</span>
+sudo apt install build-essential
+<span style="color:#75715e"># 安装依赖库</span>
+sudo apt install libgmp-dev
+<span style="color:#75715e"># 生成makefile文件</span>
+./configure
+<span style="color:#75715e"># 编译安装</span>
+make -j <span style="color:#ae81ff">10</span>
+sudo make install
+</code></pre></div></div>
+            </div>
+        
     </div>
-  </a>
 </div>
 
+<div class="note-card ">
+    <div class="item">
+        <h5 class="note-title"><span>从PPA安装</span></h5>
         
-      
+            <div class="card">
+                <div class="card-body"><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt install gcc-11
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 <span style="color:#ae81ff">110</span> --slave /usr/bin/g++ g++ /usr/bin/g++-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11
+</code></pre></div></div>
+            </div>
+        
     </div>
-    <div class="paginator">
-      
+</div>
 
 
     </div>
@@ -510,7 +473,13 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
 
     
     
-    <script src="/js/list.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+  <script src="/js/imagesloaded.pkgd.min.js"></script>
+  <script src="/js/note.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
 
   </body>
 </html>
