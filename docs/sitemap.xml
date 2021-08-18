@@ -7,9 +7,11 @@
   </url>
   
   <url>
-    <loc>https://gqw.gitee.io/search/</loc>
-    <lastmod>2010-06-08T08:06:25+06:00</lastmod>
-    <priority>0.1</priority>
+    <loc>https://gqw.gitee.io/notes/linux/env/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gqw.gitee.io/notes/linux/wsl/</loc>
   </url>
   
   <url>
@@ -148,6 +150,37 @@
     <loc>https://gqw.gitee.io/search/</loc>
     <lastmod>2010-06-08T08:06:25+06:00</lastmod>
     <priority>0.1</priority>
+  </url>
+  
+  <url>
+    <loc>https://gqw.gitee.io/search/</loc>
+    <lastmod>2010-06-08T08:06:25+06:00</lastmod>
+    <priority>0.1</priority>
+  </url>
+  
+  <url>
+    <loc>https://gqw.gitee.io/posts/c&#43;&#43;/</loc>
+    <lastmod>2021-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/</loc>
+    <lastmod>2021-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gqw.gitee.io/posts/</loc>
+    <lastmod>2021-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gqw.gitee.io/</loc>
+    <lastmod>2021-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gqw.gitee.io/posts/c&#43;&#43;/build_gcc/</loc>
+    <lastmod>2021-07-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -157,16 +190,6 @@
   
   <url>
     <loc>https://gqw.gitee.io/posts/git/sync_github_gitee/</loc>
-    <lastmod>2021-07-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gqw.gitee.io/posts/</loc>
-    <lastmod>2021-07-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gqw.gitee.io/</loc>
     <lastmod>2021-07-28T00:00:00+00:00</lastmod>
   </url>
   
@@ -183,11 +206,6 @@
   <url>
     <loc>https://gqw.gitee.io/posts/net/tcptrace/</loc>
     <lastmod>2020-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gqw.gitee.io/posts/c&#43;&#43;/</loc>
-    <lastmod>2020-11-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -214,7 +232,15 @@
   </url>
   
   <url>
+    <loc>https://gqw.gitee.io/notes/linux/</loc>
+  </url>
+  
+  <url>
     <loc>https://gqw.gitee.io/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gqw.gitee.io/notes/notes/</loc>
   </url>
   
 </urlset>

@@ -163,5 +163,14 @@ This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
     
+    <item>
+      <title>随手记</title>
+      <link>https://gqw.gitee.io/notes/notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gqw.gitee.io/notes/notes/</guid>
+      <description>c&amp;#43;&amp;#43; 协程 C++ coroutines: The mental model for coroutine promises    </description>
+    </item>
+    
   </channel>
 </rss>

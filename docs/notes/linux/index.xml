@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTML Notes on 顾起威的博客</title>
+    <link>https://gqw.gitee.io/notes/linux/</link>
+    <description>Recent content in HTML Notes on 顾起威的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn_ZH</language><atom:link href="https://gqw.gitee.io/notes/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux环境配置</title>
+      <link>https://gqw.gitee.io/notes/linux/env/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gqw.gitee.io/notes/linux/env/</guid>
+      <description>gcc 源文件编译 # 下载，解压 tar -xf gcc-11.1.0.tar.xz cd gcc-11.1.0.tar # 安装必要编译工具 sudo apt install build-essential # 安装依赖库 sudo apt install libgmp-dev # 生成makefile文件 ./configure # 编译安装 make -j 10 sudo make install     从PPA安装 sudo add-apt-repository ppa:ubuntu-toolchain-r/test sudo apt-get update sudo apt install gcc-11 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 --slave /usr/bin/g++ g++ /usr/bin/g++-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11     </description>
+    </item>
+    
+    <item>
+      <title>wsl</title>
+      <link>https://gqw.gitee.io/notes/linux/wsl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gqw.gitee.io/notes/linux/wsl/</guid>
+      <description>wsl2 默认root登录 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\{a7b6183f-cc3e-4388-a97a-502a98efca90}] &amp;#34;DefaultUid&amp;#34;=dword:00000000 设置 DefaultUid 为0
+    wsl2 限制CPU和内存大小 创建 %UserProfile%\.wslconfig 添加如下内容
+[wsl2] memory=4GB # Limits VM memory in WSL 2 to 4 GB processors=4 # Makes the WSL 2 VM use two virtual processors     </description>
+    </item>
+    
+  </channel>
+</rss>

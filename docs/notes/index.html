@@ -34,7 +34,7 @@
 <meta property="og:title" content="笔记" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://gqw.github.io/notes/" />
+<meta property="og:url" content="https://gqw.gitee.io/notes/" />
 <meta property="og:updated_time" content="2010-06-08T08:06:25+06:00" />
 
 
@@ -137,6 +137,15 @@
   
   
     
+    <li><a class="" href="/notes/notes/" title="随手记">随手记</a></li>
+  
+
+  
+  
+  
+  
+  
+    
     <li>
       <i class="fas fa-plus-circle"></i><a class="" href="/notes/html/">HTML</a>
       
@@ -149,6 +158,40 @@
   
     
     <li><a class="" href="/notes/html/markdown-html/" title="Html in markdown">Html in markdown</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/notes/linux/">Linux</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/notes/linux/env/" title="Linux环境配置">Linux环境配置</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/notes/linux/wsl/" title="wsl">wsl</a></li>
   
 
 
@@ -320,11 +363,81 @@
         
       
         
+          <!-- markdown 图片加标注 -->
+<div class="note-card ">
+    <div class="item">
+        <h5 class="note-title"><span>gcc 源文件编译</span></h5>
         
+            <div class="card">
+                <div class="card-body"><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 下载，解压</span>
+tar -xf gcc-11.1.0.tar.xz
+cd gcc-11.1.0.tar
+<span style="color:#75715e"># 安装必要编译工具</span>
+sudo apt install build-essential
+<span style="color:#75715e"># 安装依赖库</span>
+sudo apt install libgmp-dev
+<span style="color:#75715e"># 生成makefile文件</span>
+./configure
+<span style="color:#75715e"># 编译安装</span>
+make -j <span style="color:#ae81ff">10</span>
+sudo make install
+</code></pre></div></div>
+            </div>
+        
+    </div>
+</div>
+
+<div class="note-card ">
+    <div class="item">
+        <h5 class="note-title"><span>从PPA安装</span></h5>
+        
+            <div class="card">
+                <div class="card-body"><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt install gcc-11
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 <span style="color:#ae81ff">110</span> --slave /usr/bin/g++ g++ /usr/bin/g++-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11
+</code></pre></div></div>
+            </div>
+        
+    </div>
+</div>
+
+
         
       
         
+          <!-- markdown 图片加标注 -->
+<div class="note-card ">
+    <div class="item">
+        <h5 class="note-title"><span>wsl2 默认root登录</span></h5>
         
+            <div class="card">
+                <div class="card-body"><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bat" data-lang="bat">[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\{a7b6183f-cc3e-4388-a97a-502a98efca90}]
+<span style="color:#e6db74">&#34;DefaultUid&#34;</span>=dword:00000000
+</code></pre></div><p>设置 DefaultUid 为0</p>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+<!-- markdown 图片加标注 -->
+<div class="note-card ">
+    <div class="item">
+        <h5 class="note-title"><span>wsl2 限制CPU和内存大小</span></h5>
+        
+            <div class="card">
+                <div class="card-body"><p>创建 %UserProfile%\.wslconfig 添加如下内容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bat" data-lang="bat">[wsl2]
+memory=4GB # Limits VM memory in WSL 2 to 4 GB
+processors=4 # Makes the WSL 2 VM use two virtual processors
+</code></pre></div></div>
+            </div>
+        
+    </div>
+</div>
+
+
         
       
         

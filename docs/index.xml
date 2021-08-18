@@ -6,7 +6,7 @@
     <description>Recent content on 顾起威的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn_ZH</language>
-    <lastBuildDate>Wed, 28 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Html in markdown</title>
       <link>https://gqw.gitee.io/notes/html/markdown-html/</link>
@@ -17,6 +17,26 @@
     </item>
     
     <item>
+      <title>Linux环境配置</title>
+      <link>https://gqw.gitee.io/notes/linux/env/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gqw.gitee.io/notes/linux/env/</guid>
+      <description>gcc 源文件编译 # 下载，解压 tar -xf gcc-11.1.0.tar.xz cd gcc-11.1.0.tar # 安装必要编译工具 sudo apt install build-essential # 安装依赖库 sudo apt install libgmp-dev # 生成makefile文件 ./configure # 编译安装 make -j 10 sudo make install     从PPA安装 sudo add-apt-repository ppa:ubuntu-toolchain-r/test sudo apt-get update sudo apt install gcc-11 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 --slave /usr/bin/g++ g++ /usr/bin/g++-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11     </description>
+    </item>
+    
+    <item>
+      <title>wsl</title>
+      <link>https://gqw.gitee.io/notes/linux/wsl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gqw.gitee.io/notes/linux/wsl/</guid>
+      <description>wsl2 默认root登录 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\{a7b6183f-cc3e-4388-a97a-502a98efca90}] &amp;#34;DefaultUid&amp;#34;=dword:00000000 设置 DefaultUid 为0
+    wsl2 限制CPU和内存大小 创建 %UserProfile%\.wslconfig 添加如下内容
+[wsl2] memory=4GB # Limits VM memory in WSL 2 to 4 GB processors=4 # Makes the WSL 2 VM use two virtual processors     </description>
+    </item>
+    
+    <item>
       <title>Resultados de Búsqueda</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
@@ -326,6 +346,29 @@ No content shown here is rendered, all content is based in the template layouts/
 Setting a very low sitemap priority will tell search engines this is not important content.
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
+    </item>
+    
+    <item>
+      <title>coro_redis 开发手记</title>
+      <link>https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/</link>
+      <pubDate>Wed, 18 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/</guid>
+      <description>本文是coro_redis项目的开发手记，其较为详尽的描述了其开发过程中遇到的问题和解决方案以及学习心得。希望能和大家共同努力和完善此项目。项目地址为： https://github.com/gqw/coro_redis
+自从上次写完《从HelloWold开始，深入浅出C++ 20 Coroutine TS》已经有一阵子没有写C++代码了，在那篇文章中给自己立了FLAG说要继续写一篇关于asio中使用协程开发的文章也一直没有兑现。现在趁着空闲用协程写了一个redis client库。
+代码还是像mrpc一样追求少而精，希望大家能够学会怎样使用c++的协程，而不是直接把库拿过去用。
+协程是从C++20开始被加进标准库的，但是仅支持基本的协程功能，用起来还不是很方便，估计需要等到C++23才能完善（请参考：C++23的目标）。VisualStudio 2022 PREVIEW（ToolSet v143）已经正式支持协程，相关头文件也已经从experimental目录移到正式目录，并且不需再添加 /await 编译选项（v143之前使用协程请参考/await选项说明）。GCC从10.0版本开始支持协程，11.0版本不再是experimental，但还是需要 -fcoroutines 编译选项（请参考：C++ Standards Support in GCC）。
+以下是开发使用的环境：
+   windows linux     Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2)   Visual Studio 2022(v143) GCC 11.1.0   cmake version 3.21.1 cmake version 3.21.1   Vcpkg version 2021-07-26-9425cf5f512f242c0bcbabac31f08832825aee81 Same as Windows    编译说明  安装vcpkg 设置并导出环境变量 VCPKG_ROOT 为 vcpkg 根目录 如果再Winodws下开发，由于Visual Studio还是预览版，vcpkg默认不会使用，所有需要在%VCPKG_ROOT%/triplets目录下添加x86-windows-v143.</description>
+    </item>
+    
+    <item>
+      <title>Linux 编译GCC 11</title>
+      <link>https://gqw.gitee.io/posts/c&#43;&#43;/build_gcc/</link>
+      <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/build_gcc/</guid>
+      <description># 下载，解压 tar -xf gcc-11.1.0.tar.xz cd gcc-11.1.0.tar # 安装必要编译工具 sudo apt install gcc g++ make # 安装依赖库 sudo apt install libgmp-dev # 生成makefile文件 ./configure # 编译安装 make -j 10 sudo make install </description>
     </item>
     
     <item>
@@ -406,6 +449,15 @@ traceroute -T www.baidu.com 80 既然如此那就看看源码，借鉴下别人�
  注意
 上面的代码由于使用了thread[4](C++ 11)和chrono_literals[5](C++ 14)，所以编译器需要支持C++ 14标准。
  多线程+Callback解决方案 为了解决上面的问题，我们对上面的代码进行如下改造：</description>
+    </item>
+    
+    <item>
+      <title>随手记</title>
+      <link>https://gqw.gitee.io/notes/notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gqw.gitee.io/notes/notes/</guid>
+      <description>c&amp;#43;&amp;#43; 协程 C++ coroutines: The mental model for coroutine promises    </description>
     </item>
     
   </channel>

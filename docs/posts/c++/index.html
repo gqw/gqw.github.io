@@ -34,8 +34,8 @@
 <meta property="og:title" content="C&#43;&#43;" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://gqw.github.io/posts/c&#43;&#43;/" />
-<meta property="og:updated_time" content="2020-11-18T00:00:00+00:00" />
+<meta property="og:url" content="https://gqw.gitee.io/posts/c&#43;&#43;/" />
+<meta property="og:updated_time" content="2021-08-18T00:00:00+00:00" />
 
 
     
@@ -159,6 +159,24 @@
   
   
     
+    <li><a class="" href="/posts/c&#43;&#43;/coro_redis/" title="coro_redis 开发手记">coro_redis 开发手记</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/c&#43;&#43;/build_gcc/" title="Linux 编译GCC 11">Linux 编译GCC 11</a></li>
+  
+
+  
+  
+  
+  
+  
+    
     <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
   
 
@@ -245,10 +263,65 @@
       
         
           <div class="post-card">
+  <a href="/posts/c&#43;&#43;/coro_redis/" class="post-card-link">
+    <div class="card">
+      <div class="card-head">
+        <img class="card-img-top" src='/posts/c&#43;&#43;/coro_redis/coro_redis.jpg' alt="Hero Image">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">coro_redis 开发手记</h5>
+        <p class="card-text post-summary">本文是coro_redis项目的开发手记，其较为详尽的描述了其开发过程中遇到的问题和解决方案以及学习心得。希望能和大家共同努力和完善此项目。项目地址为： https://github.com/gqw/coro_redis
+自从上次写完《从HelloWold开始，深入浅出C++ 20 Coroutine TS》已经有一阵子没有写C++代码了，在那篇文章中给自己立了FLAG说要继续写一篇关于asio中使用协程开发的文章也一直没有兑现。现在趁着空闲用协程写了一个redis client库。
+代码还是像mrpc一样追求少而精，希望大家能够学会怎样使用c++的协程，而不是直接把库拿过去用。
+协程是从C++20开始被加进标准库的，但是仅支持基本的协程功能，用起来还不是很方便，估计需要等到C++23才能完善（请参考：C++23的目标）。VisualStudio 2022 PREVIEW（ToolSet v143）已经正式支持协程，相关头文件也已经从experimental目录移到正式目录，并且不需再添加 /await 编译选项（v143之前使用协程请参考/await选项说明）。GCC从10.0版本开始支持协程，11.0版本不再是experimental，但还是需要 -fcoroutines 编译选项（请参考：C++ Standards Support in GCC）。
+以下是开发使用的环境：
+   windows linux     Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2)   Visual Studio 2022(v143) GCC 11.1.0   cmake version 3.21.1 cmake version 3.21.1   Vcpkg version 2021-07-26-9425cf5f512f242c0bcbabac31f08832825aee81 Same as Windows    编译说明  安装vcpkg 设置并导出环境变量 VCPKG_ROOT 为 vcpkg 根目录 如果再Winodws下开发，由于Visual Studio还是预览版，vcpkg默认不会使用，所有需要在%VCPKG_ROOT%/triplets目录下添加x86-windows-v143.</p>
+      </div>
+      <div class="card-footer">
+        <span class="float-left">August 18, 2021</span>
+        <a
+        href="/posts/c&#43;&#43;/coro_redis/"
+        class="float-right btn btn-outline-info btn-sm"
+        >Read</a
+        >
+      </div>
+    </div>
+  </a>
+</div>
+
+        
+      
+        
+          <div class="post-card">
+  <a href="/posts/c&#43;&#43;/build_gcc/" class="post-card-link">
+    <div class="card">
+      <div class="card-head">
+        <img class="card-img-top" src='/posts/c&#43;&#43;/build_gcc/gnu-gcc.jpg' alt="Hero Image">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Linux 编译GCC 11</h5>
+        <p class="card-text post-summary"># 下载，解压 tar -xf gcc-11.1.0.tar.xz cd gcc-11.1.0.tar # 安装必要编译工具 sudo apt install gcc g++ make # 安装依赖库 sudo apt install libgmp-dev # 生成makefile文件 ./configure # 编译安装 make -j 10 sudo make install </p>
+      </div>
+      <div class="card-footer">
+        <span class="float-left">July 30, 2021</span>
+        <a
+        href="/posts/c&#43;&#43;/build_gcc/"
+        class="float-right btn btn-outline-info btn-sm"
+        >Read</a
+        >
+      </div>
+    </div>
+  </a>
+</div>
+
+        
+      
+        
+          <div class="post-card">
   <a href="/posts/c&#43;&#43;/serialization/" class="post-card-link">
     <div class="card">
       <div class="card-head">
-        <img class="card-img-top" src='/images/default-hero.jpg' alt="Hero Image">
+        <img class="card-img-top" src='/posts/c&#43;&#43;/serialization/serialization_hero.png' alt="Hero Image">
       </div>
       <div class="card-body">
         <h5 class="card-title">C&#43;&#43;序列化和反序列化工具</h5>
