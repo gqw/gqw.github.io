@@ -169,7 +169,7 @@ Initial setup Search depends on additional output content type of JSON in config
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://gqw.gitee.io/notes/notes/</guid>
-      <description>c&amp;#43;&amp;#43; 协程 C++ coroutines: The mental model for coroutine promises    </description>
+      <description>c&amp;#43;&amp;#43; 协程 C++ coroutines: The mental model for coroutine promises    doxygen 使用 mermaid  /*! \~english * ... text ... * The distance between \f$(x_1,y_1)\f$ and \f$(x_2,y_2)\f$ is \f$\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\f$. * @htmlonly * &amp;lt;div class=&amp;#34;mermaid&amp;#34;&amp;gt; * sequenceDiagram * Alice-&amp;gt;&amp;gt;John: Hello John, how are you? * loop Healthcheck * John-&amp;gt;&amp;gt;John: Fight against hypochondria * end * Note right of John: Rational thoughts! * John--&amp;gt;&amp;gt;Alice: Great! * John-&amp;gt;&amp;gt;Bob: How about you?</description>
     </item>
     
   </channel>
