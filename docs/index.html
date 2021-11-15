@@ -50,7 +50,7 @@
 <meta property="og:title" content="Gu.Qiwei&#39;s Blog"/>
 <meta property="og:type" content="website"/>
 <meta property="og:description" content="Portfolio and personal blog of Gu.Qiwei."/>
-<meta property="og:image" content="https://gqw.github.io/images/author/gqw.png">
+<meta property="og:image" content="https://gqw.gitee.io/images/author/gqw.png">
 <meta property="og:url" content="https://gqw.github.io">
 
     <link rel="stylesheet" href="/css/sections/home.css"/>
@@ -326,27 +326,27 @@
      
     #homePageBackgroundImageDivStyled {
         
-      background-image: url('https://gqw.github.io/images/site/bg_hu734aa6f98ca0577a577126c08c02e5c3_354464_500x0_resize_q75_box.jpg');
+      background-image: url('https://gqw.gitee.io/images/site/bg_hu734aa6f98ca0577a577126c08c02e5c3_354464_500x0_resize_q75_box.jpg');
     }
      
     @media (min-width: 500px) and (max-width: 800px) {  
       #homePageBackgroundImageDivStyled {   
-          background-image: url('https://gqw.github.io/images/site/bg_hu734aa6f98ca0577a577126c08c02e5c3_354464_800x0_resize_q75_box.jpg');
+          background-image: url('https://gqw.gitee.io/images/site/bg_hu734aa6f98ca0577a577126c08c02e5c3_354464_800x0_resize_q75_box.jpg');
         }
     }
     @media (min-width: 801px) and (max-width: 1200px) {  
       #homePageBackgroundImageDivStyled {   
-          background-image: url('https://gqw.github.io/images/site/bg_hu734aa6f98ca0577a577126c08c02e5c3_354464_1200x0_resize_q75_box.jpg');
+          background-image: url('https://gqw.gitee.io/images/site/bg_hu734aa6f98ca0577a577126c08c02e5c3_354464_1200x0_resize_q75_box.jpg');
         }
     }
     @media (min-width: 1201px) and (max-width: 1500px) {  
       #homePageBackgroundImageDivStyled {   
-          background-image: url('https://gqw.github.io/images/site/bg_hu734aa6f98ca0577a577126c08c02e5c3_354464_1500x0_resize_q75_box.jpg');
+          background-image: url('https://gqw.gitee.io/images/site/bg_hu734aa6f98ca0577a577126c08c02e5c3_354464_1500x0_resize_q75_box.jpg');
         }
     }
     @media (min-width: 1501px) {  
       #homePageBackgroundImageDivStyled {   
-          background-image: url('https://gqw.github.io/images/site/bg.jpg');
+          background-image: url('https://gqw.gitee.io/images/site/bg.jpg');
         }
     }
     </style>
@@ -1419,6 +1419,43 @@
     <div class="row" id="recent-post-cards">
       
         <div class="col-lg-4 col-md-6 pt-2 post-card">
+  <a href="/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/" title="在Windows中运行远程Linux图形程序" class="post-card-link">
+    <div class="card">
+      <div class="card-head">
+        <img class="card-img-top" src='/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/imgs/vcXsrv.jpg'
+          alt="Card image cap"
+        />
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">在Windows中运行远程Linux图形程序</h5>
+        <p class="card-text post-summary"> 问题 在学习强化学习时用到gym。在Windows上跑gym总有诸多不便，所以直接将环境切到Linux下。开始方案是使用Win 10的Ubuntu子系统wsl2。按照网上教程虽然没有弄明白原理但是还算顺利，Linux的Gui程序还是能正常跑起来的。最近双11腾讯云搞促销就卖了3年的云主机，买了以后发现自己也没什么需要放在上面跑的东西，就寻思能不能将gym环境搬到云上，这样也就省得在公司机器和家里的机器上来回切换的麻烦了。但是今天在操作的时候还是遇到了不少的问题，现在记录下来以作备忘。
+解决方法   首先到SourceForge上下载最新的VcXsrv
+  安装运行
+  启动后出现如下界面：
+这里有两个选项，第一个是程序的窗口风格：
+  Multiple windows: 多窗口模式，即每个GUI进程一个窗口
+  One large windows: 单窗口模式，和远程桌面类似，所有窗口都在一个大窗口里
+  Fullscreen：全屏模式，与单窗口模式类是只不过大窗口是全屏的
+  One window without titlebar: 与标题单窗口模式，与单窗口模式类似
+  可以更具需求自己的喜好随便选择就可以了。
+窗口模式选项下面是Display number选项，这个选项很重要，但是大多数的教程里面都没有介绍这个选项的意义，害的我在后面解决云主机连接时一直忽略了这个选项，走了挺多弯路。这个选项代表的是vcXsrv模拟的是第几个显示器的意思，说他重要是因为它和通信有着直接的关系。看了别人的教程和使用后你可能心中会有个疑问，vcXsrv毕竟是个网络服务器，但是怎么就是找不到设置和修改服务端口的地方呢？其实这里的的Display number干的就是这件事，x server使用的端口其实是个‘’知名‘’端口(6000)，而实际使用的端口为6000+(Display Number), 比如如果你设置为0，那么服务监听端口变为6000，而如果是1，则端口为6001，依次类推。
+后面一个界面没什么好说的，选“start no client”好了。
+下一个界面：
+有个选项挺重要的，Disable access control 这个选项必须勾选否则会出现认证失败的提示。
+root@H:~# xcalc Authorization required, but no authorization protocol specified Error: Can&#39;t open display: 172.30.128.1:0 最后一个界面：
+有个save configuration的按钮，它可以将你前面的设置保存到一个以.xlaunch为后缀的文件中，以后只要双击这个文件就可以使用同样的配置了，一下是我的配置：
+&lt;?xml version=&#34;1.</p>
+      </div>
+      <div class="card-footer">
+        <span class="float-left">November 12, 2021</span>
+        <a href="/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/" title="Read" class="float-right btn btn-outline-info btn-sm">Read</a>
+      </div>
+    </div>
+  </a>
+</div>
+
+      
+        <div class="col-lg-4 col-md-6 pt-2 post-card">
   <a href="/posts/c&#43;&#43;/coro_redis/" title="coro_redis 开发手记" class="post-card-link">
     <div class="card">
       <div class="card-head">
@@ -1459,32 +1496,6 @@
       <div class="card-footer">
         <span class="float-left">July 30, 2021</span>
         <a href="/posts/c&#43;&#43;/build_gcc/" title="Read" class="float-right btn btn-outline-info btn-sm">Read</a>
-      </div>
-    </div>
-  </a>
-</div>
-
-      
-        <div class="col-lg-4 col-md-6 pt-2 post-card">
-  <a href="/posts/git/sync_github_gitee/" title="同步GitHub pages和 Gitee pages方法" class="post-card-link">
-    <div class="card">
-      <div class="card-head">
-        <img class="card-img-top" src='/posts/git/sync_github_gitee/imgs/github_gitee.jpg'
-          alt="Card image cap"
-        />
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">同步GitHub pages和 Gitee pages方法</h5>
-        <p class="card-text post-summary"> 问题 这两天在整理博客，一直使用GitHub和Gitee的Pages功能作为博客的静态托管站。但是遇到以下几个问题：
- 每次PUSH都要向两个网站分别提交，操作繁琐 域名问题， 博客使用的Hugo博客生成系统，根域名是在config.yaml配置的，导致最终的域名管理比较混乱。比如配置了github的域名，提交给gitee时忘记改，就会导致某些图片或内容访问不稳定。 Gitee发布比较麻烦，需要手动更新提交  解决方法   对于多次提交的问题，最初解决方法是使用以下命令：
-$ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git remote -v origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) origin git@github.com:gqw/gqw.github.io.git (push) 方法解决。添加过后每次提交都会同时往两个仓库提交。
-但是为了解决第二个问题，即不同域名问题，最终并未使用此方案。
-  解决不同域名问题，解决思路是通过git hook在提交和上次时在hook脚本里修改Hugo生成好的内容。
- 首先准备好远程url  $ git remote -v github_auto_change_domian git@github.com:gqw/gqw.github.io.git (fetch) github_auto_change_domian git@github.com:gqw/gqw.github.io.git (push) origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) 然后在仓库的.git/hooks目录中添加commit-msg文件，内容为：  commit_msg=$(cat $1) echo $commit_msg if [[ $commit_msg =~ &#34;replace domain to github&#34; ]]; then # 向github上传前会修改仓库内容，并做一次提交记录， # 这时不需要重新生成文档 echo &#34;replace domain to github&#34; else # 清空生成目录内容 rm -rfv .</p>
-      </div>
-      <div class="card-footer">
-        <span class="float-left">July 28, 2021</span>
-        <a href="/posts/git/sync_github_gitee/" title="Read" class="float-right btn btn-outline-info btn-sm">Read</a>
       </div>
     </div>
   </a>
@@ -1534,7 +1545,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
 
 <div 
   class="achievement-entry text-center"
-  style="background-image: url('https://gqw.github.io/images/sections/achievements/presenter_huc750a1f772b7bb88f5249ab1b75253b6_98154_0x300_resize_q75_box.jpg');"
+  style="background-image: url('https://gqw.gitee.io/images/sections/achievements/presenter_huc750a1f772b7bb88f5249ab1b75253b6_98154_0x300_resize_q75_box.jpg');"
 >
   <i class="fas fa-search-plus" id="enlarge-icon"></i>
   <h4 class="title" id="achievement-title">月流水超亿元</h4>
@@ -1542,8 +1553,8 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
     <h4>月流水超亿元</h4>
     <p>《卧龙吟》游戏流水超亿元</p>
   </div>
-  <span style="background-image: url('https://gqw.github.io/images/sections/achievements/presenter_huc750a1f772b7bb88f5249ab1b75253b6_98154_0x300_resize_q75_box.jpg');" class="d-none" id="SmallImage" active="true"></span>
-<span  style="background-image: url('https://gqw.github.io/images/sections/achievements/presenter_huc750a1f772b7bb88f5249ab1b75253b6_98154_0x1500_resize_q75_box.jpg');" class="d-none" id="LargeImage"></span>
+  <span style="background-image: url('https://gqw.gitee.io/images/sections/achievements/presenter_huc750a1f772b7bb88f5249ab1b75253b6_98154_0x300_resize_q75_box.jpg');" class="d-none" id="SmallImage" active="true"></span>
+<span  style="background-image: url('https://gqw.gitee.io/images/sections/achievements/presenter_huc750a1f772b7bb88f5249ab1b75253b6_98154_0x1500_resize_q75_box.jpg');" class="d-none" id="LargeImage"></span>
 </div>
 
     
@@ -1561,7 +1572,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
 
 <div 
   class="achievement-entry text-center"
-  style="background-image: url('https://gqw.github.io/images/sections/achievements/sport_hue306ad4a3cfa3c79e18d9475b844b6eb_139662_0x300_resize_q75_box.jpg');"
+  style="background-image: url('https://gqw.gitee.io/images/sections/achievements/sport_hue306ad4a3cfa3c79e18d9475b844b6eb_139662_0x300_resize_q75_box.jpg');"
 >
   <i class="fas fa-search-plus" id="enlarge-icon"></i>
   <h4 class="title" id="achievement-title">项目运营超10年</h4>
@@ -1569,8 +1580,8 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
     <h4>项目运营超10年</h4>
     <p>《卧龙吟》，《葵花宝典》项目运营时间超10年，并将持续下去&hellip;</p>
   </div>
-  <span style="background-image: url('https://gqw.github.io/images/sections/achievements/sport_hue306ad4a3cfa3c79e18d9475b844b6eb_139662_0x300_resize_q75_box.jpg');" class="d-none" id="SmallImage" active="true"></span>
-<span  style="background-image: url('https://gqw.github.io/images/sections/achievements/sport_hue306ad4a3cfa3c79e18d9475b844b6eb_139662_0x1500_resize_q75_box.jpg');" class="d-none" id="LargeImage"></span>
+  <span style="background-image: url('https://gqw.gitee.io/images/sections/achievements/sport_hue306ad4a3cfa3c79e18d9475b844b6eb_139662_0x300_resize_q75_box.jpg');" class="d-none" id="SmallImage" active="true"></span>
+<span  style="background-image: url('https://gqw.gitee.io/images/sections/achievements/sport_hue306ad4a3cfa3c79e18d9475b844b6eb_139662_0x1500_resize_q75_box.jpg');" class="d-none" id="LargeImage"></span>
 </div>
 
     
@@ -1588,7 +1599,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
 
 <div 
   class="achievement-entry text-center"
-  style="background-image: url('https://gqw.github.io/images/sections/achievements/graduation-cap_hubea4628151f3b7749cc1d791c6e4f181_394380_0x300_resize_q75_box.jpg');"
+  style="background-image: url('https://gqw.gitee.io/images/sections/achievements/graduation-cap_hubea4628151f3b7749cc1d791c6e4f181_394380_0x300_resize_q75_box.jpg');"
 >
   <i class="fas fa-search-plus" id="enlarge-icon"></i>
   <h4 class="title" id="achievement-title">Graduation</h4>
@@ -1596,8 +1607,8 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
     <h4>Graduation</h4>
     <p>上海大学工程硕士毕业</p>
   </div>
-  <span style="background-image: url('https://gqw.github.io/images/sections/achievements/graduation-cap_hubea4628151f3b7749cc1d791c6e4f181_394380_0x300_resize_q75_box.jpg');" class="d-none" id="SmallImage" active="true"></span>
-<span  style="background-image: url('https://gqw.github.io/images/sections/achievements/graduation-cap_hubea4628151f3b7749cc1d791c6e4f181_394380_0x1500_resize_q75_box.jpg');" class="d-none" id="LargeImage"></span>
+  <span style="background-image: url('https://gqw.gitee.io/images/sections/achievements/graduation-cap_hubea4628151f3b7749cc1d791c6e4f181_394380_0x300_resize_q75_box.jpg');" class="d-none" id="SmallImage" active="true"></span>
+<span  style="background-image: url('https://gqw.gitee.io/images/sections/achievements/graduation-cap_hubea4628151f3b7749cc1d791c6e4f181_394380_0x1500_resize_q75_box.jpg');" class="d-none" id="LargeImage"></span>
 </div>
 
     
@@ -1615,7 +1626,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
 
 <div 
   class="achievement-entry text-center"
-  style="background-image: url('https://gqw.github.io/images/sections/achievements/woman-winner_huefebed7f97be8f23958591748aa9b6a0_85205_0x300_resize_q75_box.jpg');"
+  style="background-image: url('https://gqw.gitee.io/images/sections/achievements/woman-winner_huefebed7f97be8f23958591748aa9b6a0_85205_0x300_resize_q75_box.jpg');"
 >
   <i class="fas fa-search-plus" id="enlarge-icon"></i>
   <h4 class="title" id="achievement-title">微信小游戏精品项目</h4>
@@ -1623,8 +1634,8 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
     <h4>微信小游戏精品项目</h4>
     <p>《恋爱48天》获得微信小游戏精品项目资格</p>
   </div>
-  <span style="background-image: url('https://gqw.github.io/images/sections/achievements/woman-winner_huefebed7f97be8f23958591748aa9b6a0_85205_0x300_resize_q75_box.jpg');" class="d-none" id="SmallImage" active="true"></span>
-<span  style="background-image: url('https://gqw.github.io/images/sections/achievements/woman-winner_huefebed7f97be8f23958591748aa9b6a0_85205_0x1500_resize_q75_box.jpg');" class="d-none" id="LargeImage"></span>
+  <span style="background-image: url('https://gqw.gitee.io/images/sections/achievements/woman-winner_huefebed7f97be8f23958591748aa9b6a0_85205_0x300_resize_q75_box.jpg');" class="d-none" id="SmallImage" active="true"></span>
+<span  style="background-image: url('https://gqw.gitee.io/images/sections/achievements/woman-winner_huefebed7f97be8f23958591748aa9b6a0_85205_0x1500_resize_q75_box.jpg');" class="d-none" id="LargeImage"></span>
 </div>
 
     

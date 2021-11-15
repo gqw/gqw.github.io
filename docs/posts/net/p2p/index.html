@@ -45,7 +45,7 @@ ZIP格式BT格式BT的下载原理是根据上图将需要下载的内容�
 具体实施 准备阶段  创建种子文件（.torent） 根据种子文件中piece length创建压缩文件 修改种子文件添加peice的压缩信息，主要是每个piece压缩后大小和总压缩文件大小。可以根据piece压缩后大写算出每个piece的偏移量 上传压缩文件到CDN 修改种子文件添加CDN中压缩文件HTTP下载地址 上传种子文件到CDN  实际处理中1,2,3,5步骤可以通过修改torrent文件合并处理。
 下载阶段 修改BT下载器，根据torrent文件中的的压缩文件地址建立特殊下载通道，模拟BT请求下载块，根据BT文件中的压缩块大小计算Piece在压缩文件中的偏移，使用HTTP Range Requests标准下载对应的数据块，下载完后更新对应Piece状态。直至所有文件下载完成。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gqw.github.io/posts/net/p2p/" />
+<meta property="og:url" content="https://gqw.gitee.io/posts/net/p2p/" />
 <meta property="article:published_time" content="2021-07-27T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-07-27T00:00:00+00:00" />
 
@@ -226,6 +226,31 @@ ZIP格式BT格式BT的下载原理是根据上图将需要下载的内容�
   
   
     
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/" title="在Windows中运行远程Linux图形程序">在Windows中运行远程Linux图形程序</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
     <li><a class="" href="/posts/test/" title="测试">测试</a></li>
   
 
@@ -284,7 +309,7 @@ ZIP格式BT格式BT的下载原理是根据上图将需要下载的内容�
   <div class="content">
     <div class="container p-0 read-area">
       
-      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.github.io/posts/net/p2p/imgs/hero.jpg);'>
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.gitee.io/posts/net/p2p/imgs/hero.jpg);'>
       </div>
 
       
@@ -430,6 +455,9 @@ ZIP格式BT格式BT的下载原理是根据上图将需要下载的内容�
 
 
 
+
+  
+  
 
   
   

@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# An example hook script to check the commit log message.
+# Called by "git commit" with one argument, the name of the file
+# that has the commit message.  The hook should exit with non-zero
+# status after issuing an appropriate message if it wants to stop the
+# commit.  The hook is allowed to edit the commit message file.
+#
+# To enable this hook, rename this file to "commit-msg".
+
+# Uncomment the below to add a Signed-off-by line to the message.
+# Doing this in a hook is a bad idea in general, but the prepare-commit-msg
+# hook is more suited to it.
+#
+# SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+# grep -qs "^$SOB" "$1" || echo "$SOB" >> "$1"
+
+# This example catches duplicate Signed-off-by lines.
+
+commit_msg=$(cat $1)
+echo $commit_msg
+
+if [[ $commit_msg =~ "replace domain to github" ]]; then
+	# 向github上传前会修改仓库内容，并做一次提交记录，
+	# 这时不需要重新生成文档
+	echo "replace domain to github"
+else
+	# 清空生成目录内容
+	rm -rfv ./docs/*
+	# 重新生成
+	hugo
+	# 复制一些固定内容
+	cp -v ./static/search_engine/* ./docs/
+	git add ./
+fi
+exit 0

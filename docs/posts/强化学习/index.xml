@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>强化学习 on 顾起威的博客</title>
+    <link>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</link>
+    <description>Recent content in 强化学习 on 顾起威的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn_ZH</language>
+    <lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Windows中运行远程Linux图形程序</title>
+      <link>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</link>
+      <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</guid>
+      <description>问题 在学习强化学习时用到gym。在Windows上跑gym总有诸多不便，所以直接将环境切到Linux下。开始方案是使用Win 10的Ubuntu子系统wsl2。按照网上教程虽然没有弄明白原理但是还算顺利，Linux的Gui程序还是能正常跑起来的。最近双11腾讯云搞促销就卖了3年的云主机，买了以后发现自己也没什么需要放在上面跑的东西，就寻思能不能将gym环境搬到云上，这样也就省得在公司机器和家里的机器上来回切换的麻烦了。但是今天在操作的时候还是遇到了不少的问题，现在记录下来以作备忘。
+解决方法   首先到SourceForge上下载最新的VcXsrv
+  安装运行
+  启动后出现如下界面：
+这里有两个选项，第一个是程序的窗口风格：
+  Multiple windows: 多窗口模式，即每个GUI进程一个窗口
+  One large windows: 单窗口模式，和远程桌面类似，所有窗口都在一个大窗口里
+  Fullscreen：全屏模式，与单窗口模式类是只不过大窗口是全屏的
+  One window without titlebar: 与标题单窗口模式，与单窗口模式类似
+  可以更具需求自己的喜好随便选择就可以了。
+窗口模式选项下面是Display number选项，这个选项很重要，但是大多数的教程里面都没有介绍这个选项的意义，害的我在后面解决云主机连接时一直忽略了这个选项，走了挺多弯路。这个选项代表的是vcXsrv模拟的是第几个显示器的意思，说他重要是因为它和通信有着直接的关系。看了别人的教程和使用后你可能心中会有个疑问，vcXsrv毕竟是个网络服务器，但是怎么就是找不到设置和修改服务端口的地方呢？其实这里的的Display number干的就是这件事，x server使用的端口其实是个‘’知名‘’端口(6000)，而实际使用的端口为6000+(Display Number), 比如如果你设置为0，那么服务监听端口变为6000，而如果是1，则端口为6001，依次类推。
+后面一个界面没什么好说的，选“start no client”好了。
+下一个界面：
+有个选项挺重要的，Disable access control 这个选项必须勾选否则会出现认证失败的提示。
+root@H:~# xcalc Authorization required, but no authorization protocol specified Error: Can&amp;#39;t open display: 172.30.128.1:0 最后一个界面：
+有个save configuration的按钮，它可以将你前面的设置保存到一个以.xlaunch为后缀的文件中，以后只要双击这个文件就可以使用同样的配置了，一下是我的配置：
+&amp;lt;?xml version=&amp;#34;1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://redis.io/commands/zrevrank -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>ZREVRANK – Redis</title>
+    <link href="./ZREVRANK – Redis_files/styles.css" rel="stylesheet">
+    <link href="https://redis.io/images/favicon.png" rel="shortcut icon">
+    <link href="https://redis.io/opensearch.xml" rel="search" title="Look up a Redis command" type="application/opensearchdescription+xml">
+    <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+    <script type="text/javascript" async="" src="./ZREVRANK – Redis_files/analytics.js.下载"></script><script async="" src="./ZREVRANK – Redis_files/gtm.js.下载"></script><script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-T4MTBKP');
+    </script>
+  </head>
+  <body class="">
+    <noscript>
+      <iframe height='0' src='https://www.googletagmanager.com/ns.html?id=GTM-T4MTBKP' style='display:none;visibility:hidden' width='0'></iframe>
+    </noscript>
+    <div class="mobile-menu slideout-menu slideout-menu">
+      <header class="menu-header"></header>
+      <section class="menu-section">
+        <ul class="menu-section-list">
+          <li>
+            <a class="home" href="https://redis.io/">Home</a>
+          </li>
+          <li>
+            <a href="https://redis.io/commands">Commands</a>
+          </li>
+          <li>
+            <a href="https://redis.io/clients">Clients</a>
+          </li>
+          <li>
+            <a href="https://redis.io/documentation">Documentation</a>
+          </li>
+          <li>
+            <a href="https://redis.io/community">Community</a>
+          </li>
+          <li>
+            <a href="https://redis.io/download">Download</a>
+          </li>
+          <li>
+            <a href="https://redis.io/modules">Modules</a>
+          </li>
+          <li>
+            <a href="https://redis.io/support">Support</a>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div class="site-wrapper slideout-panel">
+      <header class="site-header">
+        <nav class="container">
+          <div class="mobile-header">
+            <button class="btn-hamburger js-slideout-toggle">
+              <span class="fa fa-bars"></span>
+            </button>
+            <a class="home" href="https://redis.io/">
+              <img alt="Redis" src="./ZREVRANK – Redis_files/redis-white.png">
+            </a>
+            <a class="tryfree" href="https://redis.com/try-free">Try Free</a>
+          </div>
+          <div class="desktop-header">
+            <a class="home" href="https://redis.io/">
+              <img alt="Redis" src="./ZREVRANK – Redis_files/redis-white.png">
+            </a>
+            <a href="https://redis.io/commands">Commands</a>
+            <a href="https://redis.io/clients">Clients</a>
+            <a href="https://redis.io/documentation">Documentation</a>
+            <a href="https://redis.io/community">Community</a>
+            <a href="https://redis.io/download">Download</a>
+            <a href="https://redis.io/modules">Modules</a>
+            <a href="https://redis.io/support">Support</a>
+            <a class="tryfree" href="https://redis.com/try-free">Try Free</a>
+          </div>
+        </nav>
+      </header>
+      <div class="site-content">
+        <div class="text">
+          <h1 class="command">
+            <span class="name">ZREVRANK</span>
+            <span class="arg">key</span>
+            <span class="arg">member</span>
+          </h1>
+          <article>
+            <div class="article-main">
+              <div class="metadata">
+                <p><strong>Available since 2.0.0.</strong></p>
+                <p><strong>Time complexity:</strong> O(log(N))</p>
+              </div>
+              <p>Returns the rank of <code>member</code> in the sorted set stored at <code>key</code>, with the scores
+              ordered from high to low.
+              The rank (or index) is 0-based, which means that the member with the highest
+              score has rank <code>0</code>.</p>
+              
+              <p>Use <a href="https://redis.io/commands/zrank">ZRANK</a> to get the rank of an element with the scores ordered from low to
+              high.</p>
+              
+              <span id="return-value" class="anchor"></span><h2><a href="https://redis.io/commands/zrevrank#return-value" class="anchor-link">*</a>Return value</h2>
+              
+              <ul>
+              <li>If <code>member</code> exists in the sorted set, <a href="https://redis.io/topics/protocol#integer-reply">Integer reply</a>: the rank of <code>member</code>.</li>
+              <li>If <code>member</code> does not exist in the sorted set or <code>key</code> does not exist,
+              <a href="https://redis.io/topics/protocol#bulk-string-reply">Bulk string reply</a>: <code>nil</code>.</li>
+              </ul>
+              
+              <span id="examples" class="anchor"></span><h2><a href="https://redis.io/commands/zrevrank#examples" class="anchor-link">*</a>Examples</h2>
+              
+              <div class="example" data-session="04c03abf8646333bed5cc9e8bef1d7e7">
+                <span class="monospace prompt">redis&gt;&nbsp;</span>
+                <span class="monospace command">ZADD myzset 1 "one"</span>
+                <pre>(integer) 1</pre>
+                <span class="monospace prompt">redis&gt;&nbsp;</span>
+                <span class="monospace command">ZADD myzset 2 "two"</span>
+                <pre>(integer) 1</pre>
+                <span class="monospace prompt">redis&gt;&nbsp;</span>
+                <span class="monospace command">ZADD myzset 3 "three"</span>
+                <pre>(integer) 1</pre>
+                <span class="monospace prompt">redis&gt;&nbsp;</span>
+                <span class="monospace command">ZREVRANK myzset "one"</span>
+                <pre>(integer) 2</pre>
+                <span class="monospace prompt">redis&gt;&nbsp;</span>
+                <span class="monospace command">ZREVRANK myzset "four"</span>
+                <pre>(nil)</pre><form>
+                  <span class="monospace prompt">redis&gt;&nbsp;</span>
+                  <input autocomplete="off" name="command" spellcheck="false" type="text">
+                </form></div>
+            </div>
+            <div class="article-aside">
+              <aside>
+                <h2>
+                  Related commands
+                </h2>
+                <ul>
+                  <li>
+                    <a href="https://redis.io/commands/bzpopmax">
+                      BZPOPMAX
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/bzpopmin">
+                      BZPOPMIN
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zadd">
+                      ZADD
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zcard">
+                      ZCARD
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zcount">
+                      ZCOUNT
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zdiff">
+                      ZDIFF
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zdiffstore">
+                      ZDIFFSTORE
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zincrby">
+                      ZINCRBY
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zinter">
+                      ZINTER
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zintercard">
+                      ZINTERCARD
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zinterstore">
+                      ZINTERSTORE
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zlexcount">
+                      ZLEXCOUNT
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zmscore">
+                      ZMSCORE
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zpopmax">
+                      ZPOPMAX
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zpopmin">
+                      ZPOPMIN
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zrandmember">
+                      ZRANDMEMBER
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zrange">
+                      ZRANGE
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zrangebylex">
+                      ZRANGEBYLEX
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zrangebyscore">
+                      ZRANGEBYSCORE
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zrangestore">
+                      ZRANGESTORE
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zrank">
+                      ZRANK
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zrem">
+                      ZREM
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zremrangebylex">
+                      ZREMRANGEBYLEX
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zremrangebyrank">
+                      ZREMRANGEBYRANK
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zremrangebyscore">
+                      ZREMRANGEBYSCORE
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zrevrange">
+                      ZREVRANGE
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zrevrangebylex">
+                      ZREVRANGEBYLEX
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zrevrangebyscore">
+                      ZREVRANGEBYSCORE
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zrevrank">
+                      <strong>ZREVRANK</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zscan">
+                      ZSCAN
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zscore">
+                      ZSCORE
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zunion">
+                      ZUNION
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://redis.io/commands/zunionstore">
+                      ZUNIONSTORE
+                    </a>
+                  </li>
+                </ul>
+              </aside>
+            </div>
+          </article>
+        </div>
+      </div>
+      <footer class="site-footer">
+        <div class="container">
+          <p>
+            This website is
+            <a href="https://github.com/redis/redis-io">open source software</a>
+            and is sponsored by
+            <a href="https://redis.com/">Redis Ltd.</a>
+            See all <a href="https://redis.io/topics/sponsors">credits</a>.
+          </p>
+        </div>
+      </footer>
+    </div>
+    <script src="./ZREVRANK – Redis_files/jquery.min.js.下载"></script>
+    <script src="./ZREVRANK – Redis_files/app.js.下载"></script>
+  
+
+</body><div style="all: initial;"><div id="__hcfy__" style="all: initial;"></div></div></html>
