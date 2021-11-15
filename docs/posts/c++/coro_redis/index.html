@@ -38,7 +38,7 @@
 以下是开发使用的环境：
    windows linux     Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2)   Visual Studio 2022(v143) GCC 11.1.0   cmake version 3.21.1 cmake version 3.21.1   Vcpkg version 2021-07-26-9425cf5f512f242c0bcbabac31f08832825aee81 Same as Windows    编译说明  安装vcpkg 设置并导出环境变量 VCPKG_ROOT 为 vcpkg 根目录 如果再Winodws下开发，由于Visual Studio还是预览版，vcpkg默认不会使用，所有需要在%VCPKG_ROOT%/triplets目录下添加x86-windows-v143." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/" />
+<meta property="og:url" content="https://gqw.github.io/posts/c&#43;&#43;/coro_redis/" />
 <meta property="article:published_time" content="2021-08-18T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-08-18T00:00:00+00:00" />
 
@@ -302,7 +302,7 @@
   <div class="content">
     <div class="container p-0 read-area">
       
-      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/coro_redis.jpg);'>
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.github.io/posts/c&#43;&#43;/coro_redis/coro_redis.jpg);'>
       </div>
 
       
@@ -319,7 +319,7 @@
 
         <div class="post-content" id="post-content">
           <p>本文是<code>coro_redis</code>项目的开发手记，其较为详尽的描述了其开发过程中遇到的问题和解决方案以及学习心得。希望能和大家共同努力和完善此项目。项目地址为： <a href="https://github.com/gqw/coro_redis">https://github.com/gqw/coro_redis</a></p>
-<p>自从上次写完<a href="https://gqw.gitee.io/posts/c++/coroutine/">《从HelloWold开始，深入浅出C++ 20 Coroutine TS》</a>已经有一阵子没有写C++代码了，在那篇文章中给自己立了FLAG说要继续写一篇关于asio中使用协程开发的文章也一直没有兑现。现在趁着空闲用协程写了一个redis client库。</p>
+<p>自从上次写完<a href="https://gqw.github.io/posts/c++/coroutine/">《从HelloWold开始，深入浅出C++ 20 Coroutine TS》</a>已经有一阵子没有写C++代码了，在那篇文章中给自己立了FLAG说要继续写一篇关于asio中使用协程开发的文章也一直没有兑现。现在趁着空闲用协程写了一个redis client库。</p>
 <p>代码还是像<a href="https://github.com/gqw/mrpc.git">mrpc</a>一样追求少而精，希望大家能够学会怎样使用c++的协程，而不是直接把库拿过去用。</p>
 <p>协程是从<code>C++20</code>开始被加进标准库的，但是仅支持基本的协程功能，用起来还不是很方便，估计需要等到<code>C++23</code>才能完善（请参考：<a href="https://zhuanlan.zhihu.com/p/107360459">C++23的目标</a>）。VisualStudio 2022 PREVIEW（ToolSet v143）已经正式支持协程，相关头文件也已经从<code>experimental</code>目录移到正式目录，并且不需再添加 <code>/await</code> 编译选项（v143之前使用协程请参考<a href="https://docs.microsoft.com/en-us/cpp/build/reference/await-enable-coroutine-support?view=msvc-160"><code>/await</code></a>选项说明）。GCC从10.0版本开始支持协程，11.0版本不再是<code>experimental</code>，但还是需要 <code>-fcoroutines</code> 编译选项（请参考：<a href="https://gcc.gnu.org/projects/cxx-status.html">C++ Standards Support in GCC</a>）。</p>
 <p>以下是开发使用的环境：</p>
@@ -458,7 +458,7 @@
 </code></pre></div><p>通过简单的对比便可以看出协程代码的优势与优雅。上面的代码实际情况可能会更加复杂，因为我们并没有处理异常情况和资源释放问题，工程实践中的处理逻辑也应该会更复杂。希望能够通过这个简单的例子能够帮你建立起对协程的好感。好了，下面就让我们来看看协程是怎么做到这么优雅的事情的。</p>
 <p>对于异步调用，我们可以将其拆分成两个基本操作——发起异步调用和处理回调结果。 等等，这话是不是有点熟悉，刚才我们在说协程时好像也将协程分成两个步骤——“暂停”和“恢复”。仔细回味下，“发起异步调用”是不是有“暂停”的味道，是不是将任务交给其它人执行，然后自己暂停相关的逻辑，将CPU资源让给别人， 同样“处理回调结果”也意味着从前面停止的地方恢复逻辑处理。区别在于异步调用，“暂停”和“恢复”的代码是分开的（调用函数和回调函数），而协程更像是“胶水”一样将这两者连接在了一起。</p>
 <h2 id="协程实现细节">协程实现细节</h2>
-<p>那么协程是怎样做到的呢？ 协程的使用是简单优雅的，但是协程的实现却是繁杂且充满陷阱的，就像C++其它技术一样简单留给使用者，灵活强大留给库实现者。对协程实现原理感兴趣的可以看下我的另一篇文章<a href="https://gqw.gitee.io/posts/c++/coroutine/">《从HelloWold开始，深入浅出C++ 20 Coroutine TS》</a>，在此借用下里面协程展开的代码（后面简称“展开式”），方便大家理解后面的代码：</p>
+<p>那么协程是怎样做到的呢？ 协程的使用是简单优雅的，但是协程的实现却是繁杂且充满陷阱的，就像C++其它技术一样简单留给使用者，灵活强大留给库实现者。对协程实现原理感兴趣的可以看下我的另一篇文章<a href="https://gqw.github.io/posts/c++/coroutine/">《从HelloWold开始，深入浅出C++ 20 Coroutine TS》</a>，在此借用下里面协程展开的代码（后面简称“展开式”），方便大家理解后面的代码：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> ...Args<span style="color:#f92672">&gt;</span>
 return_ignore test_coroutine(Args... args) {
   <span style="color:#66d9ef">using</span> T <span style="color:#f92672">=</span> coroutine_traits<span style="color:#f92672">&lt;</span>return_type, Args...<span style="color:#f92672">&gt;</span>;
