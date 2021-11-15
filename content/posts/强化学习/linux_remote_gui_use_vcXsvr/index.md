@@ -101,7 +101,7 @@ hero: imgs/vcXsrv.jpg
       
         便可以了。
       
-        <img src="D:\Users\s3808\source\repos\hugo-toha.github.io\content\posts\强化学习\linux_remote_gui_use_vcXsvr\imgs\vcXsrv.drawio.png" alt="vcXsrv.drawio" style="zoom:50%;" />
+        <img src="./imgs/vcXsrv.drawio.png" alt="vcXsrv.drawio" style="zoom:50%;" />
       
       - {{ D }} 是一个序列号，一个 X 连接使用一个序列号，如果有多个 X Client 向外连接，则必须使用不同的 {{ D }}。并且它与一对 C/S 连接使用的端口号相关，`Port = D + 6000`
       
