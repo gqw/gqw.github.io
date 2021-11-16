@@ -38,7 +38,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
   解决不同域名问题，解决思路是通过git hook在提交和上次时在hook脚本里修改Hugo生成好的内容。
  首先准备好远程url  $ git remote -v github_auto_change_domian git@github.com:gqw/gqw.github.io.git (fetch) github_auto_change_domian git@github.com:gqw/gqw.github.io.git (push) origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) 然后在仓库的.git/hooks目录中添加commit-msg文件，内容为：  commit_msg=$(cat $1) echo $commit_msg if [[ $commit_msg =~ &#34;replace domain to github&#34; ]]; then # 向github上传前会修改仓库内容，并做一次提交记录， # 这时不需要重新生成文档 echo &#34;replace domain to github&#34; else # 清空生成目录内容 rm -rfv ." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gqw.gitee.io/posts/git/sync_github_gitee/" />
+<meta property="og:url" content="https://gqw.github.io/posts/git/sync_github_gitee/" />
 <meta property="article:published_time" content="2021-07-28T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-07-28T00:00:00+00:00" />
 
@@ -311,7 +311,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
   <div class="content">
     <div class="container p-0 read-area">
       
-      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.gitee.io/posts/git/sync_github_gitee/imgs/github_gitee.jpg);'>
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.github.io/posts/git/sync_github_gitee/imgs/github_gitee.jpg);'>
       </div>
 
       
