@@ -6,7 +6,7 @@
     <description>Recent content on 顾起威的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn_ZH</language>
-    <lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Html in markdown</title>
       <link>https://gqw.gitee.io/notes/html/markdown-html/</link>
@@ -346,6 +346,20 @@ No content shown here is rendered, all content is based in the template layouts/
 Setting a very low sitemap priority will tell search engines this is not important content.
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
+    </item>
+    
+    <item>
+      <title>创建最简单的gym自定义环境</title>
+      <link>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</link>
+      <pubDate>Tue, 16 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</guid>
+      <description>问题 学习一样东西最好自己动手做一个，想明白OpenAI gym的运行机制，我们就从0开始搭建个环境。
+解决步骤 目录结构：
+(.venv) gqw@u:~/workspace/gymtrain$ tree . ├── env │ ├── foo_env.py │ └── __init__.py └── foo_train.py 1 directory, 3 files gym将代码分为两部分：环境部分和训练部分
+gym 环境 gym 对环境镜像了抽象，无论多复杂的环境，最终暴露出来的只有gym.Env抽象的5个方法：
+ stepresetrendercloseseed我们现在实现一个最简单的环境类FooEnv:
+import gymclass FooEnv(gym.Env):&amp;quot;&amp;quot;&amp;quot; This is a simple envirionment &amp;quot;&amp;quot;&amp;quot;def __init__(self) -&amp;gt; None:super(FooEnv).__init__()self.seed()def seed(self):print(&amp;quot;seed&amp;quot;)passdef step(self, action):print(&amp;quot;step&amp;quot;)reward = 0done = Falsereturn None, reward, done, {}def reset(self):print(&amp;quot;reset&amp;quot;)passdef render(self):return Truedef close(self):pass它继承gym.</description>
     </item>
     
     <item>
