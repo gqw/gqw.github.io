@@ -38,7 +38,7 @@
 以下是开发使用的环境：
 windows linux Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2) Visual Studio 2022(v143) GCC 11.1.0 cmake version 3.21.1 cmake version 3.21.1 Vcpkg version 2021-07-26-9425cf5f512f242c0bcbabac31f08832825aee81 Same as Windows 编译说明 安装vcpkg 设置并导出环境变量 VCPKG_ROOT 为 vcpkg 根目录 如果再Winodws下开发，由于Visual Studio还是预览版，vcpkg默认不会使用，所有需要在%VCPKG_ROOT%/triplets目录下添加x86-windows-v143.cmake文件，内容如下： set(VCPKG_TARGET_ARCHITECTURE x86) set(VCPKG_CRT_LINKAGE dynamic) set(VCPKG_LIBRARY_LINKAGE dynamic) set(VCPKG_PLATFORM_TOOLSET &#34;v143&#34;) set(VCPKG_DEP_INFO_OVERRIDE_VARS &#34;v143&#34;) 安装cmake 执行cmake_build_x64_linux.sh(Linux) 或 cmake_build_x86-v143.bat(Windows)脚本，安装依赖包和生成工程文件 使用方法 协程调用通用命令：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://gqw.github.io/posts/c&#43;&#43;/coro_redis/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-18T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-08-18T00:00:00+00:00" />
 
@@ -320,7 +320,7 @@ windows linux Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2) Visual Studio 2022
   <div class="content">
     <div class="container p-0 read-area">
       
-      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/coro_redis.jpg);'>
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.github.io/posts/c&#43;&#43;/coro_redis/coro_redis.jpg);'>
       </div>
 
       

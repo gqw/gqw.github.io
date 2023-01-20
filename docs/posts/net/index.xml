@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>net on 顾起威的博客</title>
-    <link>https://gqw.gitee.io/posts/net/</link>
+    <link>https://gqw.github.io/posts/net/</link>
     <description>Recent content in net on 顾起威的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn_ZH</language>
-    <lastBuildDate>Tue, 27 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/posts/net/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.github.io/posts/net/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一种简单可行的P2SP实践方案</title>
-      <link>https://gqw.gitee.io/posts/net/p2p/</link>
+      <link>https://gqw.github.io/posts/net/p2p/</link>
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/net/p2p/</guid>
+      <guid>https://gqw.github.io/posts/net/p2p/</guid>
       <description>缘由与目标 随着计算机硬件的发展，游戏的玩法和画质也得到了飞速的发展。游戏内容越来越丰富，画面质量也越来越精细。这也导致了游戏的包体越来越大。PC端游戏基本上10GB起步，《战地》，《易水寒》等游戏基本已经达到100G体量。如此大的体量对于游戏发行方，是一个必须要考虑的问题。用于游戏分发的下载器我们必须考虑以下几个方面：
 1. 可访问， 这是下载器的首要前提，我们必须保证数据能够被联网的任意玩家可以访问到。2. 数据可靠，下载的资源必须是正确的内容。3. 速度，我们必须尽可能的保证玩家的下载速度。4. 稳定，需要能够稳定下载所需资源。5. 节省流量，虽然这是个可选项但是流量就意味着金钱，所以下载器还需要尽可能的节约流量。通常的下载器使用的是Http方式下载，虽然能够保证可靠地数据访问，但是离高速稳定省流量还有较大差距，为了提高速度和稳定性我们通过使用CDN的方案有效解决。但是CDN解决不了节省流量的目标（实际上是增加流量成本的）， 简单的解决方法是使用压缩下载内容，目前项目中使用的下载器就是使用的这种方法。压缩数据的方法效果还是非常有效的，以某款为例，12GB的包可以压缩到7GB, 也就是可以节省40%的流量。
 是否可以有更有效的方法解决流量问题呢？很自然的想法是使用P2P加速技术。P2P是指 peer to peer, 即节点到节点数据传输，就是各个客户端之间数据传输。大家常见的P2P技术主要是BT下载技术，但是BT与我们前面使用的技术是由冲突的。我们先看下HTTP与BT的结构图进行简单的对比下：
@@ -31,10 +31,10 @@ ZIP格式BT格式BT的下载原理是根据上图将需要下载的内容先�
     
     <item>
       <title>tcprt</title>
-      <link>https://gqw.gitee.io/posts/net/tcptrace/</link>
+      <link>https://gqw.github.io/posts/net/tcptrace/</link>
       <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/net/tcptrace/</guid>
+      <guid>https://gqw.github.io/posts/net/tcptrace/</guid>
       <description>tcprt 介绍 产品发布后有玩家反映客户端（Windows系统）无法连接服务器， 使用ping.exe、tracert.exe工具检查均未发现有异常情况，但是telnet却无法连接。最后发现发现国内某些运营商网络在对icmp和tcp协议的路由选择上不一致导致。最后运维人员希望能够收集出错时的路由信息。 我们知道在Linux系统上实现很简单系统自带的traceroute工具自带tcp协议的探测，实现起来比较简单。但是客户端产品大多是Windows系统的，自带的tracert.exe只有icmp探测类型。下图是分别使用ICMP和TCPtracerouter的对比，图中可以看到明显的不同路由路径。 目标 实现类似于linux的traceroute -T方法 原理与实现 tracerouter原理 为了理解tracerouter原理，我们先来看下IP的协议头： 这里面有个8比特的Time To Live (TTL)字段，它代表是报文的存活时间，这个8位字段避免报文在互联网中永远存在（例如陷入路由环路）。存活时间以秒为单位，但小于一秒的时间均向上取整到一秒。在现实中，这实际上成了一个跳数计数器：报文经过的每个路由器都将此字段减1，当此字段等于0时，报文不再向下一跳传送并被丢弃，最大值是255。常规地，一份ICMP报文被发回报文发送端说明其发送的报文已被丢弃。这也是traceroute的核心原理。 什么意思呢？我们看下下面的图： 这里表示的是192.168.1.2这台客户机访问192.168.5.32的路由图，报文首先在客户机（1.2）这台机器被创建出来并设置TTL字段为128, 然后经过若干路由接力传递最终到达目标服务器，在接力过程中没遇到一个路由中转，路由器均会将TTL值减一。再看这张图： 这次我们在客户机组装报文时将TTL设置的比较小只有3，这样在报文到达第一个路由路时路由检查报文中TTL的值发现TTL大于1于是修改报文将TTL减1继续转发给下一个路由，第二个路由采用同样的方法修改TTL后继续发给第三个路由，第三个路由受到报文时同样检查TTL值，发现TTL值已经为1，意识到自己已经是最后一跳不能再继续转发了，所以直接向源主机发送类型为11的ICMP报文告诉源主机报文发送失败（当然返回的报文也需要若干路由跳转，图中返回的虚箭头指示表达报文最终到达源主机）。
 traceroute为了探测每个路由的地址，循环递增报文的TTL值，当TTL等于1时第一个路由便返回ICMP报文，源机器便可根据其IP头获得路由地址，当TTL等于2时可以得到第二个路由地址，依次循环下去直到到达目标机器。
 实现 tracert在Windows下只有基于ICMP协议的实现。Linux下倒是有TCP版本的实现，

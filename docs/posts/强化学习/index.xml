@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>强化学习 on 顾起威的博客</title>
-    <link>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</link>
+    <link>https://gqw.github.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</link>
     <description>Recent content in 强化学习 on 顾起威的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn_ZH</language>
-    <lastBuildDate>Tue, 16 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.github.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>创建最简单的gym自定义环境</title>
-      <link>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</link>
+      <link>https://gqw.github.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</link>
       <pubDate>Tue, 16 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</guid>
+      <guid>https://gqw.github.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</guid>
       <description>问题 学习一样东西最好自己动手做一个，想明白OpenAI gym的运行机制，我们就从0开始搭建个环境。
 解决步骤 目录结构：
 (.venv) gqw@u:~/workspace/gymtrain$ tree . ├── env │ ├── foo_env.py │ └── __init__.py └── foo_train.py 1 directory, 3 files gym将代码分为两部分：环境部分和训练部分
@@ -23,10 +23,10 @@ import gymclass FooEnv(gym.Env):&amp;#34;&amp;#34;&amp;#34; This is a simple e
     
     <item>
       <title>在Windows中运行远程Linux图形程序</title>
-      <link>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</link>
+      <link>https://gqw.github.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</link>
       <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</guid>
+      <guid>https://gqw.github.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</guid>
       <description>问题 在学习强化学习时用到gym。在Windows上跑gym总有诸多不便，所以直接将环境切到Linux下。开始方案是使用Win 10的Ubuntu子系统wsl2。按照网上教程虽然没有弄明白原理但是还算顺利，Linux的Gui程序还是能正常跑起来的。最近双11腾讯云搞促销就卖了3年的云主机，买了以后发现自己也没什么需要放在上面跑的东西，就寻思能不能将gym环境搬到云上，这样也就省得在公司机器和家里的机器上来回切换的麻烦了。但是今天在操作的时候还是遇到了不少的问题，现在记录下来以作备忘。
 解决方法 首先到SourceForge上下载最新的VcXsrv
 安装运行

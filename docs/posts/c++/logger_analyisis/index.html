@@ -36,7 +36,7 @@
 logger::get().info(&#34;%s&#34;, &#34;log message&#34;); logger::get().info() &lt;&lt; &#34;log message&#34; &lt;&lt; std::endl; 使用日志等级进行输出优化 除此之外，日志系统一般还会提供日志分级功能，通过日志分级我们可以在程序运行时动态控制日志输出，减少不必要的日志打印。日志分级可以通过如下伪代码试下：
 class Logger { public: void trace(const std::string_view&amp; fmt, ...) { if (log_level_ &lt; 0) // 通过日志等级，判断是否需要真正打印 return; printf(...); } void debug(const std::string_view&amp; fmt, ...) { if (log_level_ &lt; 1) return; printf(...); } void info(const std::string_view&amp; fmt, ...) { if (log_level_ &lt; 2) return; printf(...); } void set_level(int level) { log_level_ = level; } ... private: int log_level_ = 0; }; 通过上面的代码我们可以看到如果调用set_level(2) 那么下面三条日志只打印一条日志结果：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gqw.gitee.io/posts/c&#43;&#43;/logger_analyisis/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://gqw.github.io/posts/c&#43;&#43;/logger_analyisis/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-01-18T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-01-18T00:00:00+00:00" />
 
@@ -318,7 +318,7 @@ class Logger { public: void trace(const std::string_view&amp; fmt, ...) { if (lo
   <div class="content">
     <div class="container p-0 read-area">
       
-      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.gitee.io/posts/c&#43;&#43;/logger_analyisis/log_system.png);'>
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.github.io/posts/c&#43;&#43;/logger_analyisis/log_system.png);'>
       </div>
 
       

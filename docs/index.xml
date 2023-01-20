@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>顾起威的博客</title>
-    <link>https://gqw.gitee.io/</link>
+    <link>https://gqw.github.io/</link>
     <description>Recent content on 顾起威的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn_ZH</language>
-    <lastBuildDate>Wed, 18 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Html in markdown</title>
-      <link>https://gqw.gitee.io/notes/html/markdown-html/</link>
+      <link>https://gqw.github.io/notes/html/markdown-html/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/notes/html/markdown-html/</guid>
+      <guid>https://gqw.github.io/notes/html/markdown-html/</guid>
       <description>markdown 图片加标注 HTTP下载方式&amp;lt;center id=&amp;#34;http&amp;#34;&amp;gt; &amp;lt;img style=&amp;#34;border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);&amp;#34; width=&amp;#34;200px&amp;#34; height=&amp;#34;200px&amp;#34; src=&amp;#34;https://i.loli.net/2021/07/26/QVMgJblTeGuY6fO.png&amp;#34;&amp;gt; &amp;lt;br&amp;gt; &amp;lt;div style=&amp;#34;color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;&amp;#34;&amp;gt;HTTP下载方式&amp;lt;/div&amp;gt; &amp;lt;/center&amp;gt; Markdown 排列图片 HTTP下载方式BT下载方式&amp;lt;center id=&amp;#34;http&amp;#34;&amp;gt; &amp;lt;img style=&amp;#34;border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);&amp;#34; width=&amp;#34;200px&amp;#34; height=&amp;#34;200px&amp;#34; src=&amp;#34;https://i.loli.net/2021/07/26/QVMgJblTeGuY6fO.png&amp;#34;&amp;gt; &amp;lt;br&amp;gt; &amp;lt;div style=&amp;#34;color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;&amp;#34;&amp;gt;HTTP下载方式&amp;lt;/div&amp;gt; &amp;lt;/center&amp;gt; &amp;lt;center id=&amp;#34;BT&amp;#34;&amp;gt; &amp;lt;img style=&amp;#34;border-radius: 0.</description>
     </item>
     
     <item>
       <title>Linux环境配置</title>
-      <link>https://gqw.gitee.io/notes/linux/env/</link>
+      <link>https://gqw.github.io/notes/linux/env/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/notes/linux/env/</guid>
+      <guid>https://gqw.github.io/notes/linux/env/</guid>
       <description>gcc 源文件编译 # 下载，解压 tar -xf gcc-11.1.0.tar.xz cd gcc-11.1.0.tar # 安装必要编译工具 sudo apt install build-essential # 安装依赖库 sudo apt install libgmp-dev # 生成makefile文件 ./configure # 编译安装 make -j 10 sudo make install 从PPA安装 sudo add-apt-repository ppa:ubuntu-toolchain-r/test sudo apt-get update sudo apt install gcc-11 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 --slave /usr/bin/g++ g++ /usr/bin/g++-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11 </description>
     </item>
     
     <item>
       <title>wsl</title>
-      <link>https://gqw.gitee.io/notes/linux/wsl/</link>
+      <link>https://gqw.github.io/notes/linux/wsl/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/notes/linux/wsl/</guid>
+      <guid>https://gqw.github.io/notes/linux/wsl/</guid>
       <description>wsl2 默认root登录 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\{a7b6183f-cc3e-4388-a97a-502a98efca90}] &amp;#34;DefaultUid&amp;#34;=dword:00000000 设置 DefaultUid 为0
 wsl2 限制CPU和内存大小 创建 %UserProfile%\.wslconfig 添加如下内容
 [wsl2] memory=4GB # Limits VM memory in WSL 2 to 4 GB processors=4 # Makes the WSL 2 VM use two virtual processors </description>
@@ -38,10 +38,10 @@ wsl2 限制CPU和内存大小 创建 %UserProfile%\.wslconfig 添加如下内容
     
     <item>
       <title>Resultados de Búsqueda</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>Este archivo existe únicamente para responder a la URL /search con la plantilla de diseño search relacionada.
 No se muestra ningún contenido aquí, todo el contenido se basa en la plantilla layouts/page/search.html
 Establecer una prioridad muy baja en el mapa del sitio le dirá a los motores de búsqueda que éste no es un contenido importante.
@@ -51,10 +51,10 @@ Configuración inicial La búsqueda depende del tipo de contenido de salida adic
     
     <item>
       <title>Resultados de Búsqueda</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>Este archivo existe únicamente para responder a la URL /search con la plantilla de diseño search relacionada.
 No se muestra ningún contenido aquí, todo el contenido se basa en la plantilla layouts/page/search.html
 Establecer una prioridad muy baja en el mapa del sitio le dirá a los motores de búsqueda que éste no es un contenido importante.
@@ -64,10 +64,10 @@ Configuración inicial La búsqueda depende del tipo de contenido de salida adic
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -77,10 +77,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -90,10 +90,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -103,10 +103,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -116,10 +116,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -129,10 +129,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -142,10 +142,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -155,10 +155,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -168,10 +168,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -181,10 +181,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -194,10 +194,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -207,10 +207,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -220,10 +220,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -233,10 +233,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -246,10 +246,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -259,10 +259,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -272,10 +272,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -285,10 +285,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -298,10 +298,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -311,10 +311,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -324,10 +324,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>অনুসন্ধানের ফলাফল</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -337,10 +337,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>অনুসন্ধানের ফলাফল</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -350,10 +350,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>日志系统性能分析与优化</title>
-      <link>https://gqw.gitee.io/posts/c&#43;&#43;/logger_analyisis/</link>
+      <link>https://gqw.github.io/posts/c&#43;&#43;/logger_analyisis/</link>
       <pubDate>Wed, 18 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/logger_analyisis/</guid>
+      <guid>https://gqw.github.io/posts/c&#43;&#43;/logger_analyisis/</guid>
       <description>日志系统在任何稍微有点规模的软件系统中都是必不可少的组成部分，它是我们分析代码和解决问题的有效手段和得力助手。一份详尽而精准的日志能让我们解决问题事半功倍。很多时候由于日志的频繁打印很容易造成日志系统本身成为性能热点，下面让我们详细分析下作为日志系统的调用方需要注意的一些问题。
 日志打印 大多数的日志系统都会提供print和stream两种调用方式。简单的如：
 logger::get().info(&amp;#34;%s&amp;#34;, &amp;#34;log message&amp;#34;); logger::get().info() &amp;lt;&amp;lt; &amp;#34;log message&amp;#34; &amp;lt;&amp;lt; std::endl; 使用日志等级进行输出优化 除此之外，日志系统一般还会提供日志分级功能，通过日志分级我们可以在程序运行时动态控制日志输出，减少不必要的日志打印。日志分级可以通过如下伪代码试下：
@@ -362,10 +362,10 @@ class Logger { public: void trace(const std::string_view&amp;amp; fmt, ...) { if
     
     <item>
       <title>创建最简单的gym自定义环境</title>
-      <link>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</link>
+      <link>https://gqw.github.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</link>
       <pubDate>Tue, 16 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</guid>
+      <guid>https://gqw.github.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</guid>
       <description>问题 学习一样东西最好自己动手做一个，想明白OpenAI gym的运行机制，我们就从0开始搭建个环境。
 解决步骤 目录结构：
 (.venv) gqw@u:~/workspace/gymtrain$ tree . ├── env │ ├── foo_env.py │ └── __init__.py └── foo_train.py 1 directory, 3 files gym将代码分为两部分：环境部分和训练部分
@@ -376,10 +376,10 @@ import gymclass FooEnv(gym.Env):&amp;#34;&amp;#34;&amp;#34; This is a simple e
     
     <item>
       <title>在Windows中运行远程Linux图形程序</title>
-      <link>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</link>
+      <link>https://gqw.github.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</link>
       <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</guid>
+      <guid>https://gqw.github.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</guid>
       <description>问题 在学习强化学习时用到gym。在Windows上跑gym总有诸多不便，所以直接将环境切到Linux下。开始方案是使用Win 10的Ubuntu子系统wsl2。按照网上教程虽然没有弄明白原理但是还算顺利，Linux的Gui程序还是能正常跑起来的。最近双11腾讯云搞促销就卖了3年的云主机，买了以后发现自己也没什么需要放在上面跑的东西，就寻思能不能将gym环境搬到云上，这样也就省得在公司机器和家里的机器上来回切换的麻烦了。但是今天在操作的时候还是遇到了不少的问题，现在记录下来以作备忘。
 解决方法 首先到SourceForge上下载最新的VcXsrv
 安装运行
@@ -401,10 +401,10 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
     
     <item>
       <title>coro_redis 开发手记</title>
-      <link>https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/</link>
+      <link>https://gqw.github.io/posts/c&#43;&#43;/coro_redis/</link>
       <pubDate>Wed, 18 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/</guid>
+      <guid>https://gqw.github.io/posts/c&#43;&#43;/coro_redis/</guid>
       <description>本文是coro_redis项目的开发手记，其较为详尽的描述了其开发过程中遇到的问题和解决方案以及学习心得。希望能和大家共同努力和完善此项目。项目地址为： https://github.com/gqw/coro_redis
 自从上次写完《从HelloWold开始，深入浅出C++ 20 Coroutine TS》已经有一阵子没有写C++代码了，在那篇文章中给自己立了FLAG说要继续写一篇关于asio中使用协程开发的文章也一直没有兑现。现在趁着空闲用协程写了一个redis client库。
 代码还是像mrpc一样追求少而精，希望大家能够学会怎样使用c++的协程，而不是直接把库拿过去用。
@@ -415,19 +415,19 @@ windows linux Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2) Visual Studio 2022
     
     <item>
       <title>Linux 编译GCC 11</title>
-      <link>https://gqw.gitee.io/posts/c&#43;&#43;/build_gcc/</link>
+      <link>https://gqw.github.io/posts/c&#43;&#43;/build_gcc/</link>
       <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/build_gcc/</guid>
+      <guid>https://gqw.github.io/posts/c&#43;&#43;/build_gcc/</guid>
       <description># 下载，解压 tar -xf gcc-11.1.0.tar.xz cd gcc-11.1.0.tar # 安装必要编译工具 sudo apt install gcc g++ make # 安装依赖库 sudo apt install libgmp-dev # 生成makefile文件 ./configure # 编译安装 make -j 10 sudo make install </description>
     </item>
     
     <item>
       <title>同步GitHub pages和 Gitee pages方法</title>
-      <link>https://gqw.gitee.io/posts/git/sync_github_gitee/</link>
+      <link>https://gqw.github.io/posts/git/sync_github_gitee/</link>
       <pubDate>Wed, 28 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/git/sync_github_gitee/</guid>
+      <guid>https://gqw.github.io/posts/git/sync_github_gitee/</guid>
       <description>问题 这两天在整理博客，一直使用GitHub和Gitee的Pages功能作为博客的静态托管站。但是遇到以下几个问题：
 每次PUSH都要向两个网站分别提交，操作繁琐 域名问题， 博客使用的Hugo博客生成系统，根域名是在config.yaml配置的，导致最终的域名管理比较混乱。比如配置了github的域名，提交给gitee时忘记改，就会导致某些图片或内容访问不稳定。 Gitee发布比较麻烦，需要手动更新提交 解决方法 对于多次提交的问题，最初解决方法是使用以下命令：
 $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git remote -v origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) origin git@github.com:gqw/gqw.github.io.git (push) 方法解决。添加过后每次提交都会同时往两个仓库提交。
@@ -438,10 +438,10 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
     
     <item>
       <title>一种简单可行的P2SP实践方案</title>
-      <link>https://gqw.gitee.io/posts/net/p2p/</link>
+      <link>https://gqw.github.io/posts/net/p2p/</link>
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/net/p2p/</guid>
+      <guid>https://gqw.github.io/posts/net/p2p/</guid>
       <description>缘由与目标 随着计算机硬件的发展，游戏的玩法和画质也得到了飞速的发展。游戏内容越来越丰富，画面质量也越来越精细。这也导致了游戏的包体越来越大。PC端游戏基本上10GB起步，《战地》，《易水寒》等游戏基本已经达到100G体量。如此大的体量对于游戏发行方，是一个必须要考虑的问题。用于游戏分发的下载器我们必须考虑以下几个方面：
 1. 可访问， 这是下载器的首要前提，我们必须保证数据能够被联网的任意玩家可以访问到。2. 数据可靠，下载的资源必须是正确的内容。3. 速度，我们必须尽可能的保证玩家的下载速度。4. 稳定，需要能够稳定下载所需资源。5. 节省流量，虽然这是个可选项但是流量就意味着金钱，所以下载器还需要尽可能的节约流量。通常的下载器使用的是Http方式下载，虽然能够保证可靠地数据访问，但是离高速稳定省流量还有较大差距，为了提高速度和稳定性我们通过使用CDN的方案有效解决。但是CDN解决不了节省流量的目标（实际上是增加流量成本的）， 简单的解决方法是使用压缩下载内容，目前项目中使用的下载器就是使用的这种方法。压缩数据的方法效果还是非常有效的，以某款为例，12GB的包可以压缩到7GB, 也就是可以节省40%的流量。
 是否可以有更有效的方法解决流量问题呢？很自然的想法是使用P2P加速技术。P2P是指 peer to peer, 即节点到节点数据传输，就是各个客户端之间数据传输。大家常见的P2P技术主要是BT下载技术，但是BT与我们前面使用的技术是由冲突的。我们先看下HTTP与BT的结构图进行简单的对比下：
@@ -460,10 +460,10 @@ ZIP格式BT格式BT的下载原理是根据上图将需要下载的内容先�
     
     <item>
       <title>tcprt</title>
-      <link>https://gqw.gitee.io/posts/net/tcptrace/</link>
+      <link>https://gqw.github.io/posts/net/tcptrace/</link>
       <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/net/tcptrace/</guid>
+      <guid>https://gqw.github.io/posts/net/tcptrace/</guid>
       <description>tcprt 介绍 产品发布后有玩家反映客户端（Windows系统）无法连接服务器， 使用ping.exe、tracert.exe工具检查均未发现有异常情况，但是telnet却无法连接。最后发现发现国内某些运营商网络在对icmp和tcp协议的路由选择上不一致导致。最后运维人员希望能够收集出错时的路由信息。 我们知道在Linux系统上实现很简单系统自带的traceroute工具自带tcp协议的探测，实现起来比较简单。但是客户端产品大多是Windows系统的，自带的tracert.exe只有icmp探测类型。下图是分别使用ICMP和TCPtracerouter的对比，图中可以看到明显的不同路由路径。 目标 实现类似于linux的traceroute -T方法 原理与实现 tracerouter原理 为了理解tracerouter原理，我们先来看下IP的协议头： 这里面有个8比特的Time To Live (TTL)字段，它代表是报文的存活时间，这个8位字段避免报文在互联网中永远存在（例如陷入路由环路）。存活时间以秒为单位，但小于一秒的时间均向上取整到一秒。在现实中，这实际上成了一个跳数计数器：报文经过的每个路由器都将此字段减1，当此字段等于0时，报文不再向下一跳传送并被丢弃，最大值是255。常规地，一份ICMP报文被发回报文发送端说明其发送的报文已被丢弃。这也是traceroute的核心原理。 什么意思呢？我们看下下面的图： 这里表示的是192.168.1.2这台客户机访问192.168.5.32的路由图，报文首先在客户机（1.2）这台机器被创建出来并设置TTL字段为128, 然后经过若干路由接力传递最终到达目标服务器，在接力过程中没遇到一个路由中转，路由器均会将TTL值减一。再看这张图： 这次我们在客户机组装报文时将TTL设置的比较小只有3，这样在报文到达第一个路由路时路由检查报文中TTL的值发现TTL大于1于是修改报文将TTL减1继续转发给下一个路由，第二个路由采用同样的方法修改TTL后继续发给第三个路由，第三个路由受到报文时同样检查TTL值，发现TTL值已经为1，意识到自己已经是最后一跳不能再继续转发了，所以直接向源主机发送类型为11的ICMP报文告诉源主机报文发送失败（当然返回的报文也需要若干路由跳转，图中返回的虚箭头指示表达报文最终到达源主机）。
 traceroute为了探测每个路由的地址，循环递增报文的TTL值，当TTL等于1时第一个路由便返回ICMP报文，源机器便可根据其IP头获得路由地址，当TTL等于2时可以得到第二个路由地址，依次循环下去直到到达目标机器。
 实现 tracert在Windows下只有基于ICMP协议的实现。Linux下倒是有TCP版本的实现，
@@ -478,10 +478,10 @@ On Windows Server 2003 and earlier, a Transport Driver Interface (TDI) provider 
     
     <item>
       <title>C&#43;&#43;序列化和反序列化工具</title>
-      <link>https://gqw.gitee.io/posts/c&#43;&#43;/serialization/</link>
+      <link>https://gqw.github.io/posts/c&#43;&#43;/serialization/</link>
       <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/serialization/</guid>
+      <guid>https://gqw.github.io/posts/c&#43;&#43;/serialization/</guid>
       <description>在开发时我们经常会遇到需要序列号和反序列化得操作。比如将程序配置导出下次打开再从配置中读取，通常你可以将信息保存成json、xml或ini格式，让后再解析出来。更常见的情形是我们通过网络发送和接收数据，也涉及到序列化和反序列化操作，当让你可以使用protobuf、msgpack等序列化库。但是如果你只是个简单程序，或者序列化和反序列化的业务不是很重，不想搞得那么复杂有什么简单的方法吗？
 最直接的方法 直接按字节拷贝，见代码:
 #include &amp;lt;string&amp;gt; bool encode(const std::string&amp;amp; s, int32_t a, int32_t b, int32_t c, std::string&amp;amp; buf) { int32_t d = static_cast&amp;lt;int32_t&amp;gt;(s.length()); if (buf.size() &amp;lt; (sizeof(int32_t) * 4 + d)) return false; std::size_t pos = 0; memcpy(buf.data() + pos, &amp;amp;a, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;b, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;c, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;d, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, s.</description>
@@ -489,10 +489,10 @@ On Windows Server 2003 and earlier, a Transport Driver Interface (TDI) provider 
     
     <item>
       <title>从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS</title>
-      <link>https://gqw.gitee.io/posts/c&#43;&#43;/coroutine/</link>
+      <link>https://gqw.github.io/posts/c&#43;&#43;/coroutine/</link>
       <pubDate>Thu, 01 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/coroutine/</guid>
+      <guid>https://gqw.github.io/posts/c&#43;&#43;/coroutine/</guid>
       <description>缘起 前一阵子在查看asio库的时候看到在example目录中已经提供了coroutines_ts代码。很是好奇，便慢慢翻看代码，在感叹Coroutine给异步编程带来的优雅简洁的同时也带来了许多概念上的复杂和难以理解。由于C++ Coroutine还是一个比较新的概念，各个编译器厂商的实现还处于实验性的阶段[1] ，网上的资料少而松散。由此内心涌出一个念头想把自己的学习过程记录下来以期帮助后面学习的人。
 从HelloWorld说起 再过两年这个世界的第一条HelloWorld代码就要有50年历史了[2] ，在此先提前蹭下热点，:)&amp;hellip;
 #include &amp;lt;iostream&amp;gt; int main() { std::cout &amp;lt;&amp;lt; &amp;#34;hello, world&amp;#34; &amp;lt;&amp;lt; std::endl; return 0; } 代码1这是一段平淡无奇的符合C++98标准的代码，你甚至可以用古董级编译器GCC 4.3都能编译通过[3]。但是我希望通过对这段代码的演化带领大家学习了解C++ 20中的Coroutine。
@@ -505,10 +505,10 @@ On Windows Server 2003 and earlier, a Transport Driver Interface (TDI) provider 
     
     <item>
       <title>test</title>
-      <link>https://gqw.gitee.io/posts/test/</link>
+      <link>https://gqw.github.io/posts/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/test/</guid>
+      <guid>https://gqw.github.io/posts/test/</guid>
       <description>\documentclass[UTF8]{ctexart} \usepackage{markdown} \begin{document} \begin{markdown}
 我是 Markdown 这里可以用 Markdown 语法，撰写各种内容。例如，我可以强调，也可以加粗，当然也可以加粗并强调。
 这里是二级标题 幸福的获得，在极大的程度上却是由于消除了对自我的过分关注。 &amp;mdash;Bertrand Arthur William Russell
@@ -519,10 +519,10 @@ math &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsd
     
     <item>
       <title>随手记</title>
-      <link>https://gqw.gitee.io/notes/notes/</link>
+      <link>https://gqw.github.io/notes/notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/notes/notes/</guid>
+      <guid>https://gqw.github.io/notes/notes/</guid>
       <description>c&amp;#43;&amp;#43; 协程 C++ coroutines: The mental model for coroutine promises doxygen 使用 mermaid /*! \~english * ... text ... * The distance between \f$(x_1,y_1)\f$ and \f$(x_2,y_2)\f$ is \f$\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\f$. * @htmlonly * &amp;lt;div class=&amp;#34;mermaid&amp;#34;&amp;gt; * sequenceDiagram * Alice-&amp;gt;&amp;gt;John: Hello John, how are you? * loop Healthcheck * John-&amp;gt;&amp;gt;John: Fight against hypochondria * end * Note right of John: Rational thoughts! * John--&amp;gt;&amp;gt;Alice: Great! * John-&amp;gt;&amp;gt;Bob: How about you? * Bob--&amp;gt;&amp;gt;John: Jolly good!</description>
     </item>
     

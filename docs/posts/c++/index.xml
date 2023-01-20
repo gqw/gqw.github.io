@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C&#43;&#43; on 顾起威的博客</title>
-    <link>https://gqw.gitee.io/posts/c&#43;&#43;/</link>
+    <link>https://gqw.github.io/posts/c&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on 顾起威的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn_ZH</language>
-    <lastBuildDate>Wed, 18 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/posts/c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.github.io/posts/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>日志系统性能分析与优化</title>
-      <link>https://gqw.gitee.io/posts/c&#43;&#43;/logger_analyisis/</link>
+      <link>https://gqw.github.io/posts/c&#43;&#43;/logger_analyisis/</link>
       <pubDate>Wed, 18 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/logger_analyisis/</guid>
+      <guid>https://gqw.github.io/posts/c&#43;&#43;/logger_analyisis/</guid>
       <description>日志系统在任何稍微有点规模的软件系统中都是必不可少的组成部分，它是我们分析代码和解决问题的有效手段和得力助手。一份详尽而精准的日志能让我们解决问题事半功倍。很多时候由于日志的频繁打印很容易造成日志系统本身成为性能热点，下面让我们详细分析下作为日志系统的调用方需要注意的一些问题。
 日志打印 大多数的日志系统都会提供print和stream两种调用方式。简单的如：
 logger::get().info(&amp;#34;%s&amp;#34;, &amp;#34;log message&amp;#34;); logger::get().info() &amp;lt;&amp;lt; &amp;#34;log message&amp;#34; &amp;lt;&amp;lt; std::endl; 使用日志等级进行输出优化 除此之外，日志系统一般还会提供日志分级功能，通过日志分级我们可以在程序运行时动态控制日志输出，减少不必要的日志打印。日志分级可以通过如下伪代码试下：
@@ -21,10 +21,10 @@ class Logger { public: void trace(const std::string_view&amp;amp; fmt, ...) { if
     
     <item>
       <title>coro_redis 开发手记</title>
-      <link>https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/</link>
+      <link>https://gqw.github.io/posts/c&#43;&#43;/coro_redis/</link>
       <pubDate>Wed, 18 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/</guid>
+      <guid>https://gqw.github.io/posts/c&#43;&#43;/coro_redis/</guid>
       <description>本文是coro_redis项目的开发手记，其较为详尽的描述了其开发过程中遇到的问题和解决方案以及学习心得。希望能和大家共同努力和完善此项目。项目地址为： https://github.com/gqw/coro_redis
 自从上次写完《从HelloWold开始，深入浅出C++ 20 Coroutine TS》已经有一阵子没有写C++代码了，在那篇文章中给自己立了FLAG说要继续写一篇关于asio中使用协程开发的文章也一直没有兑现。现在趁着空闲用协程写了一个redis client库。
 代码还是像mrpc一样追求少而精，希望大家能够学会怎样使用c++的协程，而不是直接把库拿过去用。
@@ -35,19 +35,19 @@ windows linux Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2) Visual Studio 2022
     
     <item>
       <title>Linux 编译GCC 11</title>
-      <link>https://gqw.gitee.io/posts/c&#43;&#43;/build_gcc/</link>
+      <link>https://gqw.github.io/posts/c&#43;&#43;/build_gcc/</link>
       <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/build_gcc/</guid>
+      <guid>https://gqw.github.io/posts/c&#43;&#43;/build_gcc/</guid>
       <description># 下载，解压 tar -xf gcc-11.1.0.tar.xz cd gcc-11.1.0.tar # 安装必要编译工具 sudo apt install gcc g++ make # 安装依赖库 sudo apt install libgmp-dev # 生成makefile文件 ./configure # 编译安装 make -j 10 sudo make install </description>
     </item>
     
     <item>
       <title>C&#43;&#43;序列化和反序列化工具</title>
-      <link>https://gqw.gitee.io/posts/c&#43;&#43;/serialization/</link>
+      <link>https://gqw.github.io/posts/c&#43;&#43;/serialization/</link>
       <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/serialization/</guid>
+      <guid>https://gqw.github.io/posts/c&#43;&#43;/serialization/</guid>
       <description>在开发时我们经常会遇到需要序列号和反序列化得操作。比如将程序配置导出下次打开再从配置中读取，通常你可以将信息保存成json、xml或ini格式，让后再解析出来。更常见的情形是我们通过网络发送和接收数据，也涉及到序列化和反序列化操作，当让你可以使用protobuf、msgpack等序列化库。但是如果你只是个简单程序，或者序列化和反序列化的业务不是很重，不想搞得那么复杂有什么简单的方法吗？
 最直接的方法 直接按字节拷贝，见代码:
 #include &amp;lt;string&amp;gt; bool encode(const std::string&amp;amp; s, int32_t a, int32_t b, int32_t c, std::string&amp;amp; buf) { int32_t d = static_cast&amp;lt;int32_t&amp;gt;(s.length()); if (buf.size() &amp;lt; (sizeof(int32_t) * 4 + d)) return false; std::size_t pos = 0; memcpy(buf.data() + pos, &amp;amp;a, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;b, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;c, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;d, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, s.</description>
@@ -55,10 +55,10 @@ windows linux Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2) Visual Studio 2022
     
     <item>
       <title>从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS</title>
-      <link>https://gqw.gitee.io/posts/c&#43;&#43;/coroutine/</link>
+      <link>https://gqw.github.io/posts/c&#43;&#43;/coroutine/</link>
       <pubDate>Thu, 01 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/coroutine/</guid>
+      <guid>https://gqw.github.io/posts/c&#43;&#43;/coroutine/</guid>
       <description>缘起 前一阵子在查看asio库的时候看到在example目录中已经提供了coroutines_ts代码。很是好奇，便慢慢翻看代码，在感叹Coroutine给异步编程带来的优雅简洁的同时也带来了许多概念上的复杂和难以理解。由于C++ Coroutine还是一个比较新的概念，各个编译器厂商的实现还处于实验性的阶段[1] ，网上的资料少而松散。由此内心涌出一个念头想把自己的学习过程记录下来以期帮助后面学习的人。
 从HelloWorld说起 再过两年这个世界的第一条HelloWorld代码就要有50年历史了[2] ，在此先提前蹭下热点，:)&amp;hellip;
 #include &amp;lt;iostream&amp;gt; int main() { std::cout &amp;lt;&amp;lt; &amp;#34;hello, world&amp;#34; &amp;lt;&amp;lt; std::endl; return 0; } 代码1这是一段平淡无奇的符合C++98标准的代码，你甚至可以用古董级编译器GCC 4.3都能编译通过[3]。但是我希望通过对这段代码的演化带领大家学习了解C++ 20中的Coroutine。

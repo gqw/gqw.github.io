@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>笔记 on 顾起威的博客</title>
-    <link>https://gqw.gitee.io/notes/</link>
+    <link>https://gqw.github.io/notes/</link>
     <description>Recent content in 笔记 on 顾起威的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn_ZH</language>
-    <lastBuildDate>Tue, 08 Jun 2010 08:06:25 +0600</lastBuildDate><atom:link href="https://gqw.gitee.io/notes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Jun 2010 08:06:25 +0600</lastBuildDate><atom:link href="https://gqw.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Resultados de Búsqueda</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>Este archivo existe únicamente para responder a la URL /search con la plantilla de diseño search relacionada.
 No se muestra ningún contenido aquí, todo el contenido se basa en la plantilla layouts/page/search.html
 Establecer una prioridad muy baja en el mapa del sitio le dirá a los motores de búsqueda que éste no es un contenido importante.
@@ -22,10 +22,10 @@ Configuración inicial La búsqueda depende del tipo de contenido de salida adic
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -35,10 +35,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -48,10 +48,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -61,10 +61,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -74,10 +74,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -87,10 +87,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -100,10 +100,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -113,10 +113,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -126,10 +126,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -139,10 +139,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>Search Results</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -152,10 +152,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>অনুসন্ধানের ফলাফল</title>
-      <link>https://gqw.gitee.io/search/</link>
+      <link>https://gqw.github.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
       
-      <guid>https://gqw.gitee.io/search/</guid>
+      <guid>https://gqw.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
@@ -165,10 +165,10 @@ Initial setup Search depends on additional output content type of JSON in config
     
     <item>
       <title>随手记</title>
-      <link>https://gqw.gitee.io/notes/notes/</link>
+      <link>https://gqw.github.io/notes/notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/notes/notes/</guid>
+      <guid>https://gqw.github.io/notes/notes/</guid>
       <description>c&amp;#43;&amp;#43; 协程 C++ coroutines: The mental model for coroutine promises doxygen 使用 mermaid /*! \~english * ... text ... * The distance between \f$(x_1,y_1)\f$ and \f$(x_2,y_2)\f$ is \f$\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\f$. * @htmlonly * &amp;lt;div class=&amp;#34;mermaid&amp;#34;&amp;gt; * sequenceDiagram * Alice-&amp;gt;&amp;gt;John: Hello John, how are you? * loop Healthcheck * John-&amp;gt;&amp;gt;John: Fight against hypochondria * end * Note right of John: Rational thoughts! * John--&amp;gt;&amp;gt;Alice: Great! * John-&amp;gt;&amp;gt;Bob: How about you? * Bob--&amp;gt;&amp;gt;John: Jolly good!</description>
     </item>
     

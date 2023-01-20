@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on 顾起威的博客</title>
-    <link>https://gqw.gitee.io/posts/git/</link>
+    <link>https://gqw.github.io/posts/git/</link>
     <description>Recent content in Git on 顾起威的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn_ZH</language>
-    <lastBuildDate>Wed, 28 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/posts/git/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 28 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.github.io/posts/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>同步GitHub pages和 Gitee pages方法</title>
-      <link>https://gqw.gitee.io/posts/git/sync_github_gitee/</link>
+      <link>https://gqw.github.io/posts/git/sync_github_gitee/</link>
       <pubDate>Wed, 28 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://gqw.gitee.io/posts/git/sync_github_gitee/</guid>
+      <guid>https://gqw.github.io/posts/git/sync_github_gitee/</guid>
       <description>问题 这两天在整理博客，一直使用GitHub和Gitee的Pages功能作为博客的静态托管站。但是遇到以下几个问题：
 每次PUSH都要向两个网站分别提交，操作繁琐 域名问题， 博客使用的Hugo博客生成系统，根域名是在config.yaml配置的，导致最终的域名管理比较混乱。比如配置了github的域名，提交给gitee时忘记改，就会导致某些图片或内容访问不稳定。 Gitee发布比较麻烦，需要手动更新提交 解决方法 对于多次提交的问题，最初解决方法是使用以下命令：
 $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git remote -v origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) origin git@github.com:gqw/gqw.github.io.git (push) 方法解决。添加过后每次提交都会同时往两个仓库提交。
