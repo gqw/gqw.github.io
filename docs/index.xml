@@ -6,53 +6,41 @@
     <description>Recent content on 顾起威的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn_ZH</language>
-    <lastBuildDate>Tue, 16 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gqw.gitee.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Html in markdown</title>
       <link>https://gqw.gitee.io/notes/html/markdown-html/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/notes/html/markdown-html/</guid>
-      <description>markdown 图片加标注
-
-HTTP下载方式
-
-
-&amp;lt;center id=&amp;#34;http&amp;#34;&amp;gt; &amp;lt;img style=&amp;#34;border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);&amp;#34; width=&amp;#34;200px&amp;#34; height=&amp;#34;200px&amp;#34; src=&amp;#34;https://i.loli.net/2021/07/26/QVMgJblTeGuY6fO.png&amp;#34;&amp;gt; &amp;lt;br&amp;gt; &amp;lt;div style=&amp;#34;color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;&amp;#34;&amp;gt;HTTP下载方式&amp;lt;/div&amp;gt; &amp;lt;/center&amp;gt;     Markdown 排列图片
-
-HTTP下载方式
-
-BT下载方式
-
-
-&amp;lt;center id=&amp;#34;http&amp;#34;&amp;gt; &amp;lt;img style=&amp;#34;border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);&amp;#34; width=&amp;#34;200px&amp;#34; height=&amp;#34;200px&amp;#34; src=&amp;#34;https://i.loli.net/2021/07/26/QVMgJblTeGuY6fO.png&amp;#34;&amp;gt; &amp;lt;br&amp;gt; &amp;lt;div style=&amp;#34;color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;&amp;#34;&amp;gt;HTTP下载方式&amp;lt;/div&amp;gt; &amp;lt;/center&amp;gt; &amp;lt;center id=&amp;#34;BT&amp;#34;&amp;gt; &amp;lt;img style=&amp;#34;border-radius: 0.</description>
+      <description>markdown 图片加标注 HTTP下载方式&amp;lt;center id=&amp;#34;http&amp;#34;&amp;gt; &amp;lt;img style=&amp;#34;border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);&amp;#34; width=&amp;#34;200px&amp;#34; height=&amp;#34;200px&amp;#34; src=&amp;#34;https://i.loli.net/2021/07/26/QVMgJblTeGuY6fO.png&amp;#34;&amp;gt; &amp;lt;br&amp;gt; &amp;lt;div style=&amp;#34;color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;&amp;#34;&amp;gt;HTTP下载方式&amp;lt;/div&amp;gt; &amp;lt;/center&amp;gt; Markdown 排列图片 HTTP下载方式BT下载方式&amp;lt;center id=&amp;#34;http&amp;#34;&amp;gt; &amp;lt;img style=&amp;#34;border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);&amp;#34; width=&amp;#34;200px&amp;#34; height=&amp;#34;200px&amp;#34; src=&amp;#34;https://i.loli.net/2021/07/26/QVMgJblTeGuY6fO.png&amp;#34;&amp;gt; &amp;lt;br&amp;gt; &amp;lt;div style=&amp;#34;color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;&amp;#34;&amp;gt;HTTP下载方式&amp;lt;/div&amp;gt; &amp;lt;/center&amp;gt; &amp;lt;center id=&amp;#34;BT&amp;#34;&amp;gt; &amp;lt;img style=&amp;#34;border-radius: 0.</description>
     </item>
-
+    
     <item>
       <title>Linux环境配置</title>
       <link>https://gqw.gitee.io/notes/linux/env/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/notes/linux/env/</guid>
-      <description>gcc 源文件编译 # 下载，解压 tar -xf gcc-11.1.0.tar.xz cd gcc-11.1.0.tar # 安装必要编译工具 sudo apt install build-essential # 安装依赖库 sudo apt install libgmp-dev # 生成makefile文件 ./configure # 编译安装 make -j 10 sudo make install     从PPA安装 sudo add-apt-repository ppa:ubuntu-toolchain-r/test sudo apt-get update sudo apt install gcc-11 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 --slave /usr/bin/g++ g++ /usr/bin/g++-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11     </description>
+      <description>gcc 源文件编译 # 下载，解压 tar -xf gcc-11.1.0.tar.xz cd gcc-11.1.0.tar # 安装必要编译工具 sudo apt install build-essential # 安装依赖库 sudo apt install libgmp-dev # 生成makefile文件 ./configure # 编译安装 make -j 10 sudo make install 从PPA安装 sudo add-apt-repository ppa:ubuntu-toolchain-r/test sudo apt-get update sudo apt install gcc-11 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 --slave /usr/bin/g++ g++ /usr/bin/g++-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11 </description>
     </item>
-
+    
     <item>
       <title>wsl</title>
       <link>https://gqw.gitee.io/notes/linux/wsl/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/notes/linux/wsl/</guid>
-      <description>wsl2 默认root登录 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\{a7b6183f-cc3e-4388-a97a-502a98efca90}] &amp;#34;DefaultUid&amp;#34;=dword:00000000 设置 DefaultUid 为0
-    wsl2 限制CPU和内存大小 创建 %UserProfile%\.wslconfig 添加如下内容
-[wsl2] memory=4GB # Limits VM memory in WSL 2 to 4 GB processors=4 # Makes the WSL 2 VM use two virtual processors     </description>
+      <description>wsl2 默认root登录 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\{a7b6183f-cc3e-4388-a97a-502a98efca90}] &amp;#34;DefaultUid&amp;#34;=dword:00000000 设置 DefaultUid 为0
+wsl2 限制CPU和内存大小 创建 %UserProfile%\.wslconfig 添加如下内容
+[wsl2] memory=4GB # Limits VM memory in WSL 2 to 4 GB processors=4 # Makes the WSL 2 VM use two virtual processors </description>
     </item>
-
+    
     <item>
       <title>Resultados de Búsqueda</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>Este archivo existe únicamente para responder a la URL /search con la plantilla de diseño search relacionada.
 No se muestra ningún contenido aquí, todo el contenido se basa en la plantilla layouts/page/search.html
@@ -60,12 +48,12 @@ Establecer una prioridad muy baja en el mapa del sitio le dirá a los motores de
 Esta implementación utiliza Fusejs, jquery y mark.js
 Configuración inicial La búsqueda depende del tipo de contenido de salida adicional de JSON en config.</description>
     </item>
-
+    
     <item>
       <title>Resultados de Búsqueda</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>Este archivo existe únicamente para responder a la URL /search con la plantilla de diseño search relacionada.
 No se muestra ningún contenido aquí, todo el contenido se basa en la plantilla layouts/page/search.html
@@ -73,12 +61,12 @@ Establecer una prioridad muy baja en el mapa del sitio le dirá a los motores de
 Esta implementación utiliza Fusejs, jquery y mark.js
 Configuración inicial La búsqueda depende del tipo de contenido de salida adicional de JSON en config.</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -86,12 +74,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -99,12 +87,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -112,12 +100,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -125,12 +113,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -138,12 +126,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -151,12 +139,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -164,12 +152,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -177,12 +165,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -190,12 +178,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -203,12 +191,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -216,12 +204,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -229,12 +217,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -242,12 +230,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -255,12 +243,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -268,12 +256,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -281,12 +269,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -294,12 +282,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -307,12 +295,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -320,12 +308,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>Search Results</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -333,12 +321,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>অনুসন্ধানের ফলাফল</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -346,12 +334,12 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
     <item>
       <title>অনুসন্ধানের ফলাফল</title>
       <link>https://gqw.gitee.io/search/</link>
       <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
-
+      
       <guid>https://gqw.gitee.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
@@ -359,231 +347,184 @@ Setting a very low sitemap priority will tell search engines this is not importa
 This implementation uses Fusejs, jquery and mark.js
 Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
     </item>
-
+    
+    <item>
+      <title>日志系统性能分析与优化</title>
+      <link>https://gqw.gitee.io/posts/c&#43;&#43;/logger_analyisis/</link>
+      <pubDate>Wed, 18 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://gqw.gitee.io/posts/c&#43;&#43;/logger_analyisis/</guid>
+      <description>日志系统在任何稍微有点规模的软件系统中都是必不可少的组成部分，它是我们分析代码和解决问题的有效手段和得力助手。一份详尽而精准的日志能让我们解决问题事半功倍。很多时候由于日志的频繁打印很容易造成日志系统本身成为性能热点，下面让我们详细分析下作为日志系统的调用方需要注意的一些问题。
+日志打印 大多数的日志系统都会提供print和stream两种调用方式。简单的如：
+logger::get().info(&amp;#34;%s&amp;#34;, &amp;#34;log message&amp;#34;); logger::get().info() &amp;lt;&amp;lt; &amp;#34;log message&amp;#34; &amp;lt;&amp;lt; std::endl; 使用日志等级进行输出优化 除此之外，日志系统一般还会提供日志分级功能，通过日志分级我们可以在程序运行时动态控制日志输出，减少不必要的日志打印。日志分级可以通过如下伪代码试下：
+class Logger { public: void trace(const std::string_view&amp;amp; fmt, ...) { if (log_level_ &amp;lt; 0) // 通过日志等级，判断是否需要真正打印 return; printf(...); } void debug(const std::string_view&amp;amp; fmt, ...) { if (log_level_ &amp;lt; 1) return; printf(...); } void info(const std::string_view&amp;amp; fmt, ...) { if (log_level_ &amp;lt; 2) return; printf(...); } void set_level(int level) { log_level_ = level; } ... private: int log_level_ = 0; }; 通过上面的代码我们可以看到如果调用set_level(2) 那么下面三条日志只打印一条日志结果：</description>
+    </item>
+    
     <item>
       <title>创建最简单的gym自定义环境</title>
       <link>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</link>
       <pubDate>Tue, 16 Nov 2021 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/001_simple_env/</guid>
       <description>问题 学习一样东西最好自己动手做一个，想明白OpenAI gym的运行机制，我们就从0开始搭建个环境。
 解决步骤 目录结构：
 (.venv) gqw@u:~/workspace/gymtrain$ tree . ├── env │ ├── foo_env.py │ └── __init__.py └── foo_train.py 1 directory, 3 files gym将代码分为两部分：环境部分和训练部分
 gym 环境 gym 对环境镜像了抽象，无论多复杂的环境，最终暴露出来的只有gym.Env抽象的5个方法：
- step
-reset
-render
-close
-seed
-我们现在实现一个最简单的环境类FooEnv:
-import gym
-class FooEnv(gym.Env):
-&amp;quot;&amp;quot;&amp;quot; This is a simple envirionment &amp;quot;&amp;quot;&amp;quot;
-def __init__(self) -&amp;gt; None:
-super(FooEnv).__init__()
-self.seed()
-def seed(self):
-print(&amp;quot;seed&amp;quot;)
-pass
-def step(self, action):
-print(&amp;quot;step&amp;quot;)
-reward = 0
-done = False
-return None, reward, done, {}
-def reset(self):
-print(&amp;quot;reset&amp;quot;)
-pass
-def render(self):
-return True
-def close(self):
-pass
-它继承gym.</description>
+stepresetrendercloseseed 我们现在实现一个最简单的环境类FooEnv:
+import gymclass FooEnv(gym.Env):&amp;#34;&amp;#34;&amp;#34; This is a simple envirionment &amp;#34;&amp;#34;&amp;#34;def __init__(self) -&amp;gt; None:super(FooEnv).__init__()self.seed()def seed(self):print(&amp;#34;seed&amp;#34;)passdef step(self, action):print(&amp;#34;step&amp;#34;)reward = 0done = Falsereturn None, reward, done, {}def reset(self):print(&amp;#34;reset&amp;#34;)passdef render(self):return Truedef close(self):pass 它继承gym.</description>
     </item>
-
+    
     <item>
       <title>在Windows中运行远程Linux图形程序</title>
       <link>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</link>
       <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/</guid>
       <description>问题 在学习强化学习时用到gym。在Windows上跑gym总有诸多不便，所以直接将环境切到Linux下。开始方案是使用Win 10的Ubuntu子系统wsl2。按照网上教程虽然没有弄明白原理但是还算顺利，Linux的Gui程序还是能正常跑起来的。最近双11腾讯云搞促销就卖了3年的云主机，买了以后发现自己也没什么需要放在上面跑的东西，就寻思能不能将gym环境搬到云上，这样也就省得在公司机器和家里的机器上来回切换的麻烦了。但是今天在操作的时候还是遇到了不少的问题，现在记录下来以作备忘。
-解决方法   首先到SourceForge上下载最新的VcXsrv
-  安装运行
-  启动后出现如下界面：
+解决方法 首先到SourceForge上下载最新的VcXsrv
+安装运行
+启动后出现如下界面：
 这里有两个选项，第一个是程序的窗口风格：
-  Multiple windows: 多窗口模式，即每个GUI进程一个窗口
-  One large windows: 单窗口模式，和远程桌面类似，所有窗口都在一个大窗口里
-  Fullscreen：全屏模式，与单窗口模式类是只不过大窗口是全屏的
-  One window without titlebar: 与标题单窗口模式，与单窗口模式类似
-  可以更具需求自己的喜好随便选择就可以了。
+Multiple windows: 多窗口模式，即每个GUI进程一个窗口
+One large windows: 单窗口模式，和远程桌面类似，所有窗口都在一个大窗口里
+Fullscreen：全屏模式，与单窗口模式类是只不过大窗口是全屏的
+One window without titlebar: 与标题单窗口模式，与单窗口模式类似
+可以更具需求自己的喜好随便选择就可以了。
 窗口模式选项下面是Display number选项，这个选项很重要，但是大多数的教程里面都没有介绍这个选项的意义，害的我在后面解决云主机连接时一直忽略了这个选项，走了挺多弯路。这个选项代表的是vcXsrv模拟的是第几个显示器的意思，说他重要是因为它和通信有着直接的关系。看了别人的教程和使用后你可能心中会有个疑问，vcXsrv毕竟是个网络服务器，但是怎么就是找不到设置和修改服务端口的地方呢？其实这里的的Display number干的就是这件事，x server使用的端口其实是个‘’知名‘’端口(6000)，而实际使用的端口为6000+(Display Number), 比如如果你设置为0，那么服务监听端口变为6000，而如果是1，则端口为6001，依次类推。
 后面一个界面没什么好说的，选“start no client”好了。
 下一个界面：
 有个选项挺重要的，Disable access control 这个选项必须勾选否则会出现认证失败的提示。
 root@H:~# xcalc Authorization required, but no authorization protocol specified Error: Can&amp;#39;t open display: 172.30.128.1:0 最后一个界面：
 有个save configuration的按钮，它可以将你前面的设置保存到一个以.xlaunch为后缀的文件中，以后只要双击这个文件就可以使用同样的配置了，一下是我的配置：
-&amp;lt;?xml version=&amp;#34;1.</description>
+&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;XLaunch WindowMode=&amp;#34;MultiWindow&amp;#34; ClientMode=&amp;#34;NoClient&amp;#34; LocalClient=&amp;#34;False&amp;#34; Display=&amp;#34;0&amp;#34; LocalProgram=&amp;#34;xcalc&amp;#34; RemoteProgram=&amp;#34;xterm&amp;#34; RemotePassword=&amp;#34;&amp;#34; PrivateKey=&amp;#34;&amp;#34; RemoteHost=&amp;#34;&amp;#34; RemoteUser=&amp;#34;&amp;#34; XDMCPHost=&amp;#34;&amp;#34; XDMCPBroadcast=&amp;#34;False&amp;#34; XDMCPIndirect=&amp;#34;False&amp;#34; Clipboard=&amp;#34;True&amp;#34; ClipboardPrimary=&amp;#34;True&amp;#34; ExtraParams=&amp;#34;&amp;#34; Wgl=&amp;#34;False&amp;#34; DisableAC=&amp;#34;True&amp;#34; XDMCPTerminate=&amp;#34;False&amp;#34;/&amp;gt; 软件安装完，启动后windows这边事情就结束了。</description>
     </item>
-
+    
     <item>
       <title>coro_redis 开发手记</title>
       <link>https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/</link>
       <pubDate>Wed, 18 Aug 2021 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/posts/c&#43;&#43;/coro_redis/</guid>
       <description>本文是coro_redis项目的开发手记，其较为详尽的描述了其开发过程中遇到的问题和解决方案以及学习心得。希望能和大家共同努力和完善此项目。项目地址为： https://github.com/gqw/coro_redis
 自从上次写完《从HelloWold开始，深入浅出C++ 20 Coroutine TS》已经有一阵子没有写C++代码了，在那篇文章中给自己立了FLAG说要继续写一篇关于asio中使用协程开发的文章也一直没有兑现。现在趁着空闲用协程写了一个redis client库。
 代码还是像mrpc一样追求少而精，希望大家能够学会怎样使用c++的协程，而不是直接把库拿过去用。
 协程是从C++20开始被加进标准库的，但是仅支持基本的协程功能，用起来还不是很方便，估计需要等到C++23才能完善（请参考：C++23的目标）。VisualStudio 2022 PREVIEW（ToolSet v143）已经正式支持协程，相关头文件也已经从experimental目录移到正式目录，并且不需再添加 /await 编译选项（v143之前使用协程请参考/await选项说明）。GCC从10.0版本开始支持协程，11.0版本不再是experimental，但还是需要 -fcoroutines 编译选项（请参考：C++ Standards Support in GCC）。
 以下是开发使用的环境：
-   windows linux     Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2)   Visual Studio 2022(v143) GCC 11.1.0   cmake version 3.21.1 cmake version 3.21.1   Vcpkg version 2021-07-26-9425cf5f512f242c0bcbabac31f08832825aee81 Same as Windows    编译说明  安装vcpkg 设置并导出环境变量 VCPKG_ROOT 为 vcpkg 根目录 如果再Winodws下开发，由于Visual Studio还是预览版，vcpkg默认不会使用，所有需要在%VCPKG_ROOT%/triplets目录下添加x86-windows-v143.</description>
+windows linux Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2) Visual Studio 2022(v143) GCC 11.1.0 cmake version 3.21.1 cmake version 3.21.1 Vcpkg version 2021-07-26-9425cf5f512f242c0bcbabac31f08832825aee81 Same as Windows 编译说明 安装vcpkg 设置并导出环境变量 VCPKG_ROOT 为 vcpkg 根目录 如果再Winodws下开发，由于Visual Studio还是预览版，vcpkg默认不会使用，所有需要在%VCPKG_ROOT%/triplets目录下添加x86-windows-v143.cmake文件，内容如下： set(VCPKG_TARGET_ARCHITECTURE x86) set(VCPKG_CRT_LINKAGE dynamic) set(VCPKG_LIBRARY_LINKAGE dynamic) set(VCPKG_PLATFORM_TOOLSET &amp;#34;v143&amp;#34;) set(VCPKG_DEP_INFO_OVERRIDE_VARS &amp;#34;v143&amp;#34;) 安装cmake 执行cmake_build_x64_linux.sh(Linux) 或 cmake_build_x86-v143.bat(Windows)脚本，安装依赖包和生成工程文件 使用方法 协程调用通用命令：</description>
     </item>
-
+    
     <item>
       <title>Linux 编译GCC 11</title>
       <link>https://gqw.gitee.io/posts/c&#43;&#43;/build_gcc/</link>
       <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/posts/c&#43;&#43;/build_gcc/</guid>
       <description># 下载，解压 tar -xf gcc-11.1.0.tar.xz cd gcc-11.1.0.tar # 安装必要编译工具 sudo apt install gcc g++ make # 安装依赖库 sudo apt install libgmp-dev # 生成makefile文件 ./configure # 编译安装 make -j 10 sudo make install </description>
     </item>
-
+    
     <item>
       <title>同步GitHub pages和 Gitee pages方法</title>
       <link>https://gqw.gitee.io/posts/git/sync_github_gitee/</link>
       <pubDate>Wed, 28 Jul 2021 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/posts/git/sync_github_gitee/</guid>
       <description>问题 这两天在整理博客，一直使用GitHub和Gitee的Pages功能作为博客的静态托管站。但是遇到以下几个问题：
- 每次PUSH都要向两个网站分别提交，操作繁琐 域名问题， 博客使用的Hugo博客生成系统，根域名是在config.yaml配置的，导致最终的域名管理比较混乱。比如配置了github的域名，提交给gitee时忘记改，就会导致某些图片或内容访问不稳定。 Gitee发布比较麻烦，需要手动更新提交  解决方法   对于多次提交的问题，最初解决方法是使用以下命令：
+每次PUSH都要向两个网站分别提交，操作繁琐 域名问题， 博客使用的Hugo博客生成系统，根域名是在config.yaml配置的，导致最终的域名管理比较混乱。比如配置了github的域名，提交给gitee时忘记改，就会导致某些图片或内容访问不稳定。 Gitee发布比较麻烦，需要手动更新提交 解决方法 对于多次提交的问题，最初解决方法是使用以下命令：
 $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git remote -v origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) origin git@github.com:gqw/gqw.github.io.git (push) 方法解决。添加过后每次提交都会同时往两个仓库提交。
 但是为了解决第二个问题，即不同域名问题，最终并未使用此方案。
-  解决不同域名问题，解决思路是通过git hook在提交和上次时在hook脚本里修改Hugo生成好的内容。
- 首先准备好远程url  $ git remote -v github_auto_change_domian git@github.com:gqw/gqw.github.io.git (fetch) github_auto_change_domian git@github.com:gqw/gqw.github.io.git (push) origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) 然后在仓库的.git/hooks目录中添加commit-msg文件，内容为：  commit_msg=$(cat $1) echo $commit_msg if [[ $commit_msg =~ &amp;#34;replace domain to github&amp;#34; ]]; then # 向github上传前会修改仓库内容，并做一次提交记录， # 这时不需要重新生成文档 echo &amp;#34;replace domain to github&amp;#34; else # 清空生成目录内容 rm -rfv .</description>
+解决不同域名问题，解决思路是通过git hook在提交和上次时在hook脚本里修改Hugo生成好的内容。
+首先准备好远程url $ git remote -v github_auto_change_domian git@github.com:gqw/gqw.github.io.git (fetch) github_auto_change_domian git@github.com:gqw/gqw.github.io.git (push) origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) 然后在仓库的.git/hooks目录中添加commit-msg文件，内容为： commit_msg=$(cat $1) echo $commit_msg if [[ $commit_msg =~ &amp;#34;replace domain to github&amp;#34; ]]; then # 向github上传前会修改仓库内容，并做一次提交记录， # 这时不需要重新生成文档 echo &amp;#34;replace domain to github&amp;#34; else # 清空生成目录内容 rm -rfv .</description>
     </item>
-
+    
     <item>
       <title>一种简单可行的P2SP实践方案</title>
       <link>https://gqw.gitee.io/posts/net/p2p/</link>
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/posts/net/p2p/</guid>
       <description>缘由与目标 随着计算机硬件的发展，游戏的玩法和画质也得到了飞速的发展。游戏内容越来越丰富，画面质量也越来越精细。这也导致了游戏的包体越来越大。PC端游戏基本上10GB起步，《战地》，《易水寒》等游戏基本已经达到100G体量。如此大的体量对于游戏发行方，是一个必须要考虑的问题。用于游戏分发的下载器我们必须考虑以下几个方面：
-1. 可访问， 这是下载器的首要前提，我们必须保证数据能够被联网的任意玩家可以访问到。
-2. 数据可靠，下载的资源必须是正确的内容。
-3. 速度，我们必须尽可能的保证玩家的下载速度。
-4. 稳定，需要能够稳定下载所需资源。
-5. 节省流量，虽然这是个可选项但是流量就意味着金钱，所以下载器还需要尽可能的节约流量。
- 通常的下载器使用的是Http方式下载，虽然能够保证可靠地数据访问，但是离高速稳定省流量还有较大差距，为了提高速度和稳定性我们通过使用CDN的方案有效解决。但是CDN解决不了节省流量的目标（实际上是增加流量成本的）， 简单的解决方法是使用压缩下载内容，目前项目中使用的下载器就是使用的这种方法。压缩数据的方法效果还是非常有效的，以某款为例，12GB的包可以压缩到7GB, 也就是可以节省40%的流量。
+1. 可访问， 这是下载器的首要前提，我们必须保证数据能够被联网的任意玩家可以访问到。2. 数据可靠，下载的资源必须是正确的内容。3. 速度，我们必须尽可能的保证玩家的下载速度。4. 稳定，需要能够稳定下载所需资源。5. 节省流量，虽然这是个可选项但是流量就意味着金钱，所以下载器还需要尽可能的节约流量。通常的下载器使用的是Http方式下载，虽然能够保证可靠地数据访问，但是离高速稳定省流量还有较大差距，为了提高速度和稳定性我们通过使用CDN的方案有效解决。但是CDN解决不了节省流量的目标（实际上是增加流量成本的）， 简单的解决方法是使用压缩下载内容，目前项目中使用的下载器就是使用的这种方法。压缩数据的方法效果还是非常有效的，以某款为例，12GB的包可以压缩到7GB, 也就是可以节省40%的流量。
 是否可以有更有效的方法解决流量问题呢？很自然的想法是使用P2P加速技术。P2P是指 peer to peer, 即节点到节点数据传输，就是各个客户端之间数据传输。大家常见的P2P技术主要是BT下载技术，但是BT与我们前面使用的技术是由冲突的。我们先看下HTTP与BT的结构图进行简单的对比下：
-HTTP下载方式
-
-BT下载方式
-
-
-对比可知， HTTP是基于C/S架构的，客户机是严格依赖中心服务器的，BT无中心节点所有数据都是玩家之间传输。HTTP的好处是访问可控，只要客户机能连接到服务器就肯定能获得所需数据，但是服务器必须承担所有流量压力和流量费用。 BT的好处也是显而易见的，所有数据传输都是玩家之间的行为，甚至可以不需要部署服务器，服务器的压力和费用为零，但是BT却有可能违背我们前面所述下载的最基本要求——可访问，玩家节点的连接并不能像HTTP那样是可靠稳定的。
+HTTP下载方式BT下载方式对比可知， HTTP是基于C/S架构的，客户机是严格依赖中心服务器的，BT无中心节点所有数据都是玩家之间传输。HTTP的好处是访问可控，只要客户机能连接到服务器就肯定能获得所需数据，但是服务器必须承担所有流量压力和流量费用。 BT的好处也是显而易见的，所有数据传输都是玩家之间的行为，甚至可以不需要部署服务器，服务器的压力和费用为零，但是BT却有可能违背我们前面所述下载的最基本要求——可访问，玩家节点的连接并不能像HTTP那样是可靠稳定的。
 有没有可能结合HTTP和BT技术，充分利用各自的优势并互相弥补对方的缺点呢？实现如下的结构：
-P2SP下载方式
-
-
-幸运的是答案为YES, 迅雷的P2SP技术就是基于上述思想实现的，说明技术方向是对的，不用再去怀疑和验证技术的可行性。但是需要注意的是，迅雷的P2S我们的需求是有差异的， 迅雷下载器P2S部分的S并不是自己的服务器（而是各个下载站点的服务器），所以它不用考虑这部分的流量压力和费用，而我们作为内容提供方流量和费用必须自己承担。所以迅雷并不关心用户数据是否压缩，但是对于我们内容提供商就必须要考虑通过前面压缩技术获得的40%的利益。
+P2SP下载方式幸运的是答案为YES, 迅雷的P2SP技术就是基于上述思想实现的，说明技术方向是对的，不用再去怀疑和验证技术的可行性。但是需要注意的是，迅雷的P2S我们的需求是有差异的， 迅雷下载器P2S部分的S并不是自己的服务器（而是各个下载站点的服务器），所以它不用考虑这部分的流量压力和费用，而我们作为内容提供方流量和费用必须自己承担。所以迅雷并不关心用户数据是否压缩，但是对于我们内容提供商就必须要考虑通过前面压缩技术获得的40%的利益。
 看到这里你可能会想，压缩还不容易吗？直接用压缩软件把下载内容打包下上传到HTTP服务器不就行了吗？是的如果不考虑BT文件的分享率，这样做是解决了问题，但这意味着我们BT分享的内容也是个压缩包，因为我们业务是游戏启动器，也就是说我们不可能将用户下载的游戏安装包一直保留，举个例子，如果我们的游戏原始文件为100GB压缩后为60GB，如果按刚才的方案，用户下载60GB的安装包后，再解压为100GB的原始文件，也就是说必须占用用户160GB的磁盘空间，而这其中的60GB只是为了方便他人下载用的。
 如果在用户安装完游戏后再将安装包删除，那此用户通过BT分享的时间也就只有其下载+安装的时间了。如何解决这个矛盾呢？ 我们现在梳理下问题：
- 通过HTTP下载的内容需要时压缩的数据 通过BT分享的内容必须是原始的内容  通过分析我们可以发现看似不可调和矛盾其实是有解的。那就是需要在下载的时候将HTTP压缩数据原地解压。自此方案的的思路已经基本清晰，但还有一个需要考虑的问题，根据BT的协议标准，BT下载时是将所有数据拼成一个数据块，再将这个数据块进行切块下载的。这就导致一个问题，通常我们压缩数据是按照文件为单位进行压缩的，但是BT下载时是按照切块进行下载的，这会导致HTTP和BT下载内容对应不上，如下图：
-ZIP格式
-
-
-BT格式
-
-
-BT的下载原理是根据上图将需要下载的内容先按照文件进行拼接再进行切片（Piece），建立多个下载通道，每个通道根据切片的状态选择下载并更新切片状态。在下载时BT将无视文件的概念，对于BT来说每次下载只是一片连续的数据块。这样如果HTTP按照文件从压缩包中提取数据，下载后将很难找到对应的BT文件中Piece的位移，也就无法更新下载Piece的状态。
+通过HTTP下载的内容需要时压缩的数据 通过BT分享的内容必须是原始的内容 通过分析我们可以发现看似不可调和矛盾其实是有解的。那就是需要在下载的时候将HTTP压缩数据原地解压。自此方案的的思路已经基本清晰，但还有一个需要考虑的问题，根据BT的协议标准，BT下载时是将所有数据拼成一个数据块，再将这个数据块进行切块下载的。这就导致一个问题，通常我们压缩数据是按照文件为单位进行压缩的，但是BT下载时是按照切块进行下载的，这会导致HTTP和BT下载内容对应不上，如下图：
+ZIP格式BT格式BT的下载原理是根据上图将需要下载的内容先按照文件进行拼接再进行切片（Piece），建立多个下载通道，每个通道根据切片的状态选择下载并更新切片状态。在下载时BT将无视文件的概念，对于BT来说每次下载只是一片连续的数据块。这样如果HTTP按照文件从压缩包中提取数据，下载后将很难找到对应的BT文件中Piece的位移，也就无法更新下载Piece的状态。
 解决思路是，反过来我们在数据压缩时不再以文件为单位进行压缩，而是按照BT的Piece为单位创建压缩文件，并记录每个Piece在压缩文件中的位移。HTTP下载通道下载时先向BT模块申请需要下载的Piece，再根据Piece的位移从HTTP服务器下载相应内容，最后更新BT Piece状态。
-具体实施 准备阶段  创建种子文件（.torent） 根据种子文件中piece length创建压缩文件 修改种子文件添加peice的压缩信息，主要是每个piece压缩后大小和总压缩文件大小。可以根据piece压缩后大写算出每个piece的偏移量 上传压缩文件到CDN 修改种子文件添加CDN中压缩文件HTTP下载地址 上传种子文件到CDN  实际处理中1,2,3,5步骤可以通过修改torrent文件合并处理。
-下载阶段 修改BT下载器，根据torrent文件中的的压缩文件地址建立特殊下载通道，模拟BT请求下载块，根据BT文件中的压缩块大小计算Piece在压缩文件中的偏移，使用HTTP Range Requests标准下载对应的数据块，下载完后更新对应Piece状态。直至所有文件下载完成。</description>
+具体实施 准备阶段 创建种子文件（.torent） 根据种子文件中piece length创建压缩文件 修改种子文件添加peice的压缩信息，主要是每个piece压缩后大小和总压缩文件大小。可以根据piece压缩后大写算出每个piece的偏移量 上传压缩文件到CDN 修改种子文件添加CDN中压缩文件HTTP下载地址 上传种子文件到CDN 实际处理中1,2,3,5步骤可以通过修改torrent文件合并处理。
+下载阶段 修改BT下载器，根据torrent文件中的的压缩文件地址建立特殊下载通道，模拟BT请求下载块，根据BT文件中的压缩块大小计算Piece在压缩文件中的偏移，使用HTTP Range Requests标准下载对应的数据块，下载完后更新对应Piece状态。直至所有文件下载完成。
+相关工程 libtorrent</description>
     </item>
-
+    
     <item>
       <title>tcprt</title>
       <link>https://gqw.gitee.io/posts/net/tcptrace/</link>
       <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/posts/net/tcptrace/</guid>
-      <description>tcprt 介绍  产品发布后有玩家反映客户端（Windows系统）无法连接服务器， 使用ping.exe、tracert.exe工具检查均未发现有异常情况，但是telnet却无法连接。最后发现发现国内某些运营商网络在对icmp和tcp协议的路由选择上不一致导致。最后运维人员希望能够收集出错时的路由信息。 我们知道在Linux系统上实现很简单系统自带的traceroute工具自带tcp协议的探测，实现起来比较简单。但是客户端产品大多是Windows系统的，自带的tracert.exe只有icmp探测类型。下图是分别使用ICMP和TCPtracerouter的对比，图中可以看到明显的不同路由路径。 目标   实现类似于linux的traceroute -T方法  原理与实现  tracerouter原理  为了理解tracerouter原理，我们先来看下IP的协议头： 这里面有个8比特的Time To Live (TTL)字段，它代表是报文的存活时间，这个8位字段避免报文在互联网中永远存在（例如陷入路由环路）。存活时间以秒为单位，但小于一秒的时间均向上取整到一秒。在现实中，这实际上成了一个跳数计数器：报文经过的每个路由器都将此字段减1，当此字段等于0时，报文不再向下一跳传送并被丢弃，最大值是255。常规地，一份ICMP报文被发回报文发送端说明其发送的报文已被丢弃。这也是traceroute的核心原理。 什么意思呢？我们看下下面的图： 这里表示的是192.168.1.2这台客户机访问192.168.5.32的路由图，报文首先在客户机（1.2）这台机器被创建出来并设置TTL字段为128, 然后经过若干路由接力传递最终到达目标服务器，在接力过程中没遇到一个路由中转，路由器均会将TTL值减一。再看这张图： 这次我们在客户机组装报文时将TTL设置的比较小只有3，这样在报文到达第一个路由路时路由检查报文中TTL的值发现TTL大于1于是修改报文将TTL减1继续转发给下一个路由，第二个路由采用同样的方法修改TTL后继续发给第三个路由，第三个路由受到报文时同样检查TTL值，发现TTL值已经为1，意识到自己已经是最后一跳不能再继续转发了，所以直接向源主机发送类型为11的ICMP报文告诉源主机报文发送失败（当然返回的报文也需要若干路由跳转，图中返回的虚箭头指示表达报文最终到达源主机）。
+      <description>tcprt 介绍 产品发布后有玩家反映客户端（Windows系统）无法连接服务器， 使用ping.exe、tracert.exe工具检查均未发现有异常情况，但是telnet却无法连接。最后发现发现国内某些运营商网络在对icmp和tcp协议的路由选择上不一致导致。最后运维人员希望能够收集出错时的路由信息。 我们知道在Linux系统上实现很简单系统自带的traceroute工具自带tcp协议的探测，实现起来比较简单。但是客户端产品大多是Windows系统的，自带的tracert.exe只有icmp探测类型。下图是分别使用ICMP和TCPtracerouter的对比，图中可以看到明显的不同路由路径。 目标 实现类似于linux的traceroute -T方法 原理与实现 tracerouter原理 为了理解tracerouter原理，我们先来看下IP的协议头： 这里面有个8比特的Time To Live (TTL)字段，它代表是报文的存活时间，这个8位字段避免报文在互联网中永远存在（例如陷入路由环路）。存活时间以秒为单位，但小于一秒的时间均向上取整到一秒。在现实中，这实际上成了一个跳数计数器：报文经过的每个路由器都将此字段减1，当此字段等于0时，报文不再向下一跳传送并被丢弃，最大值是255。常规地，一份ICMP报文被发回报文发送端说明其发送的报文已被丢弃。这也是traceroute的核心原理。 什么意思呢？我们看下下面的图： 这里表示的是192.168.1.2这台客户机访问192.168.5.32的路由图，报文首先在客户机（1.2）这台机器被创建出来并设置TTL字段为128, 然后经过若干路由接力传递最终到达目标服务器，在接力过程中没遇到一个路由中转，路由器均会将TTL值减一。再看这张图： 这次我们在客户机组装报文时将TTL设置的比较小只有3，这样在报文到达第一个路由路时路由检查报文中TTL的值发现TTL大于1于是修改报文将TTL减1继续转发给下一个路由，第二个路由采用同样的方法修改TTL后继续发给第三个路由，第三个路由受到报文时同样检查TTL值，发现TTL值已经为1，意识到自己已经是最后一跳不能再继续转发了，所以直接向源主机发送类型为11的ICMP报文告诉源主机报文发送失败（当然返回的报文也需要若干路由跳转，图中返回的虚箭头指示表达报文最终到达源主机）。
 traceroute为了探测每个路由的地址，循环递增报文的TTL值，当TTL等于1时第一个路由便返回ICMP报文，源机器便可根据其IP头获得路由地址，当TTL等于2时可以得到第二个路由地址，依次循环下去直到到达目标机器。
-实现  tracert在Windows下只有基于ICMP协议的实现。Linux下倒是有TCP版本的实现，
+实现 tracert在Windows下只有基于ICMP协议的实现。Linux下倒是有TCP版本的实现，
 traceroute -T www.baidu.com 80 既然如此那就看看源码，借鉴下别人是怎么实现的。Linux下traceroute[3]的思路比较直接，使用原始套接字（SOCK_RAW）向目的主机发送tcp连接, 并递增请求包的TTL值，再用recvmsg中flags设置MSG_ERRQUEUE选项来获取连接信息。
 但是在Windows系统下就没有那么幸运了。系统为了安全考虑（主要怕原始套接字被滥用）禁止了以下行为[1]：
-  TCP data cannot be sent over raw sockets.
-  A call to the bind function with a raw socket for the IPPROTO_TCP protocol is not allowed.
-  而且recvmsg也没有MSG_ERRQUEUE可以使用。所以直接照搬Linux下traceroute的想法没法设施。
+TCP data cannot be sent over raw sockets.
+A call to the bind function with a raw socket for the IPPROTO_TCP protocol is not allowed.
+而且recvmsg也没有MSG_ERRQUEUE可以使用。所以直接照搬Linux下traceroute的想法没法设施。
 既然系统把路堵住了，有没有办法绕开去呢？其实是有的，在微软的文档中提到[1]：
- On Windows Server 2003 and earlier, a Transport Driver Interface (TDI) provider and a Winsock helper DLL can be written to support the network protocol.</description>
+On Windows Server 2003 and earlier, a Transport Driver Interface (TDI) provider and a Winsock helper DLL can be written to support the network protocol.</description>
     </item>
-
+    
     <item>
       <title>C&#43;&#43;序列化和反序列化工具</title>
       <link>https://gqw.gitee.io/posts/c&#43;&#43;/serialization/</link>
       <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/posts/c&#43;&#43;/serialization/</guid>
       <description>在开发时我们经常会遇到需要序列号和反序列化得操作。比如将程序配置导出下次打开再从配置中读取，通常你可以将信息保存成json、xml或ini格式，让后再解析出来。更常见的情形是我们通过网络发送和接收数据，也涉及到序列化和反序列化操作，当让你可以使用protobuf、msgpack等序列化库。但是如果你只是个简单程序，或者序列化和反序列化的业务不是很重，不想搞得那么复杂有什么简单的方法吗？
 最直接的方法 直接按字节拷贝，见代码:
 #include &amp;lt;string&amp;gt; bool encode(const std::string&amp;amp; s, int32_t a, int32_t b, int32_t c, std::string&amp;amp; buf) { int32_t d = static_cast&amp;lt;int32_t&amp;gt;(s.length()); if (buf.size() &amp;lt; (sizeof(int32_t) * 4 + d)) return false; std::size_t pos = 0; memcpy(buf.data() + pos, &amp;amp;a, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;b, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;c, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, &amp;amp;d, sizeof(int32_t)); pos += sizeof(int32_t); memcpy(buf.data() + pos, s.</description>
     </item>
-
+    
     <item>
       <title>从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS</title>
       <link>https://gqw.gitee.io/posts/c&#43;&#43;/coroutine/</link>
       <pubDate>Thu, 01 Oct 2020 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/posts/c&#43;&#43;/coroutine/</guid>
       <description>缘起 前一阵子在查看asio库的时候看到在example目录中已经提供了coroutines_ts代码。很是好奇，便慢慢翻看代码，在感叹Coroutine给异步编程带来的优雅简洁的同时也带来了许多概念上的复杂和难以理解。由于C++ Coroutine还是一个比较新的概念，各个编译器厂商的实现还处于实验性的阶段[1] ，网上的资料少而松散。由此内心涌出一个念头想把自己的学习过程记录下来以期帮助后面学习的人。
 从HelloWorld说起 再过两年这个世界的第一条HelloWorld代码就要有50年历史了[2] ，在此先提前蹭下热点，:)&amp;hellip;
-#include &amp;lt;iostream&amp;gt;int main() { std::cout &amp;lt;&amp;lt; &amp;#34;hello, world&amp;#34; &amp;lt;&amp;lt; std::endl; return 0; } 代码1
-这是一段平淡无奇的符合C++98标准的代码，你甚至可以用古董级编译器GCC 4.3都能编译通过[3]。但是我希望通过对这段代码的演化带领大家学习了解C++ 20中的Coroutine。
+#include &amp;lt;iostream&amp;gt; int main() { std::cout &amp;lt;&amp;lt; &amp;#34;hello, world&amp;#34; &amp;lt;&amp;lt; std::endl; return 0; } 代码1这是一段平淡无奇的符合C++98标准的代码，你甚至可以用古董级编译器GCC 4.3都能编译通过[3]。但是我希望通过对这段代码的演化带领大家学习了解C++ 20中的Coroutine。
 这段代码的作用很简单，打印一条&amp;quot;hello, world&amp;quot;，执行的也很快。但是这个世界并不总是那么简单美好，如果打印的逻辑非常耗时（特别是读取磁盘文件和进行网络请求时）而又需要频繁的调用就有些尴尬了，好了，我们改下代码来模拟这种情形：
-#include &amp;lt;iostream&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;chrono&amp;gt;using namespace std::chrono_literals; void remote_query() { // 假设这是个远程网络请求  std::this_thread::sleep_for(4s); std::cout &amp;lt;&amp;lt; &amp;#34;hello, world&amp;#34; &amp;lt;&amp;lt; std::endl; } int main() { for (;;) { remote_query(); } return 0; } 代码2
-改过后的代码不停的进行耗时的远程调用，每次远程调用需要消耗4秒的时间才能返回。可以看到，每次进行调用时程序都要暂停住（也就是卡住）而做不了其它事情。如果这是个带UI(用户界面)的程序，每次进行调用界面就要卡住，用户肯定是不能忍受的。
- 注意
+#include &amp;lt;iostream&amp;gt; #include &amp;lt;thread&amp;gt; #include &amp;lt;chrono&amp;gt; using namespace std::chrono_literals; void remote_query() { // 假设这是个远程网络请求 std::this_thread::sleep_for(4s); std::cout &amp;lt;&amp;lt; &amp;#34;hello, world&amp;#34; &amp;lt;&amp;lt; std::endl; } int main() { for (;;) { remote_query(); } return 0; } 代码2改过后的代码不停的进行耗时的远程调用，每次远程调用需要消耗4秒的时间才能返回。可以看到，每次进行调用时程序都要暂停住（也就是卡住）而做不了其它事情。如果这是个带UI(用户界面)的程序，每次进行调用界面就要卡住，用户肯定是不能忍受的。
+注意
 上面的代码由于使用了thread[4](C++ 11)和chrono_literals[5](C++ 14)，所以编译器需要支持C++ 14标准。
- 多线程+Callback解决方案 为了解决上面的问题，我们对上面的代码进行如下改造：</description>
+多线程+Callback解决方案 为了解决上面的问题，我们对上面的代码进行如下改造：</description>
     </item>
-
+    
     <item>
       <title>test</title>
       <link>https://gqw.gitee.io/posts/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/posts/test/</guid>
       <description>\documentclass[UTF8]{ctexart} \usepackage{markdown} \begin{document} \begin{markdown}
 我是 Markdown 这里可以用 Markdown 语法，撰写各种内容。例如，我可以强调，也可以加粗，当然也可以加粗并强调。
-这里是二级标题  幸福的获得，在极大的程度上却是由于消除了对自我的过分关注。 &amp;mdash;Bertrand Arthur William Russell
- 你看，我还可以使用引用↑。
+这里是二级标题 幸福的获得，在极大的程度上却是由于消除了对自我的过分关注。 &amp;mdash;Bertrand Arthur William Russell
+你看，我还可以使用引用↑。
 关于 dash, en-dash 和 em-dash LaTeX 使用者都应该知道 dash, en-dash 和 em-dash。dash 是普通的连字符，举例如：「five-year-old boy」。en-dash 是表示范围的稍长的横线，举例如：「以下章节是重点：12&amp;ndash;15」。em-dash 则是英文中的破折号，举例如：「&amp;mdash;Bertrand Arthur William Russell」 \end{markdown} \end{document}
-
-
-math &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&amp;quot; integrity=&amp;quot;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&amp;quot; crossorigin=&amp;quot;anonymous&amp;quot;&amp;gt;
-&amp;lt;script defer src=&amp;quot;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js&amp;quot; integrity=&amp;quot;sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz&amp;quot; crossorigin=&amp;quot;anonymous&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script defer src=&amp;quot;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js&amp;quot; integrity=&amp;quot;sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI&amp;quot; crossorigin=&amp;quot;anonymous&amp;quot;
-onload=&amp;quot;renderMathInElement(document.body, {
-// customised options
-delimiters: [
-{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true}, // 独立一行显示
-{left: &#39;$&#39;, right: &#39;$&#39;, display: false}	// 行内显示
-]
-});&amp;quot;&amp;gt;
-&amp;lt;/script&amp;gt;
-数学数列 $ E=mc^2 $： $$ F＝(1, 1, 2, 3, 5, 8, .</description>
+math &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;onload=&amp;#34;renderMathInElement(document.body, {// customised optionsdelimiters: [{left: &amp;#39;$$&amp;#39;, right: &amp;#39;$$&amp;#39;, display: true}, // 独立一行显示{left: &amp;#39;$&amp;#39;, right: &amp;#39;$&amp;#39;, display: false}	// 行内显示]});&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;数学数列 $ E=mc^2 $： $$ F＝(1, 1, 2, 3, 5, 8, .</description>
     </item>
-
+    
     <item>
       <title>随手记</title>
       <link>https://gqw.gitee.io/notes/notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-
+      
       <guid>https://gqw.gitee.io/notes/notes/</guid>
-      <description>c&amp;#43;&amp;#43; 协程 C++ coroutines: The mental model for coroutine promises    doxygen 使用 mermaid  /*! \~english * ... text ... * The distance between \f$(x_1,y_1)\f$ and \f$(x_2,y_2)\f$ is \f$\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\f$. * @htmlonly * &amp;lt;div class=&amp;#34;mermaid&amp;#34;&amp;gt; * sequenceDiagram * Alice-&amp;gt;&amp;gt;John: Hello John, how are you? * loop Healthcheck * John-&amp;gt;&amp;gt;John: Fight against hypochondria * end * Note right of John: Rational thoughts! * John--&amp;gt;&amp;gt;Alice: Great! * John-&amp;gt;&amp;gt;Bob: How about you?</description>
+      <description>c&amp;#43;&amp;#43; 协程 C++ coroutines: The mental model for coroutine promises doxygen 使用 mermaid /*! \~english * ... text ... * The distance between \f$(x_1,y_1)\f$ and \f$(x_2,y_2)\f$ is \f$\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\f$. * @htmlonly * &amp;lt;div class=&amp;#34;mermaid&amp;#34;&amp;gt; * sequenceDiagram * Alice-&amp;gt;&amp;gt;John: Hello John, how are you? * loop Healthcheck * John-&amp;gt;&amp;gt;John: Fight against hypochondria * end * Note right of John: Rational thoughts! * John--&amp;gt;&amp;gt;Alice: Great! * John-&amp;gt;&amp;gt;Bob: How about you? * Bob--&amp;gt;&amp;gt;John: Jolly good!</description>
     </item>
-
+    
   </channel>
 </rss>

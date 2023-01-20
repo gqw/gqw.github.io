@@ -28,13 +28,12 @@
   
   
 
-  <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_2.png" />
+  <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_3.png" />
 
 <meta property="og:title" content="C&#43;&#43;" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://gqw.github.io/posts/c&#43;&#43;/" />
-<meta property="og:updated_time" content="2021-08-18T00:00:00+00:00" />
+<meta property="og:url" content="https://gqw.gitee.io/posts/c&#43;&#43;/" />
 
 
     
@@ -89,7 +88,7 @@
     </button>
     <a class="navbar-brand" href="/">
       
-        <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" alt="Logo">
+        <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" alt="Logo">
       顾起威的博客</a>
     <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
       <span class="navbar-toggler-icon"></span>
@@ -103,10 +102,10 @@
   </div>
   
   
-    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="main-logo" alt="Logo">
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" class="d-none" id="main-logo" alt="Logo">
   
   
-    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
   
 </nav>
 
@@ -148,7 +147,7 @@
   
   
     
-    <li><a class="" href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
+    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
   
 
   
@@ -166,6 +165,15 @@
   
   
     
+    <li><a class="" href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
+  
+
+  
+  
+  
+  
+  
+    
     <li><a class="" href="/posts/c&#43;&#43;/build_gcc/" title="Linux 编译GCC 11">Linux 编译GCC 11</a></li>
   
 
@@ -175,7 +183,7 @@
   
   
     
-    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
+    <li><a class="" href="/posts/c&#43;&#43;/logger_analyisis/" title="日志系统性能分析与优化">日志系统性能分析与优化</a></li>
   
 
 
@@ -304,6 +312,34 @@
       
         
           <div class="post-card">
+  <a href="/posts/c&#43;&#43;/logger_analyisis/" class="post-card-link">
+    <div class="card">
+      <div class="card-head">
+        <img class="card-img-top" src='/posts/c&#43;&#43;/logger_analyisis/log_system.png' alt="Hero Image">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">日志系统性能分析与优化</h5>
+        <p class="card-text post-summary">日志系统在任何稍微有点规模的软件系统中都是必不可少的组成部分，它是我们分析代码和解决问题的有效手段和得力助手。一份详尽而精准的日志能让我们解决问题事半功倍。很多时候由于日志的频繁打印很容易造成日志系统本身成为性能热点，下面让我们详细分析下作为日志系统的调用方需要注意的一些问题。
+日志打印 大多数的日志系统都会提供print和stream两种调用方式。简单的如：
+logger::get().info(&#34;%s&#34;, &#34;log message&#34;); logger::get().info() &lt;&lt; &#34;log message&#34; &lt;&lt; std::endl; 使用日志等级进行输出优化 除此之外，日志系统一般还会提供日志分级功能，通过日志分级我们可以在程序运行时动态控制日志输出，减少不必要的日志打印。日志分级可以通过如下伪代码试下：
+class Logger { public: void trace(const std::string_view&amp; fmt, ...) { if (log_level_ &lt; 0) // 通过日志等级，判断是否需要真正打印 return; printf(...); } void debug(const std::string_view&amp; fmt, ...) { if (log_level_ &lt; 1) return; printf(...); } void info(const std::string_view&amp; fmt, ...) { if (log_level_ &lt; 2) return; printf(...); } void set_level(int level) { log_level_ = level; } ... private: int log_level_ = 0; }; 通过上面的代码我们可以看到如果调用set_level(2) 那么下面三条日志只打印一条日志结果：</p>
+      </div>
+      <div class="card-footer">
+        <span class="float-left">January 18, 2023</span>
+        <a
+        href="/posts/c&#43;&#43;/logger_analyisis/"
+        class="float-right btn btn-outline-info btn-sm"
+        >Read</a
+        >
+      </div>
+    </div>
+  </a>
+</div>
+
+        
+      
+        
+          <div class="post-card">
   <a href="/posts/c&#43;&#43;/coro_redis/" class="post-card-link">
     <div class="card">
       <div class="card-head">
@@ -316,7 +352,7 @@
 代码还是像mrpc一样追求少而精，希望大家能够学会怎样使用c++的协程，而不是直接把库拿过去用。
 协程是从C++20开始被加进标准库的，但是仅支持基本的协程功能，用起来还不是很方便，估计需要等到C++23才能完善（请参考：C++23的目标）。VisualStudio 2022 PREVIEW（ToolSet v143）已经正式支持协程，相关头文件也已经从experimental目录移到正式目录，并且不需再添加 /await 编译选项（v143之前使用协程请参考/await选项说明）。GCC从10.0版本开始支持协程，11.0版本不再是experimental，但还是需要 -fcoroutines 编译选项（请参考：C++ Standards Support in GCC）。
 以下是开发使用的环境：
-   windows linux     Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2)   Visual Studio 2022(v143) GCC 11.1.0   cmake version 3.21.1 cmake version 3.21.1   Vcpkg version 2021-07-26-9425cf5f512f242c0bcbabac31f08832825aee81 Same as Windows    编译说明  安装vcpkg 设置并导出环境变量 VCPKG_ROOT 为 vcpkg 根目录 如果再Winodws下开发，由于Visual Studio还是预览版，vcpkg默认不会使用，所有需要在%VCPKG_ROOT%/triplets目录下添加x86-windows-v143.</p>
+windows linux Windows 10 版本 2004 Ubuntu 20.04.2 LTS(wsl2) Visual Studio 2022(v143) GCC 11.1.0 cmake version 3.21.1 cmake version 3.21.1 Vcpkg version 2021-07-26-9425cf5f512f242c0bcbabac31f08832825aee81 Same as Windows 编译说明 安装vcpkg 设置并导出环境变量 VCPKG_ROOT 为 vcpkg 根目录 如果再Winodws下开发，由于Visual Studio还是预览版，vcpkg默认不会使用，所有需要在%VCPKG_ROOT%/triplets目录下添加x86-windows-v143.cmake文件，内容如下： set(VCPKG_TARGET_ARCHITECTURE x86) set(VCPKG_CRT_LINKAGE dynamic) set(VCPKG_LIBRARY_LINKAGE dynamic) set(VCPKG_PLATFORM_TOOLSET &#34;v143&#34;) set(VCPKG_DEP_INFO_OVERRIDE_VARS &#34;v143&#34;) 安装cmake 执行cmake_build_x64_linux.sh(Linux) 或 cmake_build_x86-v143.bat(Windows)脚本，安装依赖包和生成工程文件 使用方法 协程调用通用命令：</p>
       </div>
       <div class="card-footer">
         <span class="float-left">August 18, 2021</span>
@@ -395,12 +431,12 @@
         <h5 class="card-title">从HelloWold开始，深入浅出C&#43;&#43; 20 Coroutine TS</h5>
         <p class="card-text post-summary">缘起 前一阵子在查看asio库的时候看到在example目录中已经提供了coroutines_ts代码。很是好奇，便慢慢翻看代码，在感叹Coroutine给异步编程带来的优雅简洁的同时也带来了许多概念上的复杂和难以理解。由于C++ Coroutine还是一个比较新的概念，各个编译器厂商的实现还处于实验性的阶段[1] ，网上的资料少而松散。由此内心涌出一个念头想把自己的学习过程记录下来以期帮助后面学习的人。
 从HelloWorld说起 再过两年这个世界的第一条HelloWorld代码就要有50年历史了[2] ，在此先提前蹭下热点，:)&hellip;
-#include &lt;iostream&gt;int main() { std::cout &lt;&lt; &#34;hello, world&#34; &lt;&lt; std::endl; return 0; } 代码1这是一段平淡无奇的符合C++98标准的代码，你甚至可以用古董级编译器GCC 4.3都能编译通过[3]。但是我希望通过对这段代码的演化带领大家学习了解C++ 20中的Coroutine。
+#include &lt;iostream&gt; int main() { std::cout &lt;&lt; &#34;hello, world&#34; &lt;&lt; std::endl; return 0; } 代码1这是一段平淡无奇的符合C++98标准的代码，你甚至可以用古董级编译器GCC 4.3都能编译通过[3]。但是我希望通过对这段代码的演化带领大家学习了解C++ 20中的Coroutine。
 这段代码的作用很简单，打印一条&quot;hello, world&quot;，执行的也很快。但是这个世界并不总是那么简单美好，如果打印的逻辑非常耗时（特别是读取磁盘文件和进行网络请求时）而又需要频繁的调用就有些尴尬了，好了，我们改下代码来模拟这种情形：
-#include &lt;iostream&gt;#include &lt;thread&gt;#include &lt;chrono&gt;using namespace std::chrono_literals; void remote_query() { // 假设这是个远程网络请求  std::this_thread::sleep_for(4s); std::cout &lt;&lt; &#34;hello, world&#34; &lt;&lt; std::endl; } int main() { for (;;) { remote_query(); } return 0; } 代码2改过后的代码不停的进行耗时的远程调用，每次远程调用需要消耗4秒的时间才能返回。可以看到，每次进行调用时程序都要暂停住（也就是卡住）而做不了其它事情。如果这是个带UI(用户界面)的程序，每次进行调用界面就要卡住，用户肯定是不能忍受的。
- 注意
+#include &lt;iostream&gt; #include &lt;thread&gt; #include &lt;chrono&gt; using namespace std::chrono_literals; void remote_query() { // 假设这是个远程网络请求 std::this_thread::sleep_for(4s); std::cout &lt;&lt; &#34;hello, world&#34; &lt;&lt; std::endl; } int main() { for (;;) { remote_query(); } return 0; } 代码2改过后的代码不停的进行耗时的远程调用，每次远程调用需要消耗4秒的时间才能返回。可以看到，每次进行调用时程序都要暂停住（也就是卡住）而做不了其它事情。如果这是个带UI(用户界面)的程序，每次进行调用界面就要卡住，用户肯定是不能忍受的。
+注意
 上面的代码由于使用了thread[4](C++ 11)和chrono_literals[5](C++ 14)，所以编译器需要支持C++ 14标准。
- 多线程+Callback解决方案 为了解决上面的问题，我们对上面的代码进行如下改造：</p>
+多线程+Callback解决方案 为了解决上面的问题，我们对上面的代码进行如下改造：</p>
       </div>
       <div class="card-footer">
         <span class="float-left">October 1, 2020</span>
@@ -419,8 +455,6 @@
     </div>
     <div class="paginator">
       
-
-
     </div>
   </div>
 </section>
@@ -464,7 +498,7 @@
 
   
   
-   
+  
     
   
 
@@ -497,6 +531,15 @@
                   
                 
                 <li class="nav-item">
+                  <a class="smooth-scroll" href="/#recent-posts">最近发表</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
                   <a class="smooth-scroll" href="/#about">关于</a>
                 </li>
               
@@ -506,7 +549,7 @@
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#skills">技能</a>
+                  <a class="smooth-scroll" href="/#experiences">工作经历</a>
                 </li>
               
               
@@ -515,7 +558,7 @@
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#experiences">工作经历</a>
+                  <a class="smooth-scroll" href="/#skills">技能</a>
                 </li>
               
               
@@ -542,15 +585,6 @@
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#recent-posts">最近发表</a>
-                </li>
-              
-              
-                
-                
-                  
-                
-                <li class="nav-item">
                   <a class="smooth-scroll" href="/#achievements">成就</a>
                 </li>
               
@@ -566,13 +600,13 @@
             <li><span>Email: </span> <span>gqwmail@qq.com</span></li>
             
           </ul>
-		  
+
 		  <h5>友情链接: </h5>
 		  <ul>
 			<li><a href="http://purecpp.org/" itemprop="url" rel="index"><span itemprop="name">Pure C++</span></a></li>
 			<li><a href="https://kinly.github.io/" itemprop="url" rel="index"><span itemprop="name">蒋磊的博客</span></a></li>
 		  </ul>
-			  
+
         </div>
         
 		<div class="col-md-4 col-sm-12">
@@ -583,12 +617,12 @@
 			<span id="busuanzi_container_site_uv">
 				您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 			</span>
-			
+
 			<div>
 				<a href="https://clustrmaps.com/site/1bj40"  title="Visit tracker"><img alt="gqw.github.io" src="//www.clustrmaps.com/map_v2.png?d=P-jZSVLaaxENhQ3Na5ckx6td6DpcUROVmi1mIeNEQTA&cl=ffffff" /></a>
 			</div>
 		</div>
-        	  
+        
         
       </div>
     </div>
@@ -599,7 +633,7 @@
       <div class="row text-left">
         <div class="col-md-4">
           <a id="theme" href="https://github.com/hossainemruz/toha" target="_blank" rel="noopener">
-            <img src="/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png" alt="Toha Theme Logo">
+            <img src="/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_3.png" alt="Toha Theme Logo">
             Toha
           </a>
         </div>

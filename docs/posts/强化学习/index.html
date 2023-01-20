@@ -28,13 +28,12 @@
   
   
 
-  <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_2.png" />
+  <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_3.png" />
 
 <meta property="og:title" content="强化学习" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" />
-<meta property="og:updated_time" content="2021-11-16T00:00:00+00:00" />
 
 
     
@@ -89,7 +88,7 @@
     </button>
     <a class="navbar-brand" href="/">
       
-        <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" alt="Logo">
+        <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" alt="Logo">
       顾起威的博客</a>
     <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
       <span class="navbar-toggler-icon"></span>
@@ -103,10 +102,10 @@
   </div>
   
   
-    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="main-logo" alt="Logo">
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" class="d-none" id="main-logo" alt="Logo">
   
   
-    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
   
 </nav>
 
@@ -145,7 +144,7 @@
   
   
     
-    <li><a class="" href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
+    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
   
 
   
@@ -163,6 +162,15 @@
   
   
     
+    <li><a class="" href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
+  
+
+  
+  
+  
+  
+  
+    
     <li><a class="" href="/posts/c&#43;&#43;/build_gcc/" title="Linux 编译GCC 11">Linux 编译GCC 11</a></li>
   
 
@@ -172,7 +180,7 @@
   
   
     
-    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
+    <li><a class="" href="/posts/c&#43;&#43;/logger_analyisis/" title="日志系统性能分析与优化">日志系统性能分析与优化</a></li>
   
 
 
@@ -315,8 +323,8 @@
 解决步骤 目录结构：
 (.venv) gqw@u:~/workspace/gymtrain$ tree . ├── env │ ├── foo_env.py │ └── __init__.py └── foo_train.py 1 directory, 3 files gym将代码分为两部分：环境部分和训练部分
 gym 环境 gym 对环境镜像了抽象，无论多复杂的环境，最终暴露出来的只有gym.Env抽象的5个方法：
- stepresetrendercloseseed我们现在实现一个最简单的环境类FooEnv:
-import gymclass FooEnv(gym.Env):&quot;&quot;&quot; This is a simple envirionment &quot;&quot;&quot;def __init__(self) -&gt; None:super(FooEnv).__init__()self.seed()def seed(self):print(&quot;seed&quot;)passdef step(self, action):print(&quot;step&quot;)reward = 0done = Falsereturn None, reward, done, {}def reset(self):print(&quot;reset&quot;)passdef render(self):return Truedef close(self):pass它继承gym.</p>
+stepresetrendercloseseed 我们现在实现一个最简单的环境类FooEnv:
+import gymclass FooEnv(gym.Env):&#34;&#34;&#34; This is a simple envirionment &#34;&#34;&#34;def __init__(self) -&gt; None:super(FooEnv).__init__()self.seed()def seed(self):print(&#34;seed&#34;)passdef step(self, action):print(&#34;step&#34;)reward = 0done = Falsereturn None, reward, done, {}def reset(self):print(&#34;reset&#34;)passdef render(self):return Truedef close(self):pass 它继承gym.</p>
       </div>
       <div class="card-footer">
         <span class="float-left">November 16, 2021</span>
@@ -342,22 +350,22 @@ import gymclass FooEnv(gym.Env):&quot;&quot;&quot; This is a simple envirionme
       <div class="card-body">
         <h5 class="card-title">在Windows中运行远程Linux图形程序</h5>
         <p class="card-text post-summary">问题 在学习强化学习时用到gym。在Windows上跑gym总有诸多不便，所以直接将环境切到Linux下。开始方案是使用Win 10的Ubuntu子系统wsl2。按照网上教程虽然没有弄明白原理但是还算顺利，Linux的Gui程序还是能正常跑起来的。最近双11腾讯云搞促销就卖了3年的云主机，买了以后发现自己也没什么需要放在上面跑的东西，就寻思能不能将gym环境搬到云上，这样也就省得在公司机器和家里的机器上来回切换的麻烦了。但是今天在操作的时候还是遇到了不少的问题，现在记录下来以作备忘。
-解决方法   首先到SourceForge上下载最新的VcXsrv
-  安装运行
-  启动后出现如下界面：
+解决方法 首先到SourceForge上下载最新的VcXsrv
+安装运行
+启动后出现如下界面：
 这里有两个选项，第一个是程序的窗口风格：
-  Multiple windows: 多窗口模式，即每个GUI进程一个窗口
-  One large windows: 单窗口模式，和远程桌面类似，所有窗口都在一个大窗口里
-  Fullscreen：全屏模式，与单窗口模式类是只不过大窗口是全屏的
-  One window without titlebar: 与标题单窗口模式，与单窗口模式类似
-  可以更具需求自己的喜好随便选择就可以了。
+Multiple windows: 多窗口模式，即每个GUI进程一个窗口
+One large windows: 单窗口模式，和远程桌面类似，所有窗口都在一个大窗口里
+Fullscreen：全屏模式，与单窗口模式类是只不过大窗口是全屏的
+One window without titlebar: 与标题单窗口模式，与单窗口模式类似
+可以更具需求自己的喜好随便选择就可以了。
 窗口模式选项下面是Display number选项，这个选项很重要，但是大多数的教程里面都没有介绍这个选项的意义，害的我在后面解决云主机连接时一直忽略了这个选项，走了挺多弯路。这个选项代表的是vcXsrv模拟的是第几个显示器的意思，说他重要是因为它和通信有着直接的关系。看了别人的教程和使用后你可能心中会有个疑问，vcXsrv毕竟是个网络服务器，但是怎么就是找不到设置和修改服务端口的地方呢？其实这里的的Display number干的就是这件事，x server使用的端口其实是个‘’知名‘’端口(6000)，而实际使用的端口为6000+(Display Number), 比如如果你设置为0，那么服务监听端口变为6000，而如果是1，则端口为6001，依次类推。
 后面一个界面没什么好说的，选“start no client”好了。
 下一个界面：
 有个选项挺重要的，Disable access control 这个选项必须勾选否则会出现认证失败的提示。
 root@H:~# xcalc Authorization required, but no authorization protocol specified Error: Can&#39;t open display: 172.30.128.1:0 最后一个界面：
 有个save configuration的按钮，它可以将你前面的设置保存到一个以.xlaunch为后缀的文件中，以后只要双击这个文件就可以使用同样的配置了，一下是我的配置：
-&lt;?xml version=&#34;1.</p>
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;XLaunch WindowMode=&#34;MultiWindow&#34; ClientMode=&#34;NoClient&#34; LocalClient=&#34;False&#34; Display=&#34;0&#34; LocalProgram=&#34;xcalc&#34; RemoteProgram=&#34;xterm&#34; RemotePassword=&#34;&#34; PrivateKey=&#34;&#34; RemoteHost=&#34;&#34; RemoteUser=&#34;&#34; XDMCPHost=&#34;&#34; XDMCPBroadcast=&#34;False&#34; XDMCPIndirect=&#34;False&#34; Clipboard=&#34;True&#34; ClipboardPrimary=&#34;True&#34; ExtraParams=&#34;&#34; Wgl=&#34;False&#34; DisableAC=&#34;True&#34; XDMCPTerminate=&#34;False&#34;/&gt; 软件安装完，启动后windows这边事情就结束了。</p>
       </div>
       <div class="card-footer">
         <span class="float-left">November 12, 2021</span>
@@ -376,8 +384,6 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
     </div>
     <div class="paginator">
       
-
-
     </div>
   </div>
 </section>
@@ -421,7 +427,7 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
 
   
   
-   
+  
     
   
 
@@ -454,7 +460,7 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#about">关于</a>
+                  <a class="smooth-scroll" href="/#recent-posts">最近发表</a>
                 </li>
               
               
@@ -463,7 +469,7 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#skills">技能</a>
+                  <a class="smooth-scroll" href="/#about">关于</a>
                 </li>
               
               
@@ -490,7 +496,7 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#projects">开源项目</a>
+                  <a class="smooth-scroll" href="/#skills">技能</a>
                 </li>
               
               
@@ -499,7 +505,7 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#recent-posts">最近发表</a>
+                  <a class="smooth-scroll" href="/#projects">开源项目</a>
                 </li>
               
               
@@ -523,13 +529,13 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
             <li><span>Email: </span> <span>gqwmail@qq.com</span></li>
             
           </ul>
-		  
+
 		  <h5>友情链接: </h5>
 		  <ul>
 			<li><a href="http://purecpp.org/" itemprop="url" rel="index"><span itemprop="name">Pure C++</span></a></li>
 			<li><a href="https://kinly.github.io/" itemprop="url" rel="index"><span itemprop="name">蒋磊的博客</span></a></li>
 		  </ul>
-			  
+
         </div>
         
 		<div class="col-md-4 col-sm-12">
@@ -540,12 +546,12 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
 			<span id="busuanzi_container_site_uv">
 				您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 			</span>
-			
+
 			<div>
 				<a href="https://clustrmaps.com/site/1bj40"  title="Visit tracker"><img alt="gqw.github.io" src="//www.clustrmaps.com/map_v2.png?d=P-jZSVLaaxENhQ3Na5ckx6td6DpcUROVmi1mIeNEQTA&cl=ffffff" /></a>
 			</div>
 		</div>
-        	  
+        
         
       </div>
     </div>
@@ -556,7 +562,7 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
       <div class="row text-left">
         <div class="col-md-4">
           <a id="theme" href="https://github.com/hossainemruz/toha" target="_blank" rel="noopener">
-            <img src="/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png" alt="Toha Theme Logo">
+            <img src="/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_3.png" alt="Toha Theme Logo">
             Toha
           </a>
         </div>

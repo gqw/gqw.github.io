@@ -28,13 +28,12 @@
   
   
 
-  <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_2.png" />
+  <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_3.png" />
 
 <meta property="og:title" content="Git" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://gqw.github.io/posts/git/" />
-<meta property="og:updated_time" content="2021-07-28T00:00:00+00:00" />
+<meta property="og:url" content="https://gqw.gitee.io/posts/git/" />
 
 
     
@@ -89,7 +88,7 @@
     </button>
     <a class="navbar-brand" href="/">
       
-        <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" alt="Logo">
+        <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" alt="Logo">
       顾起威的博客</a>
     <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
       <span class="navbar-toggler-icon"></span>
@@ -103,10 +102,10 @@
   </div>
   
   
-    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="main-logo" alt="Logo">
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" class="d-none" id="main-logo" alt="Logo">
   
   
-    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
   
 </nav>
 
@@ -145,7 +144,7 @@
   
   
     
-    <li><a class="" href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
+    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
   
 
   
@@ -163,6 +162,15 @@
   
   
     
+    <li><a class="" href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
+  
+
+  
+  
+  
+  
+  
+    
     <li><a class="" href="/posts/c&#43;&#43;/build_gcc/" title="Linux 编译GCC 11">Linux 编译GCC 11</a></li>
   
 
@@ -172,7 +180,7 @@
   
   
     
-    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
+    <li><a class="" href="/posts/c&#43;&#43;/logger_analyisis/" title="日志系统性能分析与优化">日志系统性能分析与优化</a></li>
   
 
 
@@ -312,11 +320,11 @@
       <div class="card-body">
         <h5 class="card-title">同步GitHub pages和 Gitee pages方法</h5>
         <p class="card-text post-summary">问题 这两天在整理博客，一直使用GitHub和Gitee的Pages功能作为博客的静态托管站。但是遇到以下几个问题：
- 每次PUSH都要向两个网站分别提交，操作繁琐 域名问题， 博客使用的Hugo博客生成系统，根域名是在config.yaml配置的，导致最终的域名管理比较混乱。比如配置了github的域名，提交给gitee时忘记改，就会导致某些图片或内容访问不稳定。 Gitee发布比较麻烦，需要手动更新提交  解决方法   对于多次提交的问题，最初解决方法是使用以下命令：
+每次PUSH都要向两个网站分别提交，操作繁琐 域名问题， 博客使用的Hugo博客生成系统，根域名是在config.yaml配置的，导致最终的域名管理比较混乱。比如配置了github的域名，提交给gitee时忘记改，就会导致某些图片或内容访问不稳定。 Gitee发布比较麻烦，需要手动更新提交 解决方法 对于多次提交的问题，最初解决方法是使用以下命令：
 $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git remote -v origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) origin git@github.com:gqw/gqw.github.io.git (push) 方法解决。添加过后每次提交都会同时往两个仓库提交。
 但是为了解决第二个问题，即不同域名问题，最终并未使用此方案。
-  解决不同域名问题，解决思路是通过git hook在提交和上次时在hook脚本里修改Hugo生成好的内容。
- 首先准备好远程url  $ git remote -v github_auto_change_domian git@github.com:gqw/gqw.github.io.git (fetch) github_auto_change_domian git@github.com:gqw/gqw.github.io.git (push) origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) 然后在仓库的.git/hooks目录中添加commit-msg文件，内容为：  commit_msg=$(cat $1) echo $commit_msg if [[ $commit_msg =~ &#34;replace domain to github&#34; ]]; then # 向github上传前会修改仓库内容，并做一次提交记录， # 这时不需要重新生成文档 echo &#34;replace domain to github&#34; else # 清空生成目录内容 rm -rfv .</p>
+解决不同域名问题，解决思路是通过git hook在提交和上次时在hook脚本里修改Hugo生成好的内容。
+首先准备好远程url $ git remote -v github_auto_change_domian git@github.com:gqw/gqw.github.io.git (fetch) github_auto_change_domian git@github.com:gqw/gqw.github.io.git (push) origin git@gitee.com:gqw/gqw.git (fetch) origin git@gitee.com:gqw/gqw.git (push) 然后在仓库的.git/hooks目录中添加commit-msg文件，内容为： commit_msg=$(cat $1) echo $commit_msg if [[ $commit_msg =~ &#34;replace domain to github&#34; ]]; then # 向github上传前会修改仓库内容，并做一次提交记录， # 这时不需要重新生成文档 echo &#34;replace domain to github&#34; else # 清空生成目录内容 rm -rfv .</p>
       </div>
       <div class="card-footer">
         <span class="float-left">July 28, 2021</span>
@@ -335,8 +343,6 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
     </div>
     <div class="paginator">
       
-
-
     </div>
   </div>
 </section>
@@ -380,7 +386,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
 
   
   
-   
+  
     
   
 
@@ -413,7 +419,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#about">关于</a>
+                  <a class="smooth-scroll" href="/#recent-posts">最近发表</a>
                 </li>
               
               
@@ -422,7 +428,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#skills">技能</a>
+                  <a class="smooth-scroll" href="/#about">关于</a>
                 </li>
               
               
@@ -449,7 +455,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#projects">开源项目</a>
+                  <a class="smooth-scroll" href="/#skills">技能</a>
                 </li>
               
               
@@ -458,7 +464,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#recent-posts">最近发表</a>
+                  <a class="smooth-scroll" href="/#projects">开源项目</a>
                 </li>
               
               
@@ -482,13 +488,13 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
             <li><span>Email: </span> <span>gqwmail@qq.com</span></li>
             
           </ul>
-		  
+
 		  <h5>友情链接: </h5>
 		  <ul>
 			<li><a href="http://purecpp.org/" itemprop="url" rel="index"><span itemprop="name">Pure C++</span></a></li>
 			<li><a href="https://kinly.github.io/" itemprop="url" rel="index"><span itemprop="name">蒋磊的博客</span></a></li>
 		  </ul>
-			  
+
         </div>
         
 		<div class="col-md-4 col-sm-12">
@@ -499,12 +505,12 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
 			<span id="busuanzi_container_site_uv">
 				您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 			</span>
-			
+
 			<div>
 				<a href="https://clustrmaps.com/site/1bj40"  title="Visit tracker"><img alt="gqw.github.io" src="//www.clustrmaps.com/map_v2.png?d=P-jZSVLaaxENhQ3Na5ckx6td6DpcUROVmi1mIeNEQTA&cl=ffffff" /></a>
 			</div>
 		</div>
-        	  
+        
         
       </div>
     </div>
@@ -515,7 +521,7 @@ $ git remote set-url --add origin git@github.com:gqw/gqw.github.io.git $ git rem
       <div class="row text-left">
         <div class="col-md-4">
           <a id="theme" href="https://github.com/hossainemruz/toha" target="_blank" rel="noopener">
-            <img src="/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png" alt="Toha Theme Logo">
+            <img src="/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_3.png" alt="Toha Theme Logo">
             Toha
           </a>
         </div>

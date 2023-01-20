@@ -28,28 +28,28 @@
   
   
 
-  <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_2.png" />
+  <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_3.png" />
 
 <meta property="og:title" content="在Windows中运行远程Linux图形程序" />
 <meta property="og:description" content="问题 在学习强化学习时用到gym。在Windows上跑gym总有诸多不便，所以直接将环境切到Linux下。开始方案是使用Win 10的Ubuntu子系统wsl2。按照网上教程虽然没有弄明白原理但是还算顺利，Linux的Gui程序还是能正常跑起来的。最近双11腾讯云搞促销就卖了3年的云主机，买了以后发现自己也没什么需要放在上面跑的东西，就寻思能不能将gym环境搬到云上，这样也就省得在公司机器和家里的机器上来回切换的麻烦了。但是今天在操作的时候还是遇到了不少的问题，现在记录下来以作备忘。
-解决方法   首先到SourceForge上下载最新的VcXsrv
-  安装运行
-  启动后出现如下界面：
+解决方法 首先到SourceForge上下载最新的VcXsrv
+安装运行
+启动后出现如下界面：
 这里有两个选项，第一个是程序的窗口风格：
-  Multiple windows: 多窗口模式，即每个GUI进程一个窗口
-  One large windows: 单窗口模式，和远程桌面类似，所有窗口都在一个大窗口里
-  Fullscreen：全屏模式，与单窗口模式类是只不过大窗口是全屏的
-  One window without titlebar: 与标题单窗口模式，与单窗口模式类似
-  可以更具需求自己的喜好随便选择就可以了。
+Multiple windows: 多窗口模式，即每个GUI进程一个窗口
+One large windows: 单窗口模式，和远程桌面类似，所有窗口都在一个大窗口里
+Fullscreen：全屏模式，与单窗口模式类是只不过大窗口是全屏的
+One window without titlebar: 与标题单窗口模式，与单窗口模式类似
+可以更具需求自己的喜好随便选择就可以了。
 窗口模式选项下面是Display number选项，这个选项很重要，但是大多数的教程里面都没有介绍这个选项的意义，害的我在后面解决云主机连接时一直忽略了这个选项，走了挺多弯路。这个选项代表的是vcXsrv模拟的是第几个显示器的意思，说他重要是因为它和通信有着直接的关系。看了别人的教程和使用后你可能心中会有个疑问，vcXsrv毕竟是个网络服务器，但是怎么就是找不到设置和修改服务端口的地方呢？其实这里的的Display number干的就是这件事，x server使用的端口其实是个‘’知名‘’端口(6000)，而实际使用的端口为6000&#43;(Display Number), 比如如果你设置为0，那么服务监听端口变为6000，而如果是1，则端口为6001，依次类推。
 后面一个界面没什么好说的，选“start no client”好了。
 下一个界面：
 有个选项挺重要的，Disable access control 这个选项必须勾选否则会出现认证失败的提示。
 root@H:~# xcalc Authorization required, but no authorization protocol specified Error: Can&#39;t open display: 172.30.128.1:0 最后一个界面：
 有个save configuration的按钮，它可以将你前面的设置保存到一个以.xlaunch为后缀的文件中，以后只要双击这个文件就可以使用同样的配置了，一下是我的配置：
-&lt;?xml version=&#34;1." />
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;XLaunch WindowMode=&#34;MultiWindow&#34; ClientMode=&#34;NoClient&#34; LocalClient=&#34;False&#34; Display=&#34;0&#34; LocalProgram=&#34;xcalc&#34; RemoteProgram=&#34;xterm&#34; RemotePassword=&#34;&#34; PrivateKey=&#34;&#34; RemoteHost=&#34;&#34; RemoteUser=&#34;&#34; XDMCPHost=&#34;&#34; XDMCPBroadcast=&#34;False&#34; XDMCPIndirect=&#34;False&#34; Clipboard=&#34;True&#34; ClipboardPrimary=&#34;True&#34; ExtraParams=&#34;&#34; Wgl=&#34;False&#34; DisableAC=&#34;True&#34; XDMCPTerminate=&#34;False&#34;/&gt; 软件安装完，启动后windows这边事情就结束了。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/" />
+<meta property="og:url" content="https://gqw.gitee.io/posts/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/linux_remote_gui_use_vcxsvr/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-11-12T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-11-12T00:00:00+00:00" />
 
@@ -111,7 +111,7 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
     </button>
     <a class="navbar-brand" href="/">
       
-        <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" alt="Logo">
+        <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" alt="Logo">
       顾起威的博客</a>
     <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
       <span class="navbar-toggler-icon"></span>
@@ -125,10 +125,10 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
   </div>
   
   
-    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="main-logo" alt="Logo">
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" class="d-none" id="main-logo" alt="Logo">
   
   
-    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
   
 </nav>
 
@@ -164,7 +164,7 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
   
   
     
-    <li><a class="" href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
+    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
   
 
   
@@ -182,6 +182,15 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
   
   
     
+    <li><a class="" href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
+  
+
+  
+  
+  
+  
+  
+    
     <li><a class="" href="/posts/c&#43;&#43;/build_gcc/" title="Linux 编译GCC 11">Linux 编译GCC 11</a></li>
   
 
@@ -191,7 +200,7 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
   
   
     
-    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
+    <li><a class="" href="/posts/c&#43;&#43;/logger_analyisis/" title="日志系统性能分析与优化">日志系统性能分析与优化</a></li>
   
 
 
@@ -328,8 +337,8 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
       
       <div class="page-content">
         <div class="author-profile ml-auto align-self-lg-center">
-          <img class="rounded-circle" src='/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_120x120_fit_box_2.png' alt="Author Image">
-          <h5 class="author-name">阿修罗9527</h5>
+          <img class="rounded-circle" src='/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_120x120_fit_box_3.png' alt="Author Image">
+          <h5 class="author-name">阿修罗</h5>
           <p>November 12, 2021 | 200 Words | Read in about 1 Min | 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</p>
 		  <h6 id="wc"></h6>
         </div>
@@ -350,7 +359,7 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
 </li>
 <li>
 <p>启动后出现如下界面：</p>
-<p><img src="./imgs/window_style.png" alt="窗口风格" style="zoom:50%;" /></p>
+<img src="./imgs/window_style.png" alt="窗口风格" style="zoom:50%;" />
 <p>这里有两个选项，第一个是程序的窗口风格：</p>
 <ol>
 <li>
@@ -369,38 +378,38 @@ root@H:~# xcalc Authorization required, but no authorization protocol specified 
 <p>可以更具需求自己的喜好随便选择就可以了。</p>
 <p>窗口模式选项下面是Display number选项，这个选项很重要，但是大多数的教程里面都没有介绍这个选项的意义，害的我在后面解决云主机连接时一直忽略了这个选项，走了挺多弯路。这个选项代表的是vcXsrv模拟的是第几个显示器的意思，说他重要是因为它和通信有着直接的关系。看了别人的教程和使用后你可能心中会有个疑问，vcXsrv毕竟是个网络服务器，但是怎么就是找不到设置和修改服务端口的地方呢？<strong>其实这里的的Display number干的就是这件事，x server使用的端口其实是个‘’知名‘’端口(6000)，而实际使用的端口为6000+(Display Number), 比如如果你设置为0，那么服务监听端口变为6000，而如果是1，则端口为6001，依次类推</strong>。</p>
 <p>后面一个界面没什么好说的，选“start no client”好了。</p>
-<p><img src="./imgs/step2.png" alt="step2" style="zoom:50%;" /></p>
+<img src="./imgs/step2.png" alt="step2" style="zoom:50%;" />
 <p>下一个界面：</p>
-<p><img src="./imgs/step3.png" alt="step2" style="zoom:50%;" /></p>
+<img src="./imgs/step3.png" alt="step2" style="zoom:50%;" />
 <p>有个选项挺重要的，Disable access control 这个选项必须勾选否则会出现认证失败的提示。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@H:~# xcalc
-Authorization required, but no authorization protocol specified
-Error: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t open display: 172.30.128.1:0
-</code></pre></div><p>最后一个界面：</p>
-<p><img src="./imgs/step4.png" alt="step2" style="zoom:50%;" /></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@H:~# xcalc
+</span></span><span style="display:flex;"><span>Authorization required, but no authorization protocol specified
+</span></span><span style="display:flex;"><span>Error: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t open display: 172.30.128.1:0
+</span></span></code></pre></div><p>最后一个界面：</p>
+<img src="./imgs/step4.png" alt="step2" style="zoom:50%;" />
 <p>有个save configuration的按钮，它可以将你前面的设置保存到一个以<code>.xlaunch</code>为后缀的文件中，以后只要双击这个文件就可以使用同样的配置了，一下是我的配置：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-<span style="color:#f92672">&lt;XLaunch</span> <span style="color:#a6e22e">WindowMode=</span><span style="color:#e6db74">&#34;MultiWindow&#34;</span> <span style="color:#a6e22e">ClientMode=</span><span style="color:#e6db74">&#34;NoClient&#34;</span> <span style="color:#a6e22e">LocalClient=</span><span style="color:#e6db74">&#34;False&#34;</span> <span style="color:#a6e22e">Display=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">LocalProgram=</span><span style="color:#e6db74">&#34;xcalc&#34;</span> <span style="color:#a6e22e">RemoteProgram=</span><span style="color:#e6db74">&#34;xterm&#34;</span> <span style="color:#a6e22e">RemotePassword=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">PrivateKey=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">RemoteHost=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">RemoteUser=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">XDMCPHost=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">XDMCPBroadcast=</span><span style="color:#e6db74">&#34;False&#34;</span> <span style="color:#a6e22e">XDMCPIndirect=</span><span style="color:#e6db74">&#34;False&#34;</span> <span style="color:#a6e22e">Clipboard=</span><span style="color:#e6db74">&#34;True&#34;</span> <span style="color:#a6e22e">ClipboardPrimary=</span><span style="color:#e6db74">&#34;True&#34;</span> <span style="color:#a6e22e">ExtraParams=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">Wgl=</span><span style="color:#e6db74">&#34;False&#34;</span> <span style="color:#a6e22e">DisableAC=</span><span style="color:#e6db74">&#34;True&#34;</span> <span style="color:#a6e22e">XDMCPTerminate=</span><span style="color:#e6db74">&#34;False&#34;</span><span style="color:#f92672">/&gt;</span>
-</code></pre></div><ol start="4">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;XLaunch</span> <span style="color:#a6e22e">WindowMode=</span><span style="color:#e6db74">&#34;MultiWindow&#34;</span> <span style="color:#a6e22e">ClientMode=</span><span style="color:#e6db74">&#34;NoClient&#34;</span> <span style="color:#a6e22e">LocalClient=</span><span style="color:#e6db74">&#34;False&#34;</span> <span style="color:#a6e22e">Display=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">LocalProgram=</span><span style="color:#e6db74">&#34;xcalc&#34;</span> <span style="color:#a6e22e">RemoteProgram=</span><span style="color:#e6db74">&#34;xterm&#34;</span> <span style="color:#a6e22e">RemotePassword=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">PrivateKey=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">RemoteHost=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">RemoteUser=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">XDMCPHost=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">XDMCPBroadcast=</span><span style="color:#e6db74">&#34;False&#34;</span> <span style="color:#a6e22e">XDMCPIndirect=</span><span style="color:#e6db74">&#34;False&#34;</span> <span style="color:#a6e22e">Clipboard=</span><span style="color:#e6db74">&#34;True&#34;</span> <span style="color:#a6e22e">ClipboardPrimary=</span><span style="color:#e6db74">&#34;True&#34;</span> <span style="color:#a6e22e">ExtraParams=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">Wgl=</span><span style="color:#e6db74">&#34;False&#34;</span> <span style="color:#a6e22e">DisableAC=</span><span style="color:#e6db74">&#34;True&#34;</span> <span style="color:#a6e22e">XDMCPTerminate=</span><span style="color:#e6db74">&#34;False&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span></code></pre></div><ol start="4">
 <li>
 <p>软件安装完，启动后windows这边事情就结束了。</p>
 </li>
 <li>
 <p>在Linux机器上，我们需要设置下DISPLAY环境变量，因为x client会使用此环境变量</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{{</span> hostname <span style="color:#f92672">}}</span>:<span style="color:#f92672">{{</span> D <span style="color:#f92672">}}</span>.<span style="color:#f92672">{{</span> S <span style="color:#f92672">}}</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">{{</span> hostname <span style="color:#f92672">}}</span>:<span style="color:#f92672">{{</span> D <span style="color:#f92672">}}</span>.<span style="color:#f92672">{{</span> S <span style="color:#f92672">}}</span>
+</span></span></code></pre></div><ul>
 <li>
 <p>{{ hostname }} 表示运行 X Client 的主机名（域名或 IP 地址），如果省略（如 <code>:0.0</code>）则表示使用 <code>localhost</code>。这里的hostname便是vcXsrv或者其他X Server的IP地址，在wsl上面比较简单，因为wsl虚拟机和Windows主机都在同一台机器上，所以他们在同一局域网，可以直接访问互联，只要将hostname设为主机的IP即可。这里还有个小技巧，如果写死IP地址，主机的IP变动后也要跟着改还是挺麻烦的，网上有人给出了下面的解决方案：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export DISPLAY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>grep nameserver /etc/resolv.conf | sed <span style="color:#e6db74">&#39;s/nameserver //&#39;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">:0&#34;</span>
-</code></pre></div><p>这里的脚本<code>$(grep nameserver /etc/resolv.conf | sed 's/nameserver //')</code>意思是在resolv.conf文件中查找nameserver对应的IP地址。在wsl中nameserver即虚拟机的DNS服务器被设置为桥接路由的IP，而桥接路由正好是Windows主机，所以这个地址也代表了主机地址，所以说这是个技巧而不是通用的方法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export DISPLAY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>grep nameserver /etc/resolv.conf | sed <span style="color:#e6db74">&#39;s/nameserver //&#39;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">:0&#34;</span>
+</span></span></code></pre></div><p>这里的脚本<code>$(grep nameserver /etc/resolv.conf | sed 's/nameserver //')</code>意思是在resolv.conf文件中查找nameserver对应的IP地址。在wsl中nameserver即虚拟机的DNS服务器被设置为桥接路由的IP，而桥接路由正好是Windows主机，所以这个地址也代表了主机地址，所以说这是个技巧而不是通用的方法。</p>
 <p>**总之，这个hostname一定要设置为可访问的vcXsrv服务器地址。**对于想让外网云主机上GUI运行在本地机器的情况稍微有点麻烦。因为本地的主机通常隐藏在本地局域网中，外网不能直接访问。</p>
 <p>在这里我采取的方法是使用ssh的端口映射将Windows本地主机上的vcXsrv服务端口映射到远程云主机的本地端口上，实现将X Client的数据流转发到vcXsrv服务器上。方法很简单只需要在普通的ssh连接参数上添加<code>-R</code>参数：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -R localhost:6000:localhost:6000 username@server
-</code></pre></div><p>前面的localhost:6000代表windows本地的地址和端口，后面的代表Linux的地址和端口。这样Linux机器上的程序访问6000端口就会转发到Windows机器上的6000端口。原理就是ssh连接成功后便会自动添加指定端口的服务监听，任何访问此服务的数据都会转发到ssh客户机对应的端口上。通过ssh的端口映射，我们最终就可以在远程云主机上访问本地Windows上的vcXsrv服务了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh -R localhost:6000:localhost:6000 username@server
+</span></span></code></pre></div><p>前面的localhost:6000代表windows本地的地址和端口，后面的代表Linux的地址和端口。这样Linux机器上的程序访问6000端口就会转发到Windows机器上的6000端口。原理就是ssh连接成功后便会自动添加指定端口的服务监听，任何访问此服务的数据都会转发到ssh客户机对应的端口上。通过ssh的端口映射，我们最终就可以在远程云主机上访问本地Windows上的vcXsrv服务了。</p>
 <p>接下来我们只需要设置DISPLAY环境变量为:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export DISPLAY<span style="color:#f92672">=</span>localhost:0
-</code></pre></div><p>便可以了。</p>
-<p><img src="./imgs/vcXsrv.drawio.png" alt="vcXsrv.drawio" style="zoom:50%;" /></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export DISPLAY<span style="color:#f92672">=</span>localhost:0
+</span></span></code></pre></div><p>便可以了。</p>
+<img src="./imgs/vcXsrv.drawio.png" alt="vcXsrv.drawio" style="zoom:50%;" />
 </li>
 <li>
 <p>{{ D }} 是一个序列号，一个 X 连接使用一个序列号，如果有多个 X Client 向外连接，则必须使用不同的 {{ D }}。并且它与一对 C/S 连接使用的端口号相关，<code>Port = D + 6000</code></p>
@@ -453,6 +462,9 @@ Error: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t ope
 
 
 
+
+  
+  
 
   
   
@@ -579,7 +591,7 @@ Error: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t ope
 
   
   
-   
+  
     
   
 
@@ -612,6 +624,15 @@ Error: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t ope
                   
                 
                 <li class="nav-item">
+                  <a class="smooth-scroll" href="/#recent-posts">最近发表</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
                   <a class="smooth-scroll" href="/#about">关于</a>
                 </li>
               
@@ -621,7 +642,7 @@ Error: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t ope
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#skills">技能</a>
+                  <a class="smooth-scroll" href="/#experiences">工作经历</a>
                 </li>
               
               
@@ -630,7 +651,7 @@ Error: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t ope
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#experiences">工作经历</a>
+                  <a class="smooth-scroll" href="/#skills">技能</a>
                 </li>
               
               
@@ -657,15 +678,6 @@ Error: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t ope
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#recent-posts">最近发表</a>
-                </li>
-              
-              
-                
-                
-                  
-                
-                <li class="nav-item">
                   <a class="smooth-scroll" href="/#achievements">成就</a>
                 </li>
               
@@ -681,13 +693,13 @@ Error: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t ope
             <li><span>Email: </span> <span>gqwmail@qq.com</span></li>
             
           </ul>
-		  
+
 		  <h5>友情链接: </h5>
 		  <ul>
 			<li><a href="http://purecpp.org/" itemprop="url" rel="index"><span itemprop="name">Pure C++</span></a></li>
 			<li><a href="https://kinly.github.io/" itemprop="url" rel="index"><span itemprop="name">蒋磊的博客</span></a></li>
 		  </ul>
-			  
+
         </div>
         
 		<div class="col-md-4 col-sm-12">
@@ -698,12 +710,12 @@ Error: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t ope
 			<span id="busuanzi_container_site_uv">
 				您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 			</span>
-			
+
 			<div>
 				<a href="https://clustrmaps.com/site/1bj40"  title="Visit tracker"><img alt="gqw.github.io" src="//www.clustrmaps.com/map_v2.png?d=P-jZSVLaaxENhQ3Na5ckx6td6DpcUROVmi1mIeNEQTA&cl=ffffff" /></a>
 			</div>
 		</div>
-        	  
+        
         
       </div>
     </div>
@@ -714,7 +726,7 @@ Error: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t ope
       <div class="row text-left">
         <div class="col-md-4">
           <a id="theme" href="https://github.com/hossainemruz/toha" target="_blank" rel="noopener">
-            <img src="/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png" alt="Toha Theme Logo">
+            <img src="/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_3.png" alt="Toha Theme Logo">
             Toha
           </a>
         </div>

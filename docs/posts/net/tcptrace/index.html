@@ -28,12 +28,12 @@
   
   
 
-  <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_2.png" />
+  <link rel="icon" type="image/png" href="/images/site/logo_inverted_hua3efbebda7e0f6b36d7702fa91bfea5d_215975_42x0_resize_box_3.png" />
 
 <meta property="og:title" content="tcprt" />
 <meta property="og:description" content="Windows下基于tcp协议的traceroute实现" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gqw.github.io/posts/net/tcptrace/" />
+<meta property="og:url" content="https://gqw.gitee.io/posts/net/tcptrace/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-12-29T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-12-29T00:00:00+00:00" />
 
@@ -95,7 +95,7 @@
     </button>
     <a class="navbar-brand" href="/">
       
-        <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" alt="Logo">
+        <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" alt="Logo">
       顾起威的博客</a>
     <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
       <span class="navbar-toggler-icon"></span>
@@ -109,10 +109,10 @@
   </div>
   
   
-    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="main-logo" alt="Logo">
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" class="d-none" id="main-logo" alt="Logo">
   
   
-    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_2.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
+    <img src="/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_42x0_resize_box_3.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
   
 </nav>
 
@@ -148,7 +148,7 @@
   
   
     
-    <li><a class="" href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
+    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
   
 
   
@@ -166,6 +166,15 @@
   
   
     
+    <li><a class="" href="/posts/c&#43;&#43;/serialization/" title="C&#43;&#43;序列化和反序列化工具">C&#43;&#43;序列化和反序列化工具</a></li>
+  
+
+  
+  
+  
+  
+  
+    
     <li><a class="" href="/posts/c&#43;&#43;/build_gcc/" title="Linux 编译GCC 11">Linux 编译GCC 11</a></li>
   
 
@@ -175,7 +184,7 @@
   
   
     
-    <li><a class="" href="/posts/c&#43;&#43;/coroutine/" title="深入浅出C&#43;&#43; 20 Coroutine TS">深入浅出C&#43;&#43; 20 Coroutine TS</a></li>
+    <li><a class="" href="/posts/c&#43;&#43;/logger_analyisis/" title="日志系统性能分析与优化">日志系统性能分析与优化</a></li>
   
 
 
@@ -306,14 +315,14 @@
   <div class="content">
     <div class="container p-0 read-area">
       
-      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.github.io/posts/net/tcptrace/images/forest.jpg);'>
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://gqw.gitee.io/posts/net/tcptrace/images/forest.jpg);'>
       </div>
 
       
       <div class="page-content">
         <div class="author-profile ml-auto align-self-lg-center">
-          <img class="rounded-circle" src='/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_120x120_fit_box_2.png' alt="Author Image">
-          <h5 class="author-name">阿修罗9527</h5>
+          <img class="rounded-circle" src='/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_120x120_fit_box_3.png' alt="Author Image">
+          <h5 class="author-name">阿修罗</h5>
           <p>December 29, 2020 | 300 Words | Read in about 1 Min | 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</p>
 		  <h6 id="wc"></h6>
         </div>
@@ -349,8 +358,8 @@
 <h3 id="实现">实现</h3>
 <hr>
 <p>tracert在Windows下只有基于ICMP协议的实现。Linux下倒是有TCP版本的实现，</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">traceroute -T www.baidu.com <span style="color:#ae81ff">80</span>
-</code></pre></div><p>既然如此那就看看源码，借鉴下别人是怎么实现的。Linux下traceroute<sup><a href="#ref_3">[3]</a></sup>的思路比较直接，使用原始套接字（SOCK_RAW）向目的主机发送tcp连接, 并递增请求包的TTL值，再用recvmsg中flags设置MSG_ERRQUEUE选项来获取连接信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>traceroute -T www.baidu.com <span style="color:#ae81ff">80</span>
+</span></span></code></pre></div><p>既然如此那就看看源码，借鉴下别人是怎么实现的。Linux下traceroute<sup><a href="#ref_3">[3]</a></sup>的思路比较直接，使用原始套接字（SOCK_RAW）向目的主机发送tcp连接, 并递增请求包的TTL值，再用recvmsg中flags设置MSG_ERRQUEUE选项来获取连接信息。</p>
 <p>但是在Windows系统下就没有那么幸运了。系统为了安全考虑（主要怕原始套接字被滥用）禁止了以下行为<sup><a href="#ref_1">[1]</a></sup>：</p>
 <ol>
 <li>
@@ -385,13 +394,13 @@
 <p>下面说下实现时的一些注意点：</p>
 <ol>
 <li>修改TTL方法：
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CPP" data-lang="CPP">setsockopt (tcp_sk, IPPROTO_IP, IP_TTL, (<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>ttl, <span style="color:#66d9ef">sizeof</span> (ttl))
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CPP" data-lang="CPP"><span style="display:flex;"><span>setsockopt (tcp_sk, IPPROTO_IP, IP_TTL, (<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>ttl, <span style="color:#66d9ef">sizeof</span> (ttl))
+</span></span></code></pre></div></li>
 <li>设置连接socket为非阻塞模式，这样connect后可以立即监听网络响应。</li>
 <li>因为是并发请求所以需要在connect之前bind一下，这样可以在探测结束前一直占用一个本地端口号，后面也可以根据这个端口进行信息匹配。</li>
 <li>监听的原始套接字通过下面代码创建：
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CPP" data-lang="CPP">socket(AF_INET, SOCK_RAW, IPPROTO_IP)
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CPP" data-lang="CPP"><span style="display:flex;"><span>socket(AF_INET, SOCK_RAW, IPPROTO_IP)
+</span></span></code></pre></div></li>
 <li>原始套接字需要打开 SIO_RCVALL 选项，这样才能收到所有网络包，包括connect连接成功后的syn+ack包。</li>
 <li>打开 SIO_RCVALL 选项需要先进行bind操作才可以，不然会报10022错误。</li>
 <li>因为打开了 SIO_RCVALL 所以每个探测线程会收到bind地址的所有网络包，所以要根据协议头进行过滤和区分。前面占用的本地端口是探测线程的一个重要依据。</li>
@@ -410,12 +419,12 @@
 </ol>
 <h2 id="使用">使用</h2>
 <hr>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git clone https://github.com/gqw/tcprt.git
-cd tcprt
-mkdir build
-cd build
-cmake ..
-</code></pre></div><pre><code>./tcprt.exe 180.101.49.11 80 30
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git clone https://github.com/gqw/tcprt.git
+</span></span><span style="display:flex;"><span>cd tcprt
+</span></span><span style="display:flex;"><span>mkdir build
+</span></span><span style="display:flex;"><span>cd build
+</span></span><span style="display:flex;"><span>cmake ..
+</span></span></code></pre></div><pre tabindex="0"><code>./tcprt.exe 180.101.49.11 80 30
 </code></pre><p><img src="https://i.loli.net/2020/12/29/4lapfrqPQeZCLoB.png" alt=""></p>
 <h2 id="计划内容">计划内容</h2>
 <hr>
@@ -462,6 +471,9 @@ cmake ..
 
 
 
+
+  
+  
 
   
   
@@ -602,7 +614,7 @@ cmake ..
 
   
   
-   
+  
     
   
 
@@ -635,7 +647,7 @@ cmake ..
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#about">关于</a>
+                  <a class="smooth-scroll" href="/#recent-posts">最近发表</a>
                 </li>
               
               
@@ -644,7 +656,7 @@ cmake ..
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#skills">技能</a>
+                  <a class="smooth-scroll" href="/#about">关于</a>
                 </li>
               
               
@@ -671,7 +683,7 @@ cmake ..
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#projects">开源项目</a>
+                  <a class="smooth-scroll" href="/#skills">技能</a>
                 </li>
               
               
@@ -680,7 +692,7 @@ cmake ..
                   
                 
                 <li class="nav-item">
-                  <a class="smooth-scroll" href="/#recent-posts">最近发表</a>
+                  <a class="smooth-scroll" href="/#projects">开源项目</a>
                 </li>
               
               
@@ -704,13 +716,13 @@ cmake ..
             <li><span>Email: </span> <span>gqwmail@qq.com</span></li>
             
           </ul>
-		  
+
 		  <h5>友情链接: </h5>
 		  <ul>
 			<li><a href="http://purecpp.org/" itemprop="url" rel="index"><span itemprop="name">Pure C++</span></a></li>
 			<li><a href="https://kinly.github.io/" itemprop="url" rel="index"><span itemprop="name">蒋磊的博客</span></a></li>
 		  </ul>
-			  
+
         </div>
         
 		<div class="col-md-4 col-sm-12">
@@ -721,12 +733,12 @@ cmake ..
 			<span id="busuanzi_container_site_uv">
 				您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 			</span>
-			
+
 			<div>
 				<a href="https://clustrmaps.com/site/1bj40"  title="Visit tracker"><img alt="gqw.github.io" src="//www.clustrmaps.com/map_v2.png?d=P-jZSVLaaxENhQ3Na5ckx6td6DpcUROVmi1mIeNEQTA&cl=ffffff" /></a>
 			</div>
 		</div>
-        	  
+        
         
       </div>
     </div>
@@ -737,7 +749,7 @@ cmake ..
       <div class="row text-left">
         <div class="col-md-4">
           <a id="theme" href="https://github.com/hossainemruz/toha" target="_blank" rel="noopener">
-            <img src="/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png" alt="Toha Theme Logo">
+            <img src="/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_3.png" alt="Toha Theme Logo">
             Toha
           </a>
         </div>
