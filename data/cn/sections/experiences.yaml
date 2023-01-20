@@ -6,10 +6,25 @@ section:
   weight: 3
   showOnNavbar: true
   # Can optionally hide the title in sections
-  # hideTitle: true 
+  # hideTitle: true
 
 # Your experiences
 experiences:
+- company:
+    name: 极氪
+    url: "https://www.zeekrlife.com/"
+    location: 上海
+    # company overview
+    overview: 共创极致体验的出行生活
+  positions:
+  - designation: 核心软硬件平台-软件开发
+    start:  2023/1
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - SOA通讯开发
+
 - company:
     name: 网易
     url: "https://www.baochuangames.com/"
@@ -23,10 +38,10 @@ experiences:
     # end: Dec 2020
     # give some points about what was your responsibilities at the company.
     responsibilities:
-    - 开发维护网关服务
-    - 设计，开发，管理游戏P2SP下载服务
-    - 开发，维护游戏SDK
-    - 游戏逆向，注入，离屏渲染，输入法，屏蔽词等游戏相关技术研究和方案实现
+    - 平台开发维护
+    - 《随机点数大师》客户端开发
+    - 《凛冬计划》 客户端开发
+    - 魔兽插件盒子开发
 
 
 - company:
@@ -35,7 +50,7 @@ experiences:
     location: 上海
     overview: 上海交叉点信息科技有限公司成立于2012年，由业内资深人士组建，拥有雄厚的游戏研发实力，专注于国内外著名IP移动游戏的开发，致力于成为“用户最喜爱的移动游戏制造商”。
   positions:
-  - designation: 服务器主程
+  - designation: 软件工程师
     start: 2015/3
     end: 2018/8
     responsibilities:
@@ -55,7 +70,7 @@ experiences:
     end: 2015/3
     responsibilities:
     - 《星辰变》服务器开发，维护
-    
+
 - company:
     name: 上海游奇网络有限公司
     url: "http://uqee.com/"
@@ -66,5 +81,5 @@ experiences:
     start: 2011/11
     end: 2014/3
     responsibilities:
-    - 《卧龙吟》服务器维护    
+    - 《卧龙吟》服务器维护
     - 《葵花宝典》服务器开发，维护

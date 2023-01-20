@@ -20,7 +20,7 @@ buttons:
 # your projects
 projects:
 - name: mRPC
-  logo: 
+  logo:
   role: Owner
   timeline: "March 2021 - Present"
   repo: https://github.com/gqw/mrpc # If your project is a public repo on GitHub, then provide this link. it will show star count.
@@ -29,44 +29,43 @@ projects:
   tags: ["Owner", "mRPC", "rpc", "c++"]
 
 - name: coro_redis
-  logo: 
+  logo:
   role: Owner
   timeline: "Aug. 2021 - Present"
   repo: https://github.com/gqw/coro_redis
   summary: c++20 reids corotine client, redis协程客户端
   tags: ["Owner", "coroutine", "redis"]
-  
+
 - name: tcprt
-  logo: 
+  logo:
   role: Owner
   timeline: "Jun 2020 - Present"
   repo: https://github.com/gqw/tcprt
-  summary: Windows 实现类似于linux的traceroute -T方法 
-  tags: ["Owner", "tcprt", "net", "c++"]   
+  summary: Windows 实现类似于linux的traceroute -T方法
+  tags: ["Owner", "tcprt", "net", "c++"]
 
 - name: spdlog_wrapper
-  logo: 
+  logo:
   role: Owner
   timeline: "Jun 2019 - Present"
   repo: https://github.com/gqw/spdlog_wrapper
-  summary: spdlog简单封装 
-  tags: ["Owner", "spdlog_wrapper", "c++"]     
-  
+  summary: spdlog简单封装
+  tags: ["Owner", "spdlog_wrapper", "c++"]
+
 - name: zitie
-  logo: 
+  logo:
   role: Owner
   timeline: "Jun 2019 - Present"
   repo: https://github.com/gqw/zitie
   summary: 离线字帖生成器
-  tags: ["Owner", "zitie", "js"]     
+  tags: ["Owner", "zitie", "js"]
 
 
 - name: libtorrent
-  logo: 
+  logo:
   role: Contributor
   timeline: "Jun 2021 - Present"
   repo: https://github.com/gqw/libtorrent
-  summary: libtorrent is an open source C++ library implementing the BitTorrent protocol, making it suitable for real world deployment. 
-  tags: ["Contributor", "libtorrent"]   
-  
-  
+  summary: libtorrent is an open source C++ library implementing the BitTorrent protocol, making it suitable for real world deployment.
+  tags: ["Contributor", "libtorrent"]
+

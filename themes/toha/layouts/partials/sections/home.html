@@ -79,22 +79,22 @@
     }
     /* 300 to X */
     @media (min-width: 500px) and (max-width: 800px) { /* or 301 if you want really the same as previously.  */
-      #homePageBackgroundImageDivStyled {   
+      #homePageBackgroundImageDivStyled {
           background-image: url('{{ strings.TrimSuffix "/" site.BaseURL }}{{ $small.RelPermalink }}');
         }
     }
     @media (min-width: 801px) and (max-width: 1200px) { /* or 301 if you want really the same as previously.  */
-      #homePageBackgroundImageDivStyled {   
+      #homePageBackgroundImageDivStyled {
           background-image: url('{{ strings.TrimSuffix "/" site.BaseURL }}{{ $medium.RelPermalink }}');
         }
     }
     @media (min-width: 1201px) and (max-width: 1500px) { /* or 301 if you want really the same as previously.  */
-      #homePageBackgroundImageDivStyled {   
+      #homePageBackgroundImageDivStyled {
           background-image: url('{{ strings.TrimSuffix "/" site.BaseURL }}{{ $large.RelPermalink }}');
         }
     }
     @media (min-width: 1501px) { /* or 301 if you want really the same as previously.  */
-      #homePageBackgroundImageDivStyled {   
+      #homePageBackgroundImageDivStyled {
           background-image: url('{{ strings.TrimSuffix "/" site.BaseURL }}{{ $src.RelPermalink }}');
         }
     }

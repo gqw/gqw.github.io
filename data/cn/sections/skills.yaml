@@ -3,7 +3,7 @@ section:
   name: 技能
   id: skills
   enable: true
-  weight: 2
+  weight: 4
   showOnNavbar: true
   # Can optionally hide the title in sections
   # hideTitle: true
@@ -14,17 +14,17 @@ skills:
 - name: C++
   logo: /images/sections/skills/c++.png
   summary: "主力开发语言，多年开发经验。基本功扎实，熟识模板推导、元编程、协程开发等高级C++技术。"
-  
+
 - name: Python
   logo: /images/sections/skills/python.png
   summary: "熟悉Python 单元测试，特别是和C/C++的交互。有使用pyimgui和pysdl2的经验。"
   url: "https://www.python.org/"
-  
+
 - name: JavaScript/TypeScript
   logo: /images/sections/skills/js.png
   summary: "经历过多款H5游戏项目。"
-  url: "https://www.lua.org/"  
-  
+  url: "https://www.lua.org/"
+
 - name: Lua
   logo: /images/sections/skills/luaa.gif
   summary: "使用过云风的skynet开发游戏的经验。"
@@ -38,7 +38,7 @@ skills:
   logo: /images/sections/skills/git.png
   summary: "国内较早接触和使用git开发者，熟悉Git使用的各种命令工具。"
   url: "https://git-scm.com/"
-  
+
 
 
 

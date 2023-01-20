@@ -37,7 +37,7 @@
 
   {{ $disclaimer := "" }}
   {{ $siteConfig := (index site.Data site.Language.Lang).site }}
-  {{ if $siteConfig.disclaimer }} 
+  {{ if $siteConfig.disclaimer }}
     {{ $disclaimer = $siteConfig.disclaimer }}
   {{ end }}
 
@@ -89,13 +89,13 @@
             <li><span>{{ title $key }}: </span> <span>{{ $value }}</span></li>
             {{ end }}
           </ul>
-		  
+
 		  <h5>友情链接: </h5>
 		  <ul>
 			<li><a href="http://purecpp.org/" itemprop="url" rel="index"><span itemprop="name">Pure C++</span></a></li>
 			<li><a href="https://kinly.github.io/" itemprop="url" rel="index"><span itemprop="name">蒋磊的博客</span></a></li>
 		  </ul>
-			  
+
         </div>
         {{ end }}
 		<div class="col-md-4 col-sm-12">
@@ -106,12 +106,12 @@
 			<span id="busuanzi_container_site_uv">
 				您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 			</span>
-			
+
 			<div>
 				<a href="https://clustrmaps.com/site/1bj40"  title="Visit tracker"><img alt="gqw.github.io" src="//www.clustrmaps.com/map_v2.png?d=P-jZSVLaaxENhQ3Na5ckx6td6DpcUROVmi1mIeNEQTA&cl=ffffff" /></a>
 			</div>
 		</div>
-        <!-------------- Newsletter --------------->	  
+        <!-------------- Newsletter --------------->
         {{ if $newsletterEnabled }}
           {{ $provider := site.Params.footer.newsletter.provider }}
           <div class="col-md-4 col-sm-12">

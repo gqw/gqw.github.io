@@ -3,7 +3,7 @@ section:
   name: 最近发表
   id: recent-posts
   enable: true
-  weight: 6
+  weight: 1
   showOnNavbar: true
   # Can optionally hide the title in sections
   # hideTitle: true

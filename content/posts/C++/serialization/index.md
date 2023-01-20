@@ -12,8 +12,8 @@ menu:
     name: C++序列化和反序列化工具
     identifier: c++-serialize-deserialize
     parent: C++
-    weight: 10
-hero: serialization_hero.png	
+    weight: 3
+hero: serialization_hero.png
 ---
 
 在开发时我们经常会遇到需要序列号和反序列化得操作。比如将程序配置导出下次打开再从配置中读取，通常你可以将信息保存成json、xml或ini格式，让后再解析出来。更常见的情形是我们通过网络发送和接收数据，也涉及到序列化和反序列化操作，当让你可以使用protobuf、msgpack等序列化库。但是如果你只是个简单程序，或者序列化和反序列化的业务不是很重，不想搞得那么复杂有什么简单的方法吗？

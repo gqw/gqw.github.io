@@ -3,24 +3,32 @@ section:
   name: 关于
   id: about
   enable: true
-  weight: 1
+  weight: 2
   showOnNavbar: true
   template: sections/about.html
 
 # your designation
-designation: 资深软件工程师
+
 # your company information
-company:
+company0:
+  name: 极氪
+  designation: 软硬件平台开发工程师
+  url: "https://www.zeekrlife.com/"
+  # a summary about you
+  summary: '从游戏行业转入车联网，新的开始、新的希望……'
+
+company1:
   name: 网易
+  designation: 资深软件工程师
   url: "https://www.baochuangames.com/"
 
-# your resume. this file path should be relative to you "static" directory
-# resume: "files/resume.pdf"
+  # your resume. this file path should be relative to you "static" directory
+  # resume: "files/resume.pdf"
 
-# a summary about you
-summary: '我是一名从业超过10年的游戏开发老兵，开发和维护过多款游戏。
-</br>我是一名码农，也是游戏爱好者。
-</br>我喜爱我的工作，它创造快乐，也能让我享受到创造快乐的乐趣。'
+  # a summary about you
+  summary: '多年游戏开发老兵，开发和维护过多款游戏。
+  </br>我是一名码农，也是游戏爱好者。
+  </br>我喜爱我的工作，它创造快乐，也能让我享受到创造快乐的乐趣。'
 
 # your social links
 # give as many as you want. use font-awesome for the icons.
@@ -53,7 +61,7 @@ badges:
   name: 星辰变
   url: "https://xcb.web.sdo.com/"
   badge: "https://i.loli.net/2021/07/25/6IYcx43Ni1PvmUB.png"
-  
+
 - type: certification
   name: 烈火战神
   url: ""
@@ -65,9 +73,21 @@ badges:
   badge: "https://i.loli.net/2021/07/25/A5Zh3QsUuwpbv2q.jpg"
 
 - type: certification
+  name: 随机点数大师
+  url: "https://rd.baochuangames.com/"
+  badge: "https://s2.loli.net/2023/01/19/JmEb2pcNL1kyFni.png"
+
+
+- type: certification
+  name: 凛冬计划
+  url: "https://apps.apple.com/us/app/project-winter-mobile/id1632187880"
+  badge: "https://s2.loli.net/2023/01/19/S1oK4QIdeDA7vlN.jpg"
+
+
+- type: certification
   name: More ...
   url: ""
-  badge: "https://i.loli.net/2021/07/25/IfDnyABgS1aOFQp.jpg"  
+  badge: "https://i.loli.net/2021/07/25/IfDnyABgS1aOFQp.jpg"
 
 # - type: soft-skill-indicator
   # name: Leadership

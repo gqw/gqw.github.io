@@ -9,7 +9,7 @@ menu:
     name: "coro_redis 开发手记"
     identifier: c++-coro_redis
     parent: C++
-    weight: 10
+    weight: 2
 hero: coro_redis.jpg
 ---
 

@@ -14,17 +14,29 @@
     <!-- takes up full section width if no badges/soft skills are specified -->
     {{ if or (.softSkills) (.badges) }} <div class="col-sm-6"> {{ else }} <div class="col-sm-12"> {{ end }}
       <h3 class="p-1">{{ $author.name }}</h3>
-      {{ if .designation }}
+      {{ if .company0 }}
       <h5 class="p-1">
-        {{ .designation }}
-        {{ if .company }}
-        {{ i18n "at"}} <a href="{{ .company.url }}" title="{{ .company.name }}" target="_blank" rel="noopener">{{ .company.name }}</a>
+        {{ .company0.designation }}
+        {{ i18n "at"}} <a href="{{ .company0.url }}" title="{{ .company0.name }}" target="_blank" rel="noopener">{{ .company0.name }}</a>
+      </h5>
+
+      <p class="p-1 text-justify">
+        {{ .company0.summary | markdownify }}
+      </p>
+
+      {{ end }}
+      {{ if .company1 }}
+      <h5 class="p-1">
+        {{ .company1.designation }}
+        {{ if .company1 }}
+        {{ i18n "at"}} <a href="{{ .company1.url }}" title="{{ .company1.name }}" target="_blank" rel="noopener">{{ .company1.name }}</a>
         {{ end }}
       </h5>
-      {{ end }}
       <p class="p-1 text-justify">
-        {{ .summary | markdownify }}
+        {{ .company1.summary | markdownify }}
       </p>
+      {{ end }}
+
       <div class="text-container ml-auto">
         <ul class="social-link d-flex">
           {{ range .socialLinks }}
