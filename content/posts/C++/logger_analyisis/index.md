@@ -94,18 +94,90 @@ fatal： 代表出现了致命错误，如果出现此日志信息意味着程�
 
 首先让我们创建一个空的工程，这里面只有一个`main`函数，然后我们通过一步步添加代码来观察比较反汇编代码的变化。
 
-<iframe width="800px" height="100%" src="https://godbolt.org/e?readOnly=true&hideEditorToolbars=true#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,selection:(endColumn:14,endLineNumber:2,positionColumn:14,positionLineNumber:2,selectionStartColumn:14,selectionStartLineNumber:2,startColumn:14,startLineNumber:2),source:'int+main()+%7B%0A++++return+0%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:54.647465798216416,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:g94,deviceViewOpen:'1',filters:(b:'0',binary:'1',binaryObject:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',libraryCode:'0',trim:'1'),flagsViewOpen:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,libs:!(),options:'-std%3Dc%2B%2B17+-O0',selection:(endColumn:1,endLineNumber:1,positionColumn:1,positionLineNumber:1,selectionStartColumn:1,selectionStartLineNumber:1,startColumn:1,startLineNumber:1),source:1),l:'5',n:'0',o:'+x86-64+gcc+9.4+(Editor+%231)',t:'0')),k:45.352534201783605,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4"></iframe>
+```cpp
+int main() {
+    return 0;
+}
+```
+
+得到汇编指令:
+
+```asm
+main:
+        push    rbp
+        mov     rbp, rsp
+        mov     eax, 0
+        pop     rbp
+        ret
+```
 
 现在让我们添加个简单的日志系统：
 
-<iframe width="800px" height="700px" src="https://godbolt.org/e?readOnly=true&hideEditorToolbars=true#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAMzwBtMA7AQwFtMQByARg9KtQYEAysib0QXACx8BBAKoBnTAAUAHpwAMvAFYTStJg1DIApACYAQuYukl9ZATwDKjdAGFUtAK4sGEgBykrgAyeAyYAHI%2BAEaYxCAArACcpAAOqAqETgwe3r4BaRlZAqHhUSyx8cm2mPaOAkIETMQEuT5%2BXIF2mA7Zjc0EpZExcYkpCk0tbfmdtpODYcMVo8kAlLaoXsTI7BzmAMxhyN5YANQm%2B24T%2BKgAdAgX2CYaAIIHRyeY55fXzcD3j2eb1exyYCgUp2CqGAwDip3OAHYrK9Ul5orQ8MgQED4fCJkxHMhTgA3VB4dCnAjEJg7CBoBgTU7IBDNABUpyoLAIpCZAkZzLZpxYCmAq0RyJeuKlpzwVFOEFo0IA%2BvRibUld83KcNGL4QB6PXnbBJEz%2BDQmJJvbD%2BEwWABipoRJmwADYLU6XglnV77e7nR6ACKmk3YJ0WN4vJ3YB0WNymuPYL3%2BG0vSTOt1JN0vIOui0ph2Ji3ml5u40WuNm50pt3%2BLj%2B8sWgtZoMvfbp4MWtuF/xBizm17SwenYiYAhbBgXCU4oepYhhAhUahcnnC0WT6fwkwIoOvDenfGEklkilYaJeYB0vkEJks4jsznc3kM68Cu9CkVircSocyuUK5WquqmqnFwqx7j%2BI5jsQE77FOA4znOgiLg%2BK4fuu8GbtuQJ7gemJHuSMoMPwl7PjegooU%2B/K3uyq6fki4G4rK8qKsAKqYGqtAahcWpmGBGE/sOo7juhwKSgh87Icu75rrBe5bjuolSrhRKkgRADuzQMCRVHkVJ9I6W%2BtHigx8JMf%2BrGAZxwH7HxYkCYJUEwXBdnSrOElLo%2BtEiVK8nYfxyn4RScTECQ2kvtRHJ6VeZGGR%2Bxn8VKZksWxHFcZcpySLZ9nwpBwmybuCW4m5SEeahMnfrivkFS5AWqRSVAEmIYUxfeUWka%2BNFxV%2BJm/sxAHsUB3GnAkWXZbl0EiT1xULqV0lgflLlVYpuK1ce%2B6jiltQQPOpyWXRFVSslllpQGu0DbQ3mVVh1VucSBLsDhTSHjtR3nUqk1YQtQI7SwTBhBA%2B17lCMKjCASgEJttAQLxl3wsDsLxCAVI0pgEDmGY5gJAo6M8ujyM7Lt0Lo/NB2QtCCMgCAp7nmjZgY2YWM4%2BcdPU8AhPAMTsNkyDiNhMR6OY9jdO43TfOoOznMLVK40MNqH0Bhw6y0JwCS8H4HBaKQqCcHGljWPumzbF8Bw8KQBCaIr6wANaJJItwupICKSC6CQIkk/hmFwDte/onCSGrFta5wvAKCAGhmxb6xwLASBoCwqR0HE5CUHHCf0PEwBJNIWDEpimAAGp4JgakAPKpIwnCmzQtAEHEocQNEgfRGEzQAJ6V7wzfMMQrcl9E2g9Ob3C8HHbCCCXDC0O3Gu8Fgv1GOIM%2BkPgI69GqodL5gqg9F4tcd%2BQgi1IHGLRNSPceFggdUngLAd%2BsVAGMACiF8XZcV8PMiCCIYjsFIn/yEoNQgddBcH0IYYw1hrD6DwNEUOkB1ioFSPUBknAAC01wLgBlMHrSwXAESnFQSXTW3RejOAgK4aYHQggMHQEMcolQ9DpEyMgyhjCijILoSMeIoCSHIP6FMTw7Q9C8L6PMThyxuFzAGKwnhYjFj0NGKBDYWwdgSCVirAOS9tYcFOKofwLpUEO1OMAZARIki3EkPKXAhASDM32KBXgQ8tCrGtiASQCRbj7ASAzfYkgzAaDwf4fYLoNAJF9hwf2pB1aa20SHMOEcZ4uPCWYTRMTg4JOcesNUxBMjOEkEAA%3D"></iframe>
+```cpp
+#include <stdio.h>
+#include <stdarg.h>
+
+class Logger  {
+public:
+    static void trace(const char* fmt, const char* msg) {
+        if (log_level_ < 0)   // 通过日志等级，判断是否需要真正打印
+            return;
+
+        printf(fmt, msg);
+    }
+
+    static void debug(const char* fmt, const char* msg) {
+        if (log_level_ < 1)
+            return;
+
+        printf(fmt, msg);
+    }
+
+    ...
+
+    static void set_level(int level) {
+      log_level_ = level;
+    }
+
+private:
+    static int log_level_;
+};
+
+int main() {
+    Logger::set_level(2);
+    Logger::trace("%s", "trace log");
+    Logger::debug("%s", "debug log");
+    Logger::info("%s", "info log");
+    return 0;
+}
+```
 
 
-先让我们看下右边`main`函数的反汇编代码86~94行代码，我们可以看到虽然我们只打印了：
+让我们看下`main`函数的反汇编代码:
+```asm
+main:
+        push    rbp
+        mov     rbp, rsp
+        mov     edi, 2
+        call    Logger::set_level(int)
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:.LC1
+        call    Logger::trace(char const*, char const*)
+        mov     esi, OFFSET FLAT:.LC2
+        mov     edi, OFFSET FLAT:.LC1
+        call    Logger::debug(char const*, char const*)
+        mov     esi, OFFSET FLAT:.LC3
+        mov     edi, OFFSET FLAT:.LC1
+        call    Logger::info(char const*, char const*)
+        mov     eax, 0
+        pop     rbp
+        ret
+```
+我们可以看到虽然我们只打印了：
 ```
 info log
 ```
-一行日志， 但是在88行和91行我们还是看到了`trace`和`debug`的代码调用，在`trace`和`debug`的函数内部条件判断的指令还是会被执行。在上面的代码中我们已经尽量地简化，对于一个复杂的日志系统会产生更多的调用指令，如果我们的`trace`和`debug`的日志非常多，这必然会造成巨大的性能浪费。
+一行日志， 但是我们还是看到了`trace`和`debug`的代码调用，在`trace`和`debug`的函数内部条件判断的指令还是会被执行。在上面的代码中我们已经尽量地简化，对于一个复杂的日志系统会产生更多的调用指令，如果我们的`trace`和`debug`的日志非常多，这必然会造成巨大的性能浪费。
 
 在C++中我们为了避免这样的性能开销一般会使用宏来控制无效指令的生成, 例如：
 
@@ -200,7 +272,7 @@ std::cout << " stream log" << 100 << " test";
 
 我们看下反汇编代码(为了方便观察去掉了模板参数信息)：
 
-```
+```asm
     mov     esi, OFFSET FLAT:.LC0
     mov     edi, OFFSET FLAT:_ZSt4cout
     call    std::basic_ostream<>& std::operator<< (std::basic_ostream<>&, char const*)
@@ -240,7 +312,7 @@ int main() {
 我们设置`g++`优化选项为`-O0`,即不做任何优化，得到反汇编代码：
 
 
-```
+```asm
 main:
         push    rbp
         mov     rbp, rsp
@@ -262,7 +334,11 @@ main:
 
 可以看到仍然是三次`operator<<`函数调用， 但是不用泄气，我们现在将优化选项设为`-O3`，我们再试一次得到：
 
-<iframe width="800px" height="400px" src="https://godbolt.org/e#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,selection:(endColumn:1,endLineNumber:1,positionColumn:1,positionLineNumber:1,selectionStartColumn:1,selectionStartLineNumber:1,startColumn:1,startLineNumber:1),source:'%0Aclass+LoggerOfNone+%7B%0Apublic:%0A%09LoggerOfNone()+%3D+default%3B%0A%0A++++template%3Ctypename+T%3E%0A%09LoggerOfNone%26+operator%3C%3C(T+content)+%7B%0A%09%09return+*this%3B%0A%09%7D%0A%7D%3B%0A%0Aint+main()+%7B%0A++++LoggerOfNone()+%3C%3C+%22+stream+log%22+%3C%3C+100+%3C%3C+%22+test%22%3B%0A++++return+0%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:35.920770877944335,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:g94,deviceViewOpen:'1',filters:(b:'0',binary:'1',binaryObject:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',libraryCode:'0',trim:'1'),flagsViewOpen:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,libs:!(),options:'-std%3Dc%2B%2B17+-O3+-DLOGGER_LEVEL%3D2',selection:(endColumn:12,endLineNumber:3,positionColumn:12,positionLineNumber:3,selectionStartColumn:12,selectionStartLineNumber:3,startColumn:12,startLineNumber:3),source:1),l:'5',n:'0',o:'+x86-64+gcc+9.4+(Editor+%231)',t:'0')),k:64.0792291220557,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4"></iframe>
+```asm
+main:
+        xor     eax, eax
+        ret
+```
 
 神奇的事情发生了，我们得到了非常干净的结果，没有任何多余的调用发生。这是因为我们调用一个空函数时编译器会自动优化掉。所以我们可以根据这个特性可以做如下优化：
 

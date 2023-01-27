@@ -326,7 +326,7 @@ class Logger { public: void trace(const std::string_view&amp; fmt, ...) { if (lo
         <div class="author-profile ml-auto align-self-lg-center">
           <img class="rounded-circle" src='/images/author/gqw_hu5efc0d87f8f199adb207d1cb2c6bb877_469741_120x120_fit_box_3.png' alt="Author Image">
           <h5 class="author-name">阿修罗</h5>
-          <p>January 18, 2023 | 600 Words | Read in about 3 Min | 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</p>
+          <p>January 18, 2023 | 800 Words | Read in about 4 Min | 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</p>
 		  <h6 id="wc"></h6>
         </div>
         <div class="title">
@@ -390,12 +390,74 @@ fatal： 代表出现了致命错误，如果出现此日志信息意味着程�
 <h2 id="使用宏进一步优化日志">使用宏进一步优化日志</h2>
 <p>虽然通过日志级别减少了日志输出，但是却没有减少日志调用。什么意思呢？我们下面几个例子的反汇编代码来直观的了解下原理。</p>
 <p>首先让我们创建一个空的工程，这里面只有一个<code>main</code>函数，然后我们通过一步步添加代码来观察比较反汇编代码的变化。</p>
-<iframe width="800px" height="100%" src="https://godbolt.org/e?readOnly=true&hideEditorToolbars=true#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,selection:(endColumn:14,endLineNumber:2,positionColumn:14,positionLineNumber:2,selectionStartColumn:14,selectionStartLineNumber:2,startColumn:14,startLineNumber:2),source:'int+main()+%7B%0A++++return+0%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:54.647465798216416,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:g94,deviceViewOpen:'1',filters:(b:'0',binary:'1',binaryObject:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',libraryCode:'0',trim:'1'),flagsViewOpen:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,libs:!(),options:'-std%3Dc%2B%2B17+-O0',selection:(endColumn:1,endLineNumber:1,positionColumn:1,positionLineNumber:1,selectionStartColumn:1,selectionStartLineNumber:1,startColumn:1,startLineNumber:1),source:1),l:'5',n:'0',o:'+x86-64+gcc+9.4+(Editor+%231)',t:'0')),k:45.352534201783605,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4"></iframe>
-<p>现在让我们添加个简单的日志系统：</p>
-<iframe width="800px" height="700px" src="https://godbolt.org/e?readOnly=true&hideEditorToolbars=true#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAMzwBtMA7AQwFtMQByARg9KtQYEAysib0QXACx8BBAKoBnTAAUAHpwAMvAFYTStJg1DIApACYAQuYukl9ZATwDKjdAGFUtAK4sGEgBykrgAyeAyYAHI%2BAEaYxCAArACcpAAOqAqETgwe3r4BaRlZAqHhUSyx8cm2mPaOAkIETMQEuT5%2BXIF2mA7Zjc0EpZExcYkpCk0tbfmdtpODYcMVo8kAlLaoXsTI7BzmAMxhyN5YANQm%2B24T%2BKgAdAgX2CYaAIIHRyeY55fXzcD3j2eb1exyYCgUp2CqGAwDip3OAHYrK9Ul5orQ8MgQED4fCJkxHMhTgA3VB4dCnAjEJg7CBoBgTU7IBDNABUpyoLAIpCZAkZzLZpxYCmAq0RyJeuKlpzwVFOEFo0IA%2BvRibUld83KcNGL4QB6PXnbBJEz%2BDQmJJvbD%2BEwWABipoRJmwADYLU6XglnV77e7nR6ACKmk3YJ0WN4vJ3YB0WNymuPYL3%2BG0vSTOt1JN0vIOui0ph2Ji3ml5u40WuNm50pt3%2BLj%2B8sWgtZoMvfbp4MWtuF/xBizm17SwenYiYAhbBgXCU4oepYhhAhUahcnnC0WT6fwkwIoOvDenfGEklkilYaJeYB0vkEJks4jsznc3kM68Cu9CkVircSocyuUK5WquqmqnFwqx7j%2BI5jsQE77FOA4znOgiLg%2BK4fuu8GbtuQJ7gemJHuSMoMPwl7PjegooU%2B/K3uyq6fki4G4rK8qKsAKqYGqtAahcWpmGBGE/sOo7juhwKSgh87Icu75rrBe5bjuolSrhRKkgRADuzQMCRVHkVJ9I6W%2BtHigx8JMf%2BrGAZxwH7HxYkCYJUEwXBdnSrOElLo%2BtEiVK8nYfxyn4RScTECQ2kvtRHJ6VeZGGR%2Bxn8VKZksWxHFcZcpySLZ9nwpBwmybuCW4m5SEeahMnfrivkFS5AWqRSVAEmIYUxfeUWka%2BNFxV%2BJm/sxAHsUB3GnAkWXZbl0EiT1xULqV0lgflLlVYpuK1ce%2B6jiltQQPOpyWXRFVSslllpQGu0DbQ3mVVh1VucSBLsDhTSHjtR3nUqk1YQtQI7SwTBhBA%2B17lCMKjCASgEJttAQLxl3wsDsLxCAVI0pgEDmGY5gJAo6M8ujyM7Lt0Lo/NB2QtCCMgCAp7nmjZgY2YWM4%2BcdPU8AhPAMTsNkyDiNhMR6OY9jdO43TfOoOznMLVK40MNqH0Bhw6y0JwCS8H4HBaKQqCcHGljWPumzbF8Bw8KQBCaIr6wANaJJItwupICKSC6CQIkk/hmFwDte/onCSGrFta5wvAKCAGhmxb6xwLASBoCwqR0HE5CUHHCf0PEwBJNIWDEpimAAGp4JgakAPKpIwnCmzQtAEHEocQNEgfRGEzQAJ6V7wzfMMQrcl9E2g9Ob3C8HHbCCCXDC0O3Gu8Fgv1GOIM%2BkPgI69GqodL5gqg9F4tcd%2BQgi1IHGLRNSPceFggdUngLAd%2BsVAGMACiF8XZcV8PMiCCIYjsFIn/yEoNQgddBcH0IYYw1hrD6DwNEUOkB1ioFSPUBknAAC01wLgBlMHrSwXAESnFQSXTW3RejOAgK4aYHQggMHQEMcolQ9DpEyMgyhjCijILoSMeIoCSHIP6FMTw7Q9C8L6PMThyxuFzAGKwnhYjFj0NGKBDYWwdgSCVirAOS9tYcFOKofwLpUEO1OMAZARIki3EkPKXAhASDM32KBXgQ8tCrGtiASQCRbj7ASAzfYkgzAaDwf4fYLoNAJF9hwf2pB1aa20SHMOEcZ4uPCWYTRMTg4JOcesNUxBMjOEkEAA%3D"></iframe>
-<p>先让我们看下右边<code>main</code>函数的反汇编代码86~94行代码，我们可以看到虽然我们只打印了：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>得到汇编指令:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span>main:
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">push</span>    <span style="color:#66d9ef">rbp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">rbp</span>, <span style="color:#66d9ef">rsp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">eax</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">pop</span>     <span style="color:#66d9ef">rbp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">ret</span>
+</span></span></code></pre></div><p>现在让我们添加个简单的日志系统：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdarg.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Logger</span>  {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> trace(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> fmt, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> msg) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (log_level_ <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)   <span style="color:#75715e">// 通过日志等级，判断是否需要真正打印
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        printf(fmt, msg);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">debug</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> fmt, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> msg) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (log_level_ <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        printf(fmt, msg);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> set_level(<span style="color:#66d9ef">int</span> level) {
+</span></span><span style="display:flex;"><span>      log_level_ <span style="color:#f92672">=</span> level;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> log_level_;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    Logger<span style="color:#f92672">::</span>set_level(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    Logger<span style="color:#f92672">::</span>trace(<span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#e6db74">&#34;trace log&#34;</span>);
+</span></span><span style="display:flex;"><span>    Logger<span style="color:#f92672">::</span>debug(<span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#e6db74">&#34;debug log&#34;</span>);
+</span></span><span style="display:flex;"><span>    Logger<span style="color:#f92672">::</span>info(<span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#e6db74">&#34;info log&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>让我们看下<code>main</code>函数的反汇编代码:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span>main:
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">push</span>    <span style="color:#66d9ef">rbp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">rbp</span>, <span style="color:#66d9ef">rsp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">edi</span>, <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">call</span>    <span style="color:#66d9ef">Logger</span>::<span style="color:#66d9ef">set_level</span>(<span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">esi</span>, <span style="color:#66d9ef">OFFSET</span> <span style="color:#66d9ef">FLAT</span>:.<span style="color:#66d9ef">LC0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">edi</span>, <span style="color:#66d9ef">OFFSET</span> <span style="color:#66d9ef">FLAT</span>:.<span style="color:#66d9ef">LC1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">call</span>    <span style="color:#66d9ef">Logger</span>::<span style="color:#66d9ef">trace</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*, <span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">esi</span>, <span style="color:#66d9ef">OFFSET</span> <span style="color:#66d9ef">FLAT</span>:.<span style="color:#66d9ef">LC2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">edi</span>, <span style="color:#66d9ef">OFFSET</span> <span style="color:#66d9ef">FLAT</span>:.<span style="color:#66d9ef">LC1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">call</span>    <span style="color:#66d9ef">Logger</span>::<span style="color:#66d9ef">debug</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*, <span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">esi</span>, <span style="color:#66d9ef">OFFSET</span> <span style="color:#66d9ef">FLAT</span>:.<span style="color:#66d9ef">LC3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">edi</span>, <span style="color:#66d9ef">OFFSET</span> <span style="color:#66d9ef">FLAT</span>:.<span style="color:#66d9ef">LC1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">call</span>    <span style="color:#66d9ef">Logger</span>::<span style="color:#66d9ef">info</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*, <span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">eax</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">pop</span>     <span style="color:#66d9ef">rbp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">ret</span>
+</span></span></code></pre></div><p>我们可以看到虽然我们只打印了：</p>
 <pre tabindex="0"><code>info log
-</code></pre><p>一行日志， 但是在88行和91行我们还是看到了<code>trace</code>和<code>debug</code>的代码调用，在<code>trace</code>和<code>debug</code>的函数内部条件判断的指令还是会被执行。在上面的代码中我们已经尽量地简化，对于一个复杂的日志系统会产生更多的调用指令，如果我们的<code>trace</code>和<code>debug</code>的日志非常多，这必然会造成巨大的性能浪费。</p>
+</code></pre><p>一行日志， 但是我们还是看到了<code>trace</code>和<code>debug</code>的代码调用，在<code>trace</code>和<code>debug</code>的函数内部条件判断的指令还是会被执行。在上面的代码中我们已经尽量地简化，对于一个复杂的日志系统会产生更多的调用指令，如果我们的<code>trace</code>和<code>debug</code>的日志非常多，这必然会造成巨大的性能浪费。</p>
 <p>在C++中我们为了避免这样的性能开销一般会使用宏来控制无效指令的生成, 例如：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#define LOG_LEVEL_TRACE    0
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define LOG_LEVEL_DEBUG    1
@@ -467,16 +529,16 @@ fatal： 代表出现了致命错误，如果出现此日志信息意味着程�
 </span></span></code></pre></div><p>这种方式，极大的方便了日志使用者，但也造成了性能的退化。为什么这么说呢？让我们来看个简单的例子：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; stream log&#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; test&#34;</span>;
 </span></span></code></pre></div><p>我们看下反汇编代码(为了方便观察去掉了模板参数信息)：</p>
-<pre tabindex="0"><code>    mov     esi, OFFSET FLAT:.LC0
-    mov     edi, OFFSET FLAT:_ZSt4cout
-    call    std::basic_ostream&lt;&gt;&amp; std::operator&lt;&lt; (std::basic_ostream&lt;&gt;&amp;, char const*)
-    mov     esi, 100
-    mov     rdi, rax
-    call    std::basic_ostream&lt;&gt;::operator&lt;&lt;(int)
-    mov     esi, OFFSET FLAT:.LC1
-    mov     rdi, rax
-    call    std::basic_ostream&lt;&gt;&amp; std::operator&lt;&lt; (std::basic_ostream&lt;&gt;&amp;, char const*)
-</code></pre><p>从上面的汇编代码中我们可以看到每一个<code>&lt;&lt;</code>操作符就是一次函数调用（call 指令）。我们无法实现像前面介绍的<code>LOG_XXXX</code>方式定义宏来在编译期优化掉无效的日志调用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">esi</span>, <span style="color:#66d9ef">OFFSET</span> <span style="color:#66d9ef">FLAT</span>:.<span style="color:#66d9ef">LC0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">edi</span>, <span style="color:#66d9ef">OFFSET</span> <span style="color:#66d9ef">FLAT</span>:<span style="color:#66d9ef">_ZSt4cout</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">call</span>    <span style="color:#66d9ef">std</span>::<span style="color:#66d9ef">basic_ostream</span><span style="color:#960050;background-color:#1e0010">&lt;&gt;&amp;</span> <span style="color:#66d9ef">std</span>::<span style="color:#66d9ef">operator</span><span style="color:#960050;background-color:#1e0010">&lt;&lt;</span> (<span style="color:#66d9ef">std</span>::<span style="color:#66d9ef">basic_ostream</span><span style="color:#960050;background-color:#1e0010">&lt;&gt;&amp;</span>, <span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">esi</span>, <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">rdi</span>, <span style="color:#66d9ef">rax</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">call</span>    <span style="color:#66d9ef">std</span>::<span style="color:#66d9ef">basic_ostream</span><span style="color:#960050;background-color:#1e0010">&lt;&gt;</span>::<span style="color:#66d9ef">operator</span><span style="color:#960050;background-color:#1e0010">&lt;&lt;</span>(<span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">esi</span>, <span style="color:#66d9ef">OFFSET</span> <span style="color:#66d9ef">FLAT</span>:.<span style="color:#66d9ef">LC1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">rdi</span>, <span style="color:#66d9ef">rax</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">call</span>    <span style="color:#66d9ef">std</span>::<span style="color:#66d9ef">basic_ostream</span><span style="color:#960050;background-color:#1e0010">&lt;&gt;&amp;</span> <span style="color:#66d9ef">std</span>::<span style="color:#66d9ef">operator</span><span style="color:#960050;background-color:#1e0010">&lt;&lt;</span> (<span style="color:#66d9ef">std</span>::<span style="color:#66d9ef">basic_ostream</span><span style="color:#960050;background-color:#1e0010">&lt;&gt;&amp;</span>, <span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*)
+</span></span></code></pre></div><p>从上面的汇编代码中我们可以看到每一个<code>&lt;&lt;</code>操作符就是一次函数调用（call 指令）。我们无法实现像前面介绍的<code>LOG_XXXX</code>方式定义宏来在编译期优化掉无效的日志调用。</p>
 <p>那是否就束手无策了呢？其实我们还是有一些技巧来优化这种开销的，首先我们需要定义一个支持流操作的日志类:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoggerOfNone</span> {
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
@@ -493,26 +555,28 @@ fatal： 代表出现了致命错误，如果出现此日志信息意味着程�
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>我们设置<code>g++</code>优化选项为<code>-O0</code>,即不做任何优化，得到反汇编代码：</p>
-<pre tabindex="0"><code>main:
-        push    rbp
-        mov     rbp, rsp
-        sub     rsp, 16
-        lea     rax, [rbp-1]
-        mov     esi, OFFSET FLAT:.LC0
-        mov     rdi, rax
-        call    LoggerOfNone&amp; LoggerOfNone::operator&lt;&lt; &lt;char const*&gt;(char const*)
-        mov     esi, 100
-        mov     rdi, rax
-        call    LoggerOfNone&amp; LoggerOfNone::operator&lt;&lt; &lt;int&gt;(int)
-        mov     esi, OFFSET FLAT:.LC1
-        mov     rdi, rax
-        call    LoggerOfNone&amp; LoggerOfNone::operator&lt;&lt; &lt;char const*&gt;(char const*)
-        mov     eax, 0
-        leave
-        ret
-</code></pre><p>可以看到仍然是三次<code>operator&lt;&lt;</code>函数调用， 但是不用泄气，我们现在将优化选项设为<code>-O3</code>，我们再试一次得到：</p>
-<iframe width="800px" height="400px" src="https://godbolt.org/e#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,selection:(endColumn:1,endLineNumber:1,positionColumn:1,positionLineNumber:1,selectionStartColumn:1,selectionStartLineNumber:1,startColumn:1,startLineNumber:1),source:'%0Aclass+LoggerOfNone+%7B%0Apublic:%0A%09LoggerOfNone()+%3D+default%3B%0A%0A++++template%3Ctypename+T%3E%0A%09LoggerOfNone%26+operator%3C%3C(T+content)+%7B%0A%09%09return+*this%3B%0A%09%7D%0A%7D%3B%0A%0Aint+main()+%7B%0A++++LoggerOfNone()+%3C%3C+%22+stream+log%22+%3C%3C+100+%3C%3C+%22+test%22%3B%0A++++return+0%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:35.920770877944335,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:g94,deviceViewOpen:'1',filters:(b:'0',binary:'1',binaryObject:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',libraryCode:'0',trim:'1'),flagsViewOpen:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,libs:!(),options:'-std%3Dc%2B%2B17+-O3+-DLOGGER_LEVEL%3D2',selection:(endColumn:12,endLineNumber:3,positionColumn:12,positionLineNumber:3,selectionStartColumn:12,selectionStartLineNumber:3,startColumn:12,startLineNumber:3),source:1),l:'5',n:'0',o:'+x86-64+gcc+9.4+(Editor+%231)',t:'0')),k:64.0792291220557,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4"></iframe>
-<p>神奇的事情发生了，我们得到了非常干净的结果，没有任何多余的调用发生。这是因为我们调用一个空函数时编译器会自动优化掉。所以我们可以根据这个特性可以做如下优化：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span>main:
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">push</span>    <span style="color:#66d9ef">rbp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">rbp</span>, <span style="color:#66d9ef">rsp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">sub</span>     <span style="color:#66d9ef">rsp</span>, <span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">lea</span>     <span style="color:#66d9ef">rax</span>, [<span style="color:#66d9ef">rbp-1</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">esi</span>, <span style="color:#66d9ef">OFFSET</span> <span style="color:#66d9ef">FLAT</span>:.<span style="color:#66d9ef">LC0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">rdi</span>, <span style="color:#66d9ef">rax</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">call</span>    <span style="color:#66d9ef">LoggerOfNone</span><span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#66d9ef">LoggerOfNone</span>::<span style="color:#66d9ef">operator</span><span style="color:#960050;background-color:#1e0010">&lt;&lt;</span> <span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*<span style="color:#960050;background-color:#1e0010">&gt;</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">esi</span>, <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">rdi</span>, <span style="color:#66d9ef">rax</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">call</span>    <span style="color:#66d9ef">LoggerOfNone</span><span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#66d9ef">LoggerOfNone</span>::<span style="color:#66d9ef">operator</span><span style="color:#960050;background-color:#1e0010">&lt;&lt;</span> <span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#960050;background-color:#1e0010">&gt;</span>(<span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">esi</span>, <span style="color:#66d9ef">OFFSET</span> <span style="color:#66d9ef">FLAT</span>:.<span style="color:#66d9ef">LC1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">rdi</span>, <span style="color:#66d9ef">rax</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">call</span>    <span style="color:#66d9ef">LoggerOfNone</span><span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#66d9ef">LoggerOfNone</span>::<span style="color:#66d9ef">operator</span><span style="color:#960050;background-color:#1e0010">&lt;&lt;</span> <span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*<span style="color:#960050;background-color:#1e0010">&gt;</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span>*)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mov</span>     <span style="color:#66d9ef">eax</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">leave</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">ret</span>
+</span></span></code></pre></div><p>可以看到仍然是三次<code>operator&lt;&lt;</code>函数调用， 但是不用泄气，我们现在将优化选项设为<code>-O3</code>，我们再试一次得到：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span>main:
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">xor</span>     <span style="color:#66d9ef">eax</span>, <span style="color:#66d9ef">eax</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">ret</span>
+</span></span></code></pre></div><p>神奇的事情发生了，我们得到了非常干净的结果，没有任何多余的调用发生。这是因为我们调用一个空函数时编译器会自动优化掉。所以我们可以根据这个特性可以做如下优化：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>LoggerOfNone g_logger_none;
 </span></span><span style="display:flex;"><span>
