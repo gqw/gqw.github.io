@@ -399,7 +399,7 @@ main:
 
 从前面分析我们可以得到`print`日志输出方式能得到更好的性能的结论，但是`print`格式化打印对于使用者来说实在是太不友好了，可以说相当难用。但是对于Mordern C++来说我们有了另一种选择，那就是[`std::format`](https://en.cppreference.com/w/cpp/utility/format/format)(需要C++ 20支持)也可以使用[`fmt`](https://fmt.dev/latest/index.html)（只需要C++ 11）。
 
-最后推荐[`spdlog`](https://github.com/gabime/spdlog)能够完美支持前面所说的三种调用方式。通过简单的封装可以实现如下效果：
+最后推荐[`spdlog`](https://github.com/gabime/spdlog)日志系统， 它能够完美支持前面所说的三种调用方式。通过简单的封装可以实现如下效果：
 
 ```cpp
      logger::get().set_level(spdlog::level::info);
